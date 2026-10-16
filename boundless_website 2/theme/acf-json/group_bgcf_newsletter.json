@@ -1,0 +1,131 @@
+{
+    "key": "group_bgcf_newsletter",
+    "title": "Block — Newsletter",
+    "fields": [
+        {
+            "key": "field_bgcf_newsletter_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_newsletter_text",
+            "label": "Supporting text",
+            "name": "text",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_newsletter_background",
+            "label": "Background",
+            "name": "background",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "surface": "Light grey",
+                "primary": "Deep blue"
+            },
+            "return_format": "value",
+            "default_value": "surface"
+        },
+        {
+            "key": "field_bgcf_newsletter_consent_text",
+            "label": "Consent wording",
+            "name": "consent_text",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Shown beside a required, unticked checkbox. Leave empty to use the site default.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_newsletter_submit_label",
+            "label": "Button label",
+            "name": "submit_label",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_newsletter_privacy_link",
+            "label": "Privacy policy link",
+            "name": "privacy_link",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/newsletter"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/newsletter"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

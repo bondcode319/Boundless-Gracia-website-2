@@ -1,0 +1,157 @@
+// =============================================================================
+// TOOLS / FUNCTIONS
+// -----------------------------------------------------------------------------
+// Pure, dependency-free helpers. This file must NEVER `@use` the settings layer:
+// settings depends on it (for `fluid()` and `encode-color()`), so a dependency in
+// the other direction would create a module cycle Sass cannot resolve.
+// =============================================================================
+
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:meta';
+@use 'sass:string';
+@use 'sass:color';
+
+/// Root font size the whole system assumes. 16px is the browser default; we never
+/// change it, because overriding it breaks a user's own font-size preference.
+$root-font-size: 16 !default;
+
+/// Strip the unit from a number.
+/// @param  {Number} $value - e.g. 24px
+/// @return {Number} e.g. 24
+@function strip-unit($value) {
+	@if meta.type-of($value) != 'number' {
+		@error '`strip-unit()` expects a number, got `#{meta.type-of($value)}`.';
+	}
+
+	@if math.is-unitless($value) {
+		@return $value;
+	}
+
+	@return math.div($value, ($value * 0 + 1));
+}
+
+/// Convert a pixel value to rem, relative to the (untouched) 16px root.
+/// @param  {Number} $px
+/// @return {Number} rem value
+@function rem($px) {
+	@return math.div(strip-unit($px), $root-font-size) * 1rem;
+}
+
+/// Convert a pixel value to em, relative to a stated context.
+@function em($px, $context: $root-font-size) {
+	@return math.div(strip-unit($px), strip-unit($context)) * 1em;
+}
+
+/// Fluid type/space: a `clamp()` that interpolates linearly between two
+/// viewport widths and never escapes its bounds.
+///
+/// Uses `rem` for the clamp bounds (so it still scales with a user's font-size
+/// preference) and `vw` for the slope. The `1rem` multiplier on the intercept is
+/// what keeps zoom working — a raw `vw`-only formula fails WCAG 1.4.4.
+///
+/// @param  {Number} $min-px   Size at (and below) $min-vw.
+/// @param  {Number} $max-px   Size at (and above) $max-vw.
+/// @param  {Number} $min-vw   Lower viewport bound in px. Default 480 (large phone).
+/// @param  {Number} $max-vw   Upper viewport bound in px. Default 1280 (desktop).
+/// @return {String} clamp(...)
+@function fluid($min-px, $max-px, $min-vw: 480, $max-vw: 1280) {
+	$min: strip-unit($min-px);
+	$max: strip-unit($max-px);
+	$vw-min: strip-unit($min-vw);
+	$vw-max: strip-unit($max-vw);
+
+	@if $vw-max == $vw-min {
+		@return rem($min);
+	}
+
+	// Slope in viewport units, intercept in rem.
+	$slope: math.div($max - $min, $vw-max - $vw-min);
+	$intercept: $min - ($slope * $vw-min);
+
+	$slope-vw: math.div(math.round($slope * 10000), 100); // 2dp vw
+	$intercept-rem: math.div(math.round(math.div($intercept, $root-font-size) * 10000), 10000);
+
+	@return clamp(
+		#{rem($min)},
+		#{$intercept-rem}rem + #{$slope-vw}vw,
+		#{rem($max)}
+	);
+}
+
+/// Safe map lookup that fails loudly at build time instead of silently emitting
+/// `null` into the stylesheet.
+@function get($map, $key, $label: 'token') {
+	@if not map.has-key($map, $key) {
+		@error 'Unknown #{$label} `#{$key}`. Available: #{map.keys($map)}.';
+	}
+
+	@return map.get($map, $key);
+}
+
+/// Replace every occurrence of $search in $string.
+@function str-replace($string, $search, $replace: '') {
+	$index: string.index($string, $search);
+
+	@if $index {
+		@return string.slice($string, 1, $index - 1) + $replace +
+			str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+/// URL-encode a colour for embedding inside an SVG data URI (`#` -> `%23`).
+@function encode-color($value) {
+	@return str-replace('#{$value}', '#', '%23');
+}
+
+/// Space-separated channel list, for `rgb(var(--x) / 50%)` style alpha mixing.
+@function channels($color) {
+	@return #{color.channel($color, 'red', $space: rgb)}
+		#{color.channel($color, 'green', $space: rgb)}
+		#{color.channel($color, 'blue', $space: rgb)};
+}
+
+/// Relative luminance per WCAG 2.x.
+@function luminance($color) {
+	$channels: (
+		'r': math.div(color.channel($color, 'red', $space: rgb), 255),
+		'g': math.div(color.channel($color, 'green', $space: rgb), 255),
+		'b': math.div(color.channel($color, 'blue', $space: rgb), 255),
+	);
+	$linear: ();
+
+	@each $key, $value in $channels {
+		// @if rather than the if() function: Dart Sass 1.100+ deprecates the
+		// Sass if() syntax in favour of CSS's, and only the statement form is
+		// unambiguous in both.
+		$v: math.pow(math.div($value + 0.055, 1.055), 2.4);
+
+		@if $value <= 0.04045 {
+			$v: math.div($value, 12.92);
+		}
+
+		$linear: map.merge($linear, ($key: $v));
+	}
+
+	@return 0.2126 * map.get($linear, 'r') + 0.7152 * map.get($linear, 'g') + 0.0722 *
+		map.get($linear, 'b');
+}
+
+/// WCAG contrast ratio between two colours. Used by the styleguide and by the
+/// build-time assertion in settings/_colors.scss.
+@function contrast-ratio($a, $b) {
+	$la: luminance($a);
+	$lb: luminance($b);
+	$light: math.max($la, $lb);
+	$dark: math.min($la, $lb);
+
+	@return math.div($light + 0.05, $dark + 0.05);
+}
+
+/// Round a contrast ratio to 2dp for display in the styleguide.
+@function contrast-label($a, $b) {
+	@return math.div(math.round(contrast-ratio($a, $b) * 100), 100);
+}

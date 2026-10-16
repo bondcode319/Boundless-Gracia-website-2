@@ -1,0 +1,59 @@
+{
+	"name": "bgcf-website",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Build toolchain for the Boundless Gracia Children Foundation custom WordPress theme.",
+	"license": "UNLICENSED",
+	"type": "module",
+	"engines": {
+		"node": ">=20"
+	},
+	"browserslist": [
+		"> 0.5%",
+		"last 2 versions",
+		"Firefox ESR",
+		"not dead"
+	],
+	"scripts": {
+		"build": "npm run build:vendor && npm run build:acf && npm run build:pot && npm run build:css && npm run build:js",
+		"build:vendor": "node build/copy-vendor.mjs",
+		"build:acf": "node build/acf-fields.mjs",
+		"build:pot": "node build/makepot.mjs",
+		"build:css": "npm run css:compile && npm run css:prefix",
+		"build:js": "esbuild theme/assets/js/src/main.js --bundle --minify --format=iife --target=es2019 --legal-comments=none --outfile=theme/assets/js/main.js",
+		"css:compile": "sass theme/assets/scss/main.scss:theme/assets/css/main.css theme/assets/scss/editor.scss:theme/assets/css/editor.css theme/assets/scss/login.scss:theme/assets/css/login.css --load-path=node_modules --style=compressed --no-source-map --quiet-deps",
+		"css:prefix": "postcss \"theme/assets/css/*.css\" --use autoprefixer --replace --no-map",
+		"dev": "npm run build:vendor && run-p dev:css dev:js",
+		"dev:css": "sass --watch theme/assets/scss/main.scss:theme/assets/css/main.css theme/assets/scss/editor.scss:theme/assets/css/editor.css theme/assets/scss/login.scss:theme/assets/css/login.css --load-path=node_modules --style=expanded --embed-sources --quiet-deps",
+		"dev:js": "esbuild theme/assets/js/src/main.js --bundle --watch --format=iife --target=es2019 --sourcemap=inline --outfile=theme/assets/js/main.js",
+		"lint": "npm run lint:css && npm run lint:js",
+		"lint:css": "stylelint \"theme/assets/scss/**/*.scss\"",
+		"lint:js": "eslint theme/assets/js/src build",
+		"lint:acf": "node --check build/acf-fields.mjs",
+		"lint:php": "phpcs",
+		"format": "npm run format:css && npm run format:js",
+		"format:css": "stylelint \"theme/assets/scss/**/*.scss\" --fix",
+		"format:js": "eslint theme/assets/js/src build --fix",
+		"format:php": "phpcbf",
+		"images:webp": "node build/webp.mjs",
+		"clean": "node build/clean.mjs",
+		"prepare-release": "npm run clean && npm run build && npm run lint"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.0.0",
+		"autoprefixer": "^10.4.0",
+		"bootstrap": "^5.3.0",
+		"esbuild": "^0.25.0",
+		"eslint": "^9.0.0",
+		"globals": "^15.0.0",
+		"gsap": "^3.13.0",
+		"npm-run-all2": "^7.0.0",
+		"postcss": "^8.4.0",
+		"postcss-cli": "^11.0.0",
+		"sass": "^1.77.0",
+		"sharp": "^0.34.0",
+		"stylelint": "^16.0.0",
+		"stylelint-config-standard-scss": "^14.0.0",
+		"swiper": "^11.0.0"
+	}
+}

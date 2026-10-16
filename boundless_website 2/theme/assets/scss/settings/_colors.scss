@@ -1,0 +1,318 @@
+// =============================================================================
+// SETTINGS / COLOURS
+// -----------------------------------------------------------------------------
+// THE ONLY FILE IN THE PROJECT ALLOWED TO CONTAIN A HEX LITERAL.
+// Everything else — every element, component, utility, template and PHP file —
+// references a token. stylelint enforces this.
+//
+// Source of truth: CLAUDE.md "Brand & Design System".
+//   Deep Blue    #123B63  primary
+//   Emerald      #1E8A5A  secondary
+//   Orange       #F26A21  cta
+//   Accent Yellow#F5C518  accent
+//   Light Gray   #F4F6F8  surface
+//   White        #FFFFFF  base
+//   Dark Text    #1A2430  ink
+//
+// The seven brand values above are shipped EXACTLY as specified — they are a
+// brand contract and `inc/setup.php` exposes them to the Gutenberg palette.
+// Each one carries a 50-900 ramp so components never need to invent a hover,
+// border or tint colour.
+//
+// -----------------------------------------------------------------------------
+// ACCESSIBILITY NOTES (full audit lives in the Phase 1 report)
+// -----------------------------------------------------------------------------
+// Three brand pairings do NOT reach WCAG 2.2 AA on their own. The ramps below
+// exist to solve them; the rules are:
+//
+//  1. cta-500 (#F26A21) on white = 3.06:1. NEVER use the brand orange as small
+//     text and NEVER put white text on it. Use `ink` on an orange fill (5.12:1)
+//     or `cta-700` (#B85119, 4.97:1) for orange text on a light background.
+//  2. secondary-500 (#1E8A5A) with white = 4.34:1 — just short. Emerald *fills*
+//     that carry white text use `secondary-700` (#176944, 6.69:1); emerald text
+//     on white uses `secondary-600` (#1A794F, 5.40:1).
+//  3. accent-500 (#F5C518) on white = 1.63:1. Yellow is a BACKGROUND and
+//     decoration colour only. Ink on yellow is 9.62:1. Yellow text on a light
+//     background is forbidden; use `accent-900` (#624F0A, 7.95:1).
+// =============================================================================
+
+@use 'sass:map';
+
+// -----------------------------------------------------------------------------
+// Brand primitives — the seven contract values.
+// -----------------------------------------------------------------------------
+
+$brand-primary: #123b63; // Deep Blue
+$brand-secondary: #1e8a5a; // Emerald Green
+$brand-cta: #f26a21; // Action Orange
+$brand-accent: #f5c518; // Accent Yellow
+$brand-surface: #f4f6f8; // Light Gray
+$brand-base: #ffffff; // White
+$brand-ink: #1a2430; // Dark Text
+
+// -----------------------------------------------------------------------------
+// Ramps.
+// 50-400 are tints (mixed toward white), 500 is the brand value, 600-900 are
+// shades. Ratios in the comments are measured against #FFFFFF unless stated.
+// -----------------------------------------------------------------------------
+
+/// Deep Blue. Headings, links, secondary buttons, inverse surfaces.
+$primary: (
+	50: #f1f3f6,
+	100: #dee4e9,
+	200: #b8c4d0,
+	300: #899db1,
+	400: #506e8c,
+	// 5.32:1 — smallest AA-safe tint for text
+	500: $brand-primary,
+	// 11.47:1
+	600: #103457,
+	// 12.72:1 — button hover
+	700: #0e2d4b,
+	// 14.04:1 — button active
+	800: #0b233b,
+	900: #08192a,
+);
+
+/// Emerald. Success, growth, programme accents.
+$secondary: (
+	50: #f2f8f5,
+	100: #dfefe8,
+	200: #bcdcce,
+	300: #8fc5ad,
+	400: #59a885,
+	500: $brand-secondary,
+	// 4.34:1 — decoration and fills with INK text only
+	600: #1a794f,
+	// 5.40:1 — emerald text on light
+	700: #176944,
+	// 6.69:1 — emerald fill with white text
+	800: #125336,
+	900: #0d3a26,
+);
+
+/// Action Orange. Donate, volunteer, every primary call to action.
+$cta: (
+	50: #fef6f2,
+	100: #fdeae0,
+	200: #fbd2bc,
+	300: #f9b590,
+	400: #f5915b,
+	// ink 6.78:1 — primary button hover fill
+	500: $brand-cta,
+	// ink 5.12:1 — primary button rest fill
+	600: #da5f1e,
+	// borders / decoration ONLY (ink 4.21:1 — below AA)
+	700: #b85119,
+	// 4.97:1 — orange text on light backgrounds
+	800: #914014,
+	900: #662d0e,
+);
+
+/// Accent Yellow. Highlights, badges, focus ring on dark surfaces.
+$accent: (
+	50: #fefcf1,
+	100: #fef7df,
+	200: #fceeba,
+	300: #fae28c,
+	400: #f8d454,
+	500: $brand-accent,
+	// ink 9.62:1 — background only
+	600: #d8ad15,
+	700: #ba9612,
+	800: #8e720e,
+	900: #624f0a,
+	// 7.95:1 — the only AA-safe "yellow" for text
+);
+
+/// Cool neutral, tinted toward the Deep Blue so greys never look muddy beside it.
+/// 0 is White and 900 is Dark Text, so the brand base/ink values sit in the ramp.
+$neutral: (
+	0: $brand-base,
+	50: $brand-surface,
+	100: #e9edf1,
+	200: #d7dee5,
+	// decorative dividers
+	300: #b9c4ce,
+	400: #8f9dab,
+	500: #6b7a89,
+	// 4.40:1 — form control borders (>=3:1 UI)
+	600: #55636f,
+	// 6.18:1 — muted body text
+	700: #3f4b57,
+	800: #2a343e,
+	900: $brand-ink,
+);
+
+/// Error red. Not a brand colour — forms need one, and inventing it here beats
+/// letting six components each pick their own.
+$danger: (
+	50: #fdeeec,
+	100: #fad8d4,
+	200: #f3aba4,
+	300: #e5776d,
+	400: #d4342a,
+	500: #b3261e,
+	// 6.54:1
+	600: #991f18,
+	700: #7c1912,
+	800: #5d130e,
+	900: #3d0d09,
+);
+
+// -----------------------------------------------------------------------------
+// Ramp registry — used by the styleguide template and by `tools/color`.
+// -----------------------------------------------------------------------------
+
+$ramps: (
+	'primary': $primary,
+	'secondary': $secondary,
+	'cta': $cta,
+	'accent': $accent,
+	'neutral': $neutral,
+	'danger': $danger,
+);
+
+// -----------------------------------------------------------------------------
+// Semantic aliases.
+// Components read THESE, never a ramp step directly. That is what lets a dark
+// section re-declare `--bgcf-color-text` once and have every child adapt.
+// -----------------------------------------------------------------------------
+
+$color-text: map.get($neutral, 900); // 15.68:1 on white
+$color-text-muted: map.get($neutral, 600); // 6.18:1 on white, 5.70:1 on surface
+$color-text-subtle: map.get($neutral, 500); // 4.40:1 — large text / UI only
+$color-text-inverse: $brand-base;
+$color-heading: map.get($primary, 500);
+$color-eyebrow: map.get($secondary, 600);
+
+$color-link: map.get($primary, 500);
+$color-link-hover: map.get($cta, 700);
+$color-link-visited: map.get($primary, 700);
+
+$color-bg: $brand-base;
+$color-bg-subtle: $brand-surface;
+$color-bg-muted: map.get($neutral, 100);
+$color-bg-inverse: map.get($primary, 500);
+
+$color-border: map.get($neutral, 200);
+$color-border-subtle: map.get($neutral, 100);
+$color-border-strong: map.get($neutral, 500);
+
+// Focus. `primary` clears 3:1 against white (11.47), surface (10.58), the CTA
+// orange (3.75) and the accent yellow (7.03), so one ring works on every light
+// surface. Dark surfaces flip to `accent` (7.03 on Deep Blue, 9.62 on ink).
+$color-focus: map.get($primary, 500);
+$color-focus-inverse: map.get($accent, 500);
+
+$color-selection-bg: map.get($accent, 200);
+$color-selection-text: map.get($neutral, 900);
+
+$color-overlay: map.get($neutral, 900);
+
+// Status.
+$color-success: map.get($secondary, 700);
+$color-success-bg: map.get($secondary, 50);
+$color-success-border: map.get($secondary, 600);
+
+$color-warning: map.get($accent, 900);
+$color-warning-bg: map.get($accent, 100);
+$color-warning-border: map.get($accent, 700);
+
+$color-danger: map.get($danger, 500);
+$color-danger-bg: map.get($danger, 50);
+$color-danger-border: map.get($danger, 500);
+
+$color-info: map.get($primary, 600);
+$color-info-bg: map.get($primary, 50);
+$color-info-border: map.get($primary, 500);
+
+// Component-level brand mappings (ARCHITECTURE.md §3: "--primary is the orange
+// CTA, --secondary is deep blue").
+$btn-primary-bg: map.get($cta, 500);
+$btn-primary-bg-hover: map.get($cta, 400);
+$btn-primary-bg-active: map.get($cta, 500);
+$btn-primary-text: map.get($neutral, 900); // 5.12:1 on rest, 6.78:1 on hover
+
+$btn-secondary-bg: map.get($primary, 500);
+$btn-secondary-bg-hover: map.get($primary, 600);
+$btn-secondary-bg-active: map.get($primary, 700);
+$btn-secondary-text: $brand-base; // 11.47:1
+
+$btn-ghost-text: map.get($primary, 500);
+$btn-ghost-border: map.get($primary, 300);
+$btn-ghost-bg-hover: map.get($primary, 50);
+
+// Section backgrounds. `secondary` deliberately resolves to the 700 shade so
+// white text on an emerald band reaches 6.69:1 instead of 4.34:1.
+$section-bg-base: $brand-base;
+$section-bg-surface: $brand-surface;
+$section-bg-primary: map.get($primary, 500);
+$section-bg-secondary: map.get($secondary, 700);
+
+// -----------------------------------------------------------------------------
+// HORIZON SURFACE ROLES
+// -----------------------------------------------------------------------------
+// The Horizon layout system builds a page from a repeating rhythm of coloured
+// bands, and the rule it enforces is that no two adjacent bands share a
+// background. That only works if the available backgrounds are a named, closed
+// set — otherwise every new section invents its own tint and the rhythm dies.
+//
+// These are ROLES, not colours. `sand` is "the warm band that carries the impact
+// numbers"; it happens to resolve to the yellow 100 tint today. A brand refresh
+// changes the right-hand side of these six lines and nothing else.
+//
+// Every value is a tint or a shade from the ramps above, so the contrast
+// guarantees already audited there carry through. The measured ratio of Dark
+// Text (#1A2430) on each light surface is in the comment; all five clear AA for
+// body text by a wide margin.
+// -----------------------------------------------------------------------------
+
+/// White. The quietest band; used where photography or cards do the work.
+$surface-page: $brand-base; // ink 15.68:1
+
+/// Light Gray. The default light band.
+$surface-soft: $brand-surface; // ink 14.45:1
+
+/// Warm yellow tint. The impact / statistics band. Yellow is a background
+/// colour only (see the accessibility notes at the top of this file) and this
+/// is the sanctioned way to use it at full-band scale.
+$surface-sand: map.get($accent, 100); // ink 14.00:1
+
+/// Warm orange tint. The news band and the news-card body. Shares the CTA hue
+/// without using the CTA orange itself, so the band reads as "related to
+/// action" without competing with an actual Donate button sitting on it.
+$surface-bloom: map.get($cta, 50); // ink 14.78:1
+
+/// Cool emerald tint. The programme-card body and the volunteer band.
+$surface-leaf: map.get($secondary, 50); // ink 14.59:1
+
+/// Neutral card fill, for cards that sit ON a dark band and must read as
+/// paper rather than as another tint of the band behind them.
+$surface-card-muted: map.get($neutral, 50); // ink 14.45:1
+
+/// Deep Blue. The dark band. Carries white text at 11.47:1.
+$surface-ink: map.get($primary, 500);
+
+/// Deeper Deep Blue, for the footer, so the footer reads as a distinct surface
+/// from a dark section that happens to sit directly above it.
+$surface-ink-deep: map.get($primary, 800); // white 14.04:1
+
+/// Scrim over photography. Applied at 55-65% depending on the band; see
+/// `tools/elevation`'s `photo-scrim()`.
+$surface-scrim: map.get($primary, 900);
+
+/// Registry. Consumed by `settings/_custom-properties.scss` to emit
+/// `--bgcf-surface-{role}`, and by the styleguide template to document them.
+/// The ORDER here is the documented rhythm order, not alphabetical.
+$surfaces: (
+	'page': $surface-page,
+	'soft': $surface-soft,
+	'sand': $surface-sand,
+	'bloom': $surface-bloom,
+	'leaf': $surface-leaf,
+	'card-muted': $surface-card-muted,
+	'ink': $surface-ink,
+	'ink-deep': $surface-ink-deep,
+	'scrim': $surface-scrim,
+);

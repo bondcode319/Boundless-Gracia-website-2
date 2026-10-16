@@ -1,0 +1,92 @@
+// =============================================================================
+// COMPONENTS / SUBSCRIBE CARD
+// -----------------------------------------------------------------------------
+// The light card that carries the footer's sign-up form — the one bright object
+// on the dark footer band. Markup from `partials/global/subscribe-card.php`.
+//
+// The surface flip lives on the markup, as `bgcf-u-on-light`, not in this file.
+// That is deliberate: the flip is a surface CONTEXT that several unrelated
+// components need (this card, a white panel on a hero, a popover anchored to
+// dark chrome), so it belongs to the utility layer and not to any one of them.
+// What this file owns is the card's shape, its padding and how the form inside
+// it lays out.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-subscribe-card {
+	@include t.surface(var(--bgcf-radius-xl), 'lg');
+	@include t.stack(var(--bgcf-space-4), stretch);
+
+	padding: var(--bgcf-space-8);
+
+	&__title {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-xl);
+		font-weight: var(--bgcf-font-weight-semibold);
+		line-height: var(--bgcf-line-height-snug);
+		color: var(--bgcf-color-heading);
+	}
+
+	&__text {
+		max-inline-size: var(--bgcf-measure-narrow);
+		margin: 0;
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// The card variant of the shared newsletter form.
+//
+// The form's own layout is a single column of rows. Inside the card the email
+// input and the submit button share a row at tablet width and up, because a
+// full-width button under a full-width input in a 420px card reads as two
+// unrelated controls.
+//
+// Below that width they stack, and the button goes full-width — a 44px-tall
+// button beside a 44px input in a 320px card leaves the input 140px wide, which
+// is not enough to see an email address in.
+// -----------------------------------------------------------------------------
+.bgcf-newsletter--card {
+	.bgcf-newsletter__row {
+		display: grid;
+		gap: var(--bgcf-space-3);
+
+		@include t.mq(sm) {
+			// `auto` on the button track rather than a fraction, so the button is
+			// the width of its label and the input takes everything else.
+			grid-template-columns: minmax(0, 1fr) auto;
+			align-items: end;
+		}
+	}
+
+	.bgcf-newsletter__submit {
+		inline-size: 100%;
+
+		@include t.mq(sm) {
+			inline-size: auto;
+		}
+	}
+
+	// The sand-coloured input fill from the Horizon reference, mapped to the
+	// warm brand tint. A filled input on a white card has a clearer boundary
+	// than a bordered one, and the fill is light enough that the 4.5:1 floor for
+	// the input's own text is met with room to spare.
+	.bgcf-field__input {
+		background-color: var(--bgcf-surface-sand);
+		border-color: transparent;
+
+		&:focus {
+			background-color: var(--bgcf-color-base);
+			border-color: var(--bgcf-color-border-strong);
+		}
+	}
+
+	.bgcf-field__optional {
+		margin-inline-start: var(--bgcf-space-1);
+		font-weight: var(--bgcf-font-weight-regular);
+		color: var(--bgcf-color-text-muted);
+	}
+}

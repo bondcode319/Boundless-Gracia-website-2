@@ -1,0 +1,245 @@
+{
+    "key": "group_bgcf_statistics",
+    "title": "Block — Statistics",
+    "fields": [
+        {
+            "key": "field_bgcf_statistics_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_statistics_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_statistics_lead",
+            "label": "Supporting text",
+            "name": "lead",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_statistics_background",
+            "label": "Band colour",
+            "name": "background",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "page": "White — the quiet band",
+                "soft": "Light grey — the default band",
+                "sand": "Warm yellow — the impact band",
+                "bloom": "Warm orange — the news band",
+                "leaf": "Pale emerald — the programmes band",
+                "ink": "Deep blue — a dark band",
+                "secondary": "Emerald — a dark band"
+            },
+            "return_format": "value",
+            "default_value": "sand"
+        },
+        {
+            "key": "field_bgcf_statistics_stats",
+            "label": "Figures",
+            "name": "stats",
+            "aria_label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 2,
+            "max": 6,
+            "sub_fields": [
+                {
+                    "key": "field_bgcf_statistics_stats_value",
+                    "label": "Number",
+                    "name": "value",
+                    "aria_label": "",
+                    "type": "number",
+                    "instructions": "Digits only. Use the prefix and suffix fields for anything else.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_statistics_stats_decimals",
+                    "label": "Decimal places",
+                    "name": "decimals",
+                    "aria_label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "min": 0,
+                    "max": 2
+                },
+                {
+                    "key": "field_bgcf_statistics_stats_prefix",
+                    "label": "Prefix",
+                    "name": "prefix",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "e.g. “UGX” or “+”.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_statistics_stats_suffix",
+                    "label": "Suffix",
+                    "name": "suffix",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "e.g. “%”, “k” or “+”.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_statistics_stats_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_statistics_stats_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria_label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "": "— none —",
+                        "heart": "Heart",
+                        "users": "People",
+                        "graduation": "Education",
+                        "health": "Health",
+                        "water": "Water",
+                        "home": "Shelter",
+                        "book": "Books",
+                        "shield": "Protection",
+                        "handshake": "Partnership",
+                        "target": "Goal",
+                        "globe": "Global",
+                        "check-circle": "Tick",
+                        "calendar": "Calendar",
+                        "map-pin": "Location",
+                        "file-text": "Document",
+                        "download": "Download",
+                        "mail": "Email",
+                        "phone": "Phone",
+                        "user": "Person",
+                        "clock": "Time",
+                        "info": "Information",
+                        "arrow-up-right": "Arrow"
+                    },
+                    "return_format": "value"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/statistics"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/statistics"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "A band of impact counters. Figures animate on scroll; the real number is always in the page, so nothing depends on the animation.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

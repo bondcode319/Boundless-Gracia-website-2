@@ -1,0 +1,258 @@
+{
+    "key": "group_bgcf_service_cards",
+    "title": "Block — Service Cards",
+    "fields": [
+        {
+            "key": "field_bgcf_service_cards_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_service_cards_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_service_cards_lead",
+            "label": "Intro paragraph",
+            "name": "lead",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_service_cards_background",
+            "label": "Band colour",
+            "name": "background",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "page": "White — the quiet band",
+                "soft": "Light grey — the default band",
+                "sand": "Warm yellow — the impact band",
+                "bloom": "Warm orange — the news band",
+                "leaf": "Pale emerald — the programmes band",
+                "ink": "Deep blue — a dark band",
+                "secondary": "Emerald — a dark band"
+            },
+            "return_format": "value",
+            "default_value": "ink"
+        },
+        {
+            "key": "field_bgcf_service_cards_columns",
+            "label": "Cards per row",
+            "name": "columns",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "Two",
+                "3": "Three",
+                "4": "Four"
+            },
+            "return_format": "value",
+            "default_value": 3
+        },
+        {
+            "key": "field_bgcf_service_cards_align",
+            "label": "Heading alignment",
+            "name": "align",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "center": "Centred",
+                "start": "Left"
+            },
+            "return_format": "value",
+            "default_value": "center"
+        },
+        {
+            "key": "field_bgcf_service_cards_items",
+            "label": "Cards",
+            "name": "items",
+            "aria_label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add card",
+            "min": 1,
+            "max": 12,
+            "sub_fields": [
+                {
+                    "key": "field_bgcf_service_cards_items_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria_label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "": "— none —",
+                        "heart": "Heart",
+                        "users": "People",
+                        "graduation": "Education",
+                        "health": "Health",
+                        "water": "Water",
+                        "home": "Shelter",
+                        "book": "Books",
+                        "shield": "Protection",
+                        "handshake": "Partnership",
+                        "target": "Goal",
+                        "globe": "Global",
+                        "check-circle": "Tick",
+                        "calendar": "Calendar",
+                        "map-pin": "Location",
+                        "file-text": "Document",
+                        "download": "Download",
+                        "mail": "Email",
+                        "phone": "Phone",
+                        "user": "Person",
+                        "clock": "Time",
+                        "info": "Information",
+                        "arrow-up-right": "Arrow"
+                    },
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_bgcf_service_cards_items_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_service_cards_items_text",
+                    "label": "Description",
+                    "name": "text",
+                    "aria_label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_bgcf_service_cards_items_link",
+                    "label": "Link",
+                    "name": "link",
+                    "aria_label": "",
+                    "type": "link",
+                    "instructions": "Optional. The link text you type becomes the card’s link label.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/service-cards"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/service-cards"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "A grid of text-only cards. Designed for a dark band — on a white band the cards have very little to stand out against.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

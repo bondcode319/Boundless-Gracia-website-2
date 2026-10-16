@@ -1,0 +1,16 @@
+// =============================================================================
+// UTILITIES — index
+// -----------------------------------------------------------------------------
+// Low-count, high-value helpers, all namespaced `bgcf-u-` so they never fight
+// Bootstrap's utilities (which are also loaded, for grid/spacing). Utilities are
+// the LAST authored layer before vendor overrides, so their single-purpose rules
+// win against components by source order without needing `!important`.
+//
+// Rule: if a utility would duplicate a Bootstrap utility (margins, display,
+// flex-direction), do NOT add it here — use Bootstrap's. Only brand-specific or
+// accessibility-critical helpers live in this layer.
+// =============================================================================
+
+@forward './visibility';
+@forward './text';
+@forward './layout';

@@ -1,0 +1,56 @@
+// =============================================================================
+// SETTINGS / SHADOW
+// -----------------------------------------------------------------------------
+// Soft, low-contrast elevation. Every shadow is tinted with the Dark Text colour
+// rather than pure black, which keeps the cool-blue cast of the palette and
+// stops cards looking dirty against the Light Gray background.
+//
+// Two-layer shadows (a tight contact shadow plus a wide ambient one) read as
+// "lifted paper" instead of "drop shadow", which is the brand feel we want.
+// =============================================================================
+
+@use './colors' as c;
+
+$shadow-color: c.$brand-ink;
+
+$shadow-none: none;
+
+$shadow-xs: 0 1px 2px rgba($shadow-color, 0.06);
+
+$shadow-sm:
+	0 1px 2px rgba($shadow-color, 0.04),
+	0 2px 6px rgba($shadow-color, 0.06);
+
+$shadow-md:
+	0 2px 4px rgba($shadow-color, 0.04),
+	0 6px 16px rgba($shadow-color, 0.08);
+
+$shadow-lg:
+	0 4px 8px rgba($shadow-color, 0.05),
+	0 12px 28px rgba($shadow-color, 0.1);
+
+$shadow-xl:
+	0 8px 16px rgba($shadow-color, 0.06),
+	0 24px 48px rgba($shadow-color, 0.12);
+
+$shadow-2xl:
+	0 12px 24px rgba($shadow-color, 0.08),
+	0 40px 72px rgba($shadow-color, 0.16);
+
+$shadow-inset: inset 0 1px 2px rgba($shadow-color, 0.08);
+
+/// Coloured lift used on CTA buttons — the shadow picks up the orange so the
+/// button reads as warm rather than grey-dropped.
+$shadow-cta: 0 6px 16px rgba(c.$brand-cta, 0.32);
+$shadow-cta-hover: 0 10px 24px rgba(c.$brand-cta, 0.38);
+
+$shadows: (
+	'none': $shadow-none,
+	'xs': $shadow-xs,
+	'sm': $shadow-sm,
+	'md': $shadow-md,
+	'lg': $shadow-lg,
+	'xl': $shadow-xl,
+	'2xl': $shadow-2xl,
+	'inset': $shadow-inset,
+);

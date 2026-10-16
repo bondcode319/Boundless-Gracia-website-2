@@ -1,0 +1,162 @@
+{
+    "key": "group_bgcf_donation_banner",
+    "title": "Block — Donation Banner",
+    "fields": [
+        {
+            "key": "field_bgcf_donation_banner_donation_notice",
+            "label": "Before you start",
+            "name": "donation_notice",
+            "aria_label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Suggested amounts, payment methods, the processing-fee option and the thank-you page are configured once under **Donations → Settings**. Progress figures are calculated from real donations and cannot be typed in.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_bgcf_donation_banner_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_donation_banner_text",
+            "label": "Supporting text",
+            "name": "text",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_donation_banner_background_image",
+            "label": "Background image",
+            "name": "background_image",
+            "aria_label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_bgcf_donation_banner_campaign",
+            "label": "Campaign",
+            "name": "campaign",
+            "aria_label": "",
+            "type": "post_object",
+            "instructions": "Attributes gifts to a campaign and shows its progress bar. Leave empty for general giving.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "bgcf_campaign"
+            ],
+            "return_format": "id",
+            "ui": 1,
+            "allow_null": 1
+        },
+        {
+            "key": "field_bgcf_donation_banner_show_form",
+            "label": "Show the giving form here",
+            "name": "show_form",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "Off shows a button to your donate page instead — useful on pages where a full form is too much.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 1
+        },
+        {
+            "key": "field_bgcf_donation_banner_donate_cta",
+            "label": "Donate button",
+            "name": "donate_cta",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_bgcf_donation_banner_show_form",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/donation-banner"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/donation-banner"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "The giving form. Amounts, payment methods and limits come from Donations → Settings, not from this block — so every form on the site offers the same options.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

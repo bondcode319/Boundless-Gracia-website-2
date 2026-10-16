@@ -1,0 +1,57 @@
+# Local development stack for the BGCF theme.
+# Usage: docker compose up -d   →   http://localhost:8088
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: bgcf
+      MARIADB_USER: bgcf
+      MARIADB_PASSWORD: bgcf
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8088:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: bgcf
+      WORDPRESS_DB_USER: bgcf
+      WORDPRESS_DB_PASSWORD: bgcf
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'WP_DEBUG_LOG', true );
+        define( 'WP_DEBUG_DISPLAY', false );
+        define( 'FS_METHOD', 'direct' );
+    volumes:
+      - wp_data:/var/www/html
+      - ./theme:/var/www/html/wp-content/themes/bgcf
+
+  cli:
+    image: wordpress:cli-php8.3
+    depends_on:
+      - wordpress
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: bgcf
+      WORDPRESS_DB_USER: bgcf
+      WORDPRESS_DB_PASSWORD: bgcf
+    volumes:
+      - wp_data:/var/www/html
+      - ./theme:/var/www/html/wp-content/themes/bgcf
+    entrypoint: ["tail", "-f", "/dev/null"]
+
+volumes:
+  db_data:
+  wp_data:

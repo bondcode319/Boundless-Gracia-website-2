@@ -1,0 +1,140 @@
+// =============================================================================
+// COMPONENTS / PROMO MODAL
+// -----------------------------------------------------------------------------
+// The seasonal announcement dialog. Markup from
+// `partials/global/promo-modal.php`; behaviour from
+// `assets/js/src/promo-modal.js`.
+//
+// Same `hidden`-attribute discipline as the mega panel and the drawer: nothing
+// inside is focusable until the script shows it. A modal that is merely
+// `opacity: 0` is the worst offender of the three, because its CTA is the first
+// thing a keyboard user lands on when they press Tab on a page that looks like
+// it has no dialog at all.
+//
+// THE SCRIM IS 60% — the upper end of the 40-60% band — because the panel is
+// small and the page behind it is busy. Anything lighter and the page competes
+// with the dialog; anything heavier and a visitor loses their sense of where
+// they were.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-promo-backdrop {
+	@include t.transition(opacity, 'base');
+
+	position: fixed;
+	z-index: var(--bgcf-z-overlay);
+	inset: 0;
+	opacity: 0;
+	background-color: rgb(var(--bgcf-rgb-ink) / 60%);
+
+	&[hidden] {
+		display: none;
+	}
+
+	&.is-open {
+		opacity: 1;
+	}
+}
+
+.bgcf-promo {
+	@include t.transition((opacity, transform), 'base', 'emphasized');
+
+	position: fixed;
+	z-index: var(--bgcf-z-modal);
+	inset: 0;
+	display: grid;
+	place-items: center;
+
+	// The dialog must not be taller than the viewport on a short screen, and it
+	// must not be *scrollable from the page behind it* either, which is why the
+	// scroll container is the panel and not this wrapper.
+	padding: var(--bgcf-space-4);
+	opacity: 0;
+	transform: scale(0.96);
+
+	&[hidden] {
+		display: none;
+	}
+
+	&.is-open {
+		opacity: 1;
+		transform: none;
+	}
+
+	&__panel {
+		@include t.surface(var(--bgcf-radius-xl), '2xl');
+
+		position: relative;
+		inline-size: 100%;
+		max-inline-size: t.rem(520);
+
+		// `dvh`, not `vh`: on mobile Safari `100vh` is the height the viewport
+		// has when the address bar is hidden, so a dialog sized against it is
+		// taller than the visible area for as long as the bar is showing — and
+		// the close button is the part that ends up off-screen.
+		max-block-size: calc(100dvh - var(--bgcf-space-8));
+		overflow: hidden auto;
+	}
+
+	&__close {
+		@include t.focusable;
+		@include t.target-size(true);
+		@include t.transition((color, background-color), 'fast');
+
+		position: absolute;
+		z-index: var(--bgcf-z-raised);
+		inset-block-start: var(--bgcf-space-3);
+		inset-inline-end: var(--bgcf-space-3);
+		display: grid;
+		place-items: center;
+		color: var(--bgcf-color-text);
+		cursor: pointer;
+
+		// A translucent white fill rather than a solid one, so the button is
+		// legible whether it lands on the panel's media or on its body.
+		background-color: rgb(var(--bgcf-rgb-base) / 86%);
+		border: 0;
+		border-radius: var(--bgcf-radius-circle);
+		box-shadow: var(--bgcf-shadow-sm);
+
+		&:hover {
+			color: var(--bgcf-color-base);
+			background-color: var(--bgcf-color-primary);
+		}
+	}
+
+	&__media {
+		@include t.ratio(16, 9);
+	}
+
+	&__image {
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+	}
+
+	&__body {
+		@include t.stack(var(--bgcf-space-4), flex-start);
+
+		padding: var(--bgcf-space-8);
+	}
+
+	&__title {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-2xl);
+		font-weight: var(--bgcf-font-weight-semibold);
+		line-height: var(--bgcf-line-height-tight);
+		color: var(--bgcf-color-heading);
+		letter-spacing: var(--bgcf-tracking-tight);
+	}
+
+	&__text {
+		color: var(--bgcf-color-text-muted);
+
+		> :last-child {
+			margin-block-end: 0;
+		}
+	}
+}

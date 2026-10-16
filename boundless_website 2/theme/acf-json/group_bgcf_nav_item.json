@@ -1,0 +1,66 @@
+{
+    "key": "group_bgcf_nav_item",
+    "title": "Menu item — icon",
+    "fields": [
+        {
+            "key": "field_bgcf_nav_item_menu_icon",
+            "label": "Panel icon",
+            "name": "menu_icon",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "Shown in the header drop-down panel. The one-line description beside it comes from this item’s own Description field — turn that on under Screen Options at the top of this page if you cannot see it.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "— none —",
+                "heart": "Heart",
+                "users": "People",
+                "graduation": "Education",
+                "health": "Health",
+                "water": "Water",
+                "home": "Shelter",
+                "book": "Books",
+                "shield": "Protection",
+                "handshake": "Partnership",
+                "target": "Goal",
+                "globe": "Global",
+                "check-circle": "Tick",
+                "calendar": "Calendar",
+                "map-pin": "Location",
+                "file-text": "Document",
+                "download": "Download",
+                "mail": "Email",
+                "phone": "Phone",
+                "user": "Person",
+                "clock": "Time",
+                "info": "Information",
+                "arrow-up-right": "Arrow"
+            },
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "nav_menu_item",
+                "operator": "==",
+                "value": "all"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Icons appear in the header’s drop-down panels, beside each item’s title and description.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

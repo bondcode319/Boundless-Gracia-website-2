@@ -1,0 +1,33 @@
+// =============================================================================
+// MAIN — front-end entry
+// -----------------------------------------------------------------------------
+// Compiles to assets/css/main.css (handle `bgcf-main`, loaded on every page).
+// The ITCSS cascade, low-specificity first:
+//
+//   settings   tokens (SCSS vars + the :root custom-property emitter)  — no CSS
+//   tools      mixins + functions                                      — no CSS
+//   vendor     Bootstrap grid + utilities (opt-in; see vendor/_bootstrap)
+//   generic    :root tokens, reset, motion guard
+//   elements   bare HTML elements
+//   components  .bgcf-* components
+//   utilities  .bgcf-u-* helpers (last authored layer → wins by source order)
+//
+// Source order IS specificity management here: nothing uses `!important` except
+// the accessibility guards that must never lose. Keep the order.
+// =============================================================================
+
+// --- Members only (emit no CSS) ---------------------------------------------
+@use 'settings' as s;
+@use 'tools' as t;
+
+// --- Vendor ------------------------------------------------------------------
+// Bootstrap grid + utilities. Disabled until `npm install` + build load-path are
+// in place — our tools/layout mixins cover Phase 1–2. Enable per the header of
+// vendor/_bootstrap.scss (uncomment the line below AND in editor.scss).
+// @use 'vendor/bootstrap';
+
+// --- Authored cascade (emit CSS, in order) ----------------------------------
+@use 'generic';
+@use 'elements';
+@use 'components';
+@use 'utilities';

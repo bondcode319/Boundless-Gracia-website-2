@@ -1,0 +1,22 @@
+// =============================================================================
+// TOOLS — index
+// -----------------------------------------------------------------------------
+// Mixins and functions. Emits NO CSS, so it is safe to `@use` from every layer
+// and from all three entry files without duplicating output.
+//
+// Usage:
+//   @use '../tools' as t;
+//   @include t.mq(md) { … }
+//   @include t.focusable;
+//
+// NOTE: `settings/` imports `tools/functions` DIRECTLY (not through this index)
+// to avoid a module cycle — the mixin files below depend on settings.
+// =============================================================================
+
+@forward './functions';
+@forward './breakpoints';
+@forward './typography';
+@forward './a11y';
+@forward './layout';
+@forward './elevation';
+@forward './motion';

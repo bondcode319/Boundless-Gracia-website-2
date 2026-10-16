@@ -1,0 +1,164 @@
+// =============================================================================
+// GENERIC / RESET
+// -----------------------------------------------------------------------------
+// A modern, opinionated reset. Not Normalize (too much legacy) and not `* { all:
+// unset }` (destroys semantics). Everything here is a defensible default, and
+// nothing here is a design decision — those live in `elements/`.
+// =============================================================================
+
+@use '../tools' as t;
+
+// Box sizing. Border-box everywhere, inheritable so a third-party widget can opt
+// out of the whole subtree with one declaration. The `border-box` seed sits on
+// the `html` rule further down (one rule per selector — see no-duplicate-selectors).
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+// Remove the default margin from everything that has one. Spacing is a layout
+// decision made by a component, never a browser default.
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd,
+fieldset,
+legend,
+pre {
+	margin: 0;
+}
+
+// Lists lose their padding only when they also lose their markers, so that
+// content lists (in prose) keep working.
+ul[class],
+ol[class] {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+// Core defaults.
+html {
+	box-sizing: border-box;
+	// Prevent iOS text inflation on rotate without disabling user zoom.
+	// Authored unprefixed on purpose: autoprefixer re-adds
+	// `-webkit-text-size-adjust` (which iOS Safari still needs) at build time,
+	// driven by the browserslist in package.json.
+	text-size-adjust: 100%;
+	// Anchors and skip links must not land under the sticky header.
+	scroll-padding-block-start: calc(var(--bgcf-header-height) + var(--bgcf-space-4));
+	// Reserve the scrollbar so a short page and a long page do not jump.
+	scrollbar-gutter: stable;
+}
+
+body {
+	min-height: 100vh;
+	min-height: 100svh;
+	text-rendering: optimizespeed;
+}
+
+// Media defaults. `max-width` + `height: auto` is the single most valuable line
+// in any responsive reset.
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+img,
+video {
+	height: auto;
+}
+
+// Inputs inherit typography rather than reverting to the system UI font.
+input,
+button,
+textarea,
+select {
+	font: inherit;
+	color: inherit;
+	letter-spacing: inherit;
+}
+
+// Textareas resize vertically only — horizontal resize breaks layouts.
+textarea {
+	resize: vertical;
+}
+
+// Buttons are not text. Remove the platform chrome; `components/_button.scss`
+// puts a design back.
+button {
+	padding: 0;
+	background: none;
+	border: 0;
+}
+
+button,
+[role='button'],
+label[for],
+summary {
+	cursor: pointer;
+}
+
+// Tables collapse by default; `elements/_tables.scss` styles them.
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+// Remove the anchor underline offset inconsistency between engines.
+a {
+	color: inherit;
+	text-decoration-skip-ink: auto;
+}
+
+// Consistent horizontal rule.
+hr {
+	height: 0;
+	border: 0;
+	border-block-start: var(--bgcf-border-width) solid var(--bgcf-color-border);
+}
+
+// `hidden` must win over any `display` a component sets.
+[hidden] {
+	display: none !important;
+}
+
+// `inert` regions (the page behind an open drawer) must not look interactive.
+[inert],
+[inert] * {
+	cursor: default;
+	user-select: none;
+}
+
+// Selection reflects the brand rather than the OS default.
+::selection {
+	color: var(--bgcf-color-selection-text);
+	background-color: var(--bgcf-color-selection-bg);
+}
+
+// Focus: strip the UA ring only where we immediately replace it. Everything
+// focusable in the theme opts into `t.focusable` in its own component file;
+// this is the site-wide safety net so nothing is ever left without an indicator.
+:focus-visible {
+	@include t.focus-ring;
+}
+
+// Legacy engines without :focus-visible still get a ring.
+@supports not selector(:focus-visible) {
+	:focus {
+		@include t.focus-ring;
+	}
+}

@@ -1,0 +1,39 @@
+// =============================================================================
+// SETTINGS / Z-INDEX
+// -----------------------------------------------------------------------------
+// One ladder for the whole theme. If you are about to write `z-index: 9999`,
+// add a rung here instead and say what it is for.
+//
+// The skip link sits ABOVE the modal layer on purpose: a keyboard user must be
+// able to reach it no matter what else is open.
+// =============================================================================
+
+$z-below: -1; // decorative art behind content
+$z-base: 0;
+$z-raised: 10; // card hover lift, focused form field
+$z-sticky: 100; // sticky table headers, in-page filters
+$z-header: 200; // site header
+$z-dropdown: 300; // nav submenu, language switcher
+$z-overlay: 400; // scrim behind the drawer / lightbox
+$z-drawer: 500; // mobile navigation drawer
+$z-modal: 600; // dialogs, lightbox
+$z-popover: 700; // tooltips anchored to modal content
+$z-toast: 800; // status messages
+$z-skip-link: 900; // must beat everything focusable
+$z-max: 9999; // reserved; do not use without a comment
+
+$z-layers: (
+	'below': $z-below,
+	'base': $z-base,
+	'raised': $z-raised,
+	'sticky': $z-sticky,
+	'header': $z-header,
+	'dropdown': $z-dropdown,
+	'overlay': $z-overlay,
+	'drawer': $z-drawer,
+	'modal': $z-modal,
+	'popover': $z-popover,
+	'toast': $z-toast,
+	'skip-link': $z-skip-link,
+	'max': $z-max,
+);

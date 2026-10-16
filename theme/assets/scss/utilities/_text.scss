@@ -1,0 +1,55 @@
+// =============================================================================
+// UTILITIES / TEXT
+// -----------------------------------------------------------------------------
+// A small, opinionated set of text helpers that read from tokens. Deliberately
+// narrow — Bootstrap covers generic alignment; these add the brand-specific
+// typographic shortcuts (eyebrow, lead, measure) that templates reach for often.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-u-text-center {
+	text-align: center;
+}
+
+.bgcf-u-text-start {
+	text-align: start;
+}
+
+.bgcf-u-text-balance {
+	text-wrap: balance;
+}
+
+// Cap line length to the readable measure.
+.bgcf-u-measure {
+	max-inline-size: var(--bgcf-measure);
+}
+
+.bgcf-u-measure-narrow {
+	max-inline-size: var(--bgcf-measure-narrow);
+}
+
+// The eyebrow label, as a utility for one-off uses outside a section heading.
+.bgcf-u-eyebrow {
+	@include t.eyebrow;
+}
+
+// A lead paragraph treatment.
+.bgcf-u-lead {
+	font-size: var(--bgcf-font-size-lg);
+	line-height: var(--bgcf-line-height-relaxed);
+	color: var(--bgcf-color-text-muted);
+}
+
+// Truncation helpers.
+.bgcf-u-truncate {
+	@include t.truncate;
+}
+
+.bgcf-u-line-clamp-2 {
+	@include t.line-clamp(2);
+}
+
+.bgcf-u-line-clamp-3 {
+	@include t.line-clamp(3);
+}

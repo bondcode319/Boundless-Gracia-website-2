@@ -1,0 +1,134 @@
+// =============================================================================
+// COMPONENTS / STYLEGUIDE
+// -----------------------------------------------------------------------------
+// Styling for the Phase-1 styleguide page template (templates/page-styleguide.php).
+// This is a DEVELOPMENT surface — it renders every token and base component so
+// the design system can be verified at a glance. It is not shipped to visitors
+// (the template is only used on a page an admin explicitly assigns), but it lives
+// in the compiled sheet so the page works without a separate build.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-styleguide {
+	// ---------------------------------------------------------------------
+	// Section rhythm within the guide.
+	// ---------------------------------------------------------------------
+	&__group {
+		padding-block: var(--bgcf-space-xl);
+		border-block-start: var(--bgcf-border-width) solid var(--bgcf-color-border);
+
+		&:first-of-type {
+			border-block-start: 0;
+		}
+	}
+
+	&__group-title {
+		@include t.heading('h3');
+
+		margin: 0 0 var(--bgcf-space-6);
+	}
+
+	&__subtitle {
+		margin: var(--bgcf-space-lg) 0 var(--bgcf-space-4);
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-base);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-text-muted);
+		text-transform: uppercase;
+		letter-spacing: var(--bgcf-tracking-wide);
+	}
+
+	&__row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-4);
+		align-items: center;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(14rem, 100%), 1fr));
+		gap: var(--bgcf-space-4);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Colour swatch.
+// -----------------------------------------------------------------------------
+
+.bgcf-swatch {
+	overflow: hidden;
+	background-color: var(--bgcf-color-base);
+	border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	border-radius: var(--bgcf-radius-md);
+
+	&__chip {
+		block-size: 5rem;
+	}
+
+	&__meta {
+		padding: var(--bgcf-space-3);
+		font-size: var(--bgcf-font-size-sm);
+	}
+
+	&__name {
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-heading);
+	}
+
+	&__value {
+		display: block;
+		margin-block-start: var(--bgcf-space-1);
+		font-family: var(--bgcf-font-mono);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	// Contrast badge — the styleguide prints the measured ratio and whether it
+	// clears AA. Green pass / red fail come from the status tokens.
+	&__ratio {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--bgcf-space-1);
+		margin-block-start: var(--bgcf-space-2);
+		padding: 0 var(--bgcf-space-2);
+		font-weight: var(--bgcf-font-weight-semibold);
+		border-radius: var(--bgcf-radius-pill);
+
+		&--pass {
+			color: var(--bgcf-color-success);
+			background-color: var(--bgcf-color-success-bg);
+		}
+
+		&--fail {
+			color: var(--bgcf-color-danger);
+			background-color: var(--bgcf-color-danger-bg);
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Token specimen tiles (spacing, radius, shadow).
+// -----------------------------------------------------------------------------
+
+.bgcf-specimen {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bgcf-space-2);
+	align-items: flex-start;
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-text-muted);
+
+	&__box {
+		background-color: var(--bgcf-color-primary);
+		border-radius: var(--bgcf-radius-sm);
+	}
+
+	&__surface {
+		inline-size: 6rem;
+		block-size: 4rem;
+		background-color: var(--bgcf-color-base);
+		border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+		border-radius: var(--bgcf-radius-md);
+	}
+}

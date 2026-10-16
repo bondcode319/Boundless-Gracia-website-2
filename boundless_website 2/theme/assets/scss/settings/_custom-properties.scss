@@ -1,0 +1,238 @@
+// =============================================================================
+// SETTINGS / CUSTOM PROPERTIES
+// -----------------------------------------------------------------------------
+// Every SCSS token above is re-emitted here as a CSS custom property so that
+// PHP, the block editor, inline styles and JavaScript can all read the design
+// system at runtime without a build step.
+//
+// ############################################################################
+// # HARD CONTRACT WITH inc/setup.php — DO NOT RENAME WITHOUT COORDINATING     #
+// ############################################################################
+//
+// `bgcf_get_editor_color_palette()` and `bgcf_get_editor_font_sizes()` reference
+// these twelve properties BY NAME. If any of them is missing from
+// assets/css/editor.css the editor colour swatches render transparent, and the
+// failure is silent — the front end looks fine. See ARCHITECTURE.md §11.
+//
+//   --bgcf-color-primary     --bgcf-font-size-sm
+//   --bgcf-color-secondary   --bgcf-font-size-base
+//   --bgcf-color-cta         --bgcf-font-size-lg
+//   --bgcf-color-accent      --bgcf-font-size-xl
+//   --bgcf-color-surface     --bgcf-font-size-2xl
+//   --bgcf-color-base
+//   --bgcf-color-ink
+//
+// `inc/admin.php` additionally sets `--bgcf-login-logo` inline; login.scss
+// consumes it. It is intentionally NOT declared here — an undefined value is how
+// login.scss knows to fall back to the placeholder mark.
+//
+// This mixin is included by main.scss, editor.scss AND login.scss. That is the
+// mechanism that guarantees the three sheets never diverge.
+// =============================================================================
+
+@use 'sass:map';
+@use './colors' as color;
+@use './typography' as type;
+@use './spacing' as space;
+@use './layout' as layout;
+@use './radius' as radius;
+@use './shadow' as shadow;
+@use './motion' as motion;
+@use './z-index' as z;
+@use '../tools/functions' as fn;
+
+/// Emit the whole token set. Apply to `:root` (and, in the editor, to
+/// `.editor-styles-wrapper` as well — Gutenberg rewrites canvas selectors).
+@mixin custom-properties {
+	// -------------------------------------------------------------------------
+	// Brand colours — the seven palette slugs locked by inc/setup.php.
+	// -------------------------------------------------------------------------
+	--bgcf-color-primary: #{color.$brand-primary};
+	--bgcf-color-secondary: #{color.$brand-secondary};
+	--bgcf-color-cta: #{color.$brand-cta};
+	--bgcf-color-accent: #{color.$brand-accent};
+	--bgcf-color-surface: #{color.$brand-surface};
+	--bgcf-color-base: #{color.$brand-base};
+	--bgcf-color-ink: #{color.$brand-ink};
+
+	// -------------------------------------------------------------------------
+	// Full ramps: --bgcf-color-{ramp}-{step}
+	// -------------------------------------------------------------------------
+	@each $name, $ramp in color.$ramps {
+		@each $step, $value in $ramp {
+			--bgcf-color-#{$name}-#{$step}: #{$value};
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Horizon surface roles: --bgcf-surface-{role}
+	// The closed set of section backgrounds. `components/_section.scss` maps one
+	// `--bg-*` modifier to each of these, and nothing else may introduce a band
+	// colour.
+	// -------------------------------------------------------------------------
+	@each $role, $value in color.$surfaces {
+		--bgcf-surface-#{$role}: #{$value};
+	}
+
+	// Channel triplets, for `rgb(var(--x) / 40%)` overlays and shadows.
+	--bgcf-rgb-primary: #{fn.channels(color.$brand-primary)};
+	--bgcf-rgb-secondary: #{fn.channels(color.$brand-secondary)};
+	--bgcf-rgb-cta: #{fn.channels(color.$brand-cta)};
+	--bgcf-rgb-accent: #{fn.channels(color.$brand-accent)};
+	--bgcf-rgb-ink: #{fn.channels(color.$brand-ink)};
+	--bgcf-rgb-base: #{fn.channels(color.$brand-base)};
+
+	// -------------------------------------------------------------------------
+	// Semantic colour roles.
+	// Components read these, never a ramp step — which is what lets
+	// `.bgcf-section--bg-primary` re-declare six properties and have every
+	// descendant flip to its dark-surface treatment automatically.
+	// -------------------------------------------------------------------------
+	--bgcf-color-text: #{color.$color-text};
+	--bgcf-color-text-muted: #{color.$color-text-muted};
+	--bgcf-color-text-subtle: #{color.$color-text-subtle};
+	--bgcf-color-text-inverse: #{color.$color-text-inverse};
+	--bgcf-color-heading: #{color.$color-heading};
+	--bgcf-color-eyebrow: #{color.$color-eyebrow};
+
+	--bgcf-color-link: #{color.$color-link};
+	--bgcf-color-link-hover: #{color.$color-link-hover};
+	--bgcf-color-link-visited: #{color.$color-link-visited};
+
+	--bgcf-color-bg: #{color.$color-bg};
+	--bgcf-color-bg-subtle: #{color.$color-bg-subtle};
+	--bgcf-color-bg-muted: #{color.$color-bg-muted};
+	--bgcf-color-bg-inverse: #{color.$color-bg-inverse};
+
+	--bgcf-color-border: #{color.$color-border};
+	--bgcf-color-border-subtle: #{color.$color-border-subtle};
+	--bgcf-color-border-strong: #{color.$color-border-strong};
+
+	--bgcf-color-focus: #{color.$color-focus};
+	--bgcf-color-focus-inverse: #{color.$color-focus-inverse};
+
+	--bgcf-color-selection-bg: #{color.$color-selection-bg};
+	--bgcf-color-selection-text: #{color.$color-selection-text};
+
+	--bgcf-color-success: #{color.$color-success};
+	--bgcf-color-success-bg: #{color.$color-success-bg};
+	--bgcf-color-success-border: #{color.$color-success-border};
+	--bgcf-color-warning: #{color.$color-warning};
+	--bgcf-color-warning-bg: #{color.$color-warning-bg};
+	--bgcf-color-warning-border: #{color.$color-warning-border};
+	--bgcf-color-danger: #{color.$color-danger};
+	--bgcf-color-danger-bg: #{color.$color-danger-bg};
+	--bgcf-color-danger-border: #{color.$color-danger-border};
+	--bgcf-color-info: #{color.$color-info};
+	--bgcf-color-info-bg: #{color.$color-info-bg};
+	--bgcf-color-info-border: #{color.$color-info-border};
+
+	// -------------------------------------------------------------------------
+	// Typography.
+	// -------------------------------------------------------------------------
+	--bgcf-font-heading: #{type.$font-family-heading};
+	--bgcf-font-body: #{type.$font-family-body};
+	--bgcf-font-mono: #{type.$font-family-mono};
+
+	--bgcf-font-weight-regular: #{type.$font-weight-regular};
+	--bgcf-font-weight-medium: #{type.$font-weight-medium};
+	--bgcf-font-weight-semibold: #{type.$font-weight-semibold};
+	--bgcf-font-weight-bold: #{type.$font-weight-bold};
+
+	// The five EDITOR sizes are emitted by the loop below along with the rest of
+	// the scale; the loop key order matches $font-sizes.
+	@each $name, $value in type.$font-sizes {
+		--bgcf-font-size-#{$name}: #{$value};
+	}
+
+	@each $name, $value in type.$line-heights {
+		--bgcf-line-height-#{$name}: #{$value};
+	}
+
+	--bgcf-tracking-tighter: #{type.$letter-spacing-tighter};
+	--bgcf-tracking-tight: #{type.$letter-spacing-tight};
+	--bgcf-tracking-normal: #{type.$letter-spacing-normal};
+	--bgcf-tracking-wide: #{type.$letter-spacing-wide};
+	--bgcf-tracking-wider: #{type.$letter-spacing-wider};
+
+	--bgcf-measure-narrow: #{type.$measure-narrow};
+	--bgcf-measure: #{type.$measure-base};
+	--bgcf-measure-wide: #{type.$measure-wide};
+
+	// -------------------------------------------------------------------------
+	// Spacing.
+	// -------------------------------------------------------------------------
+	@each $step, $value in space.$space {
+		--bgcf-space-#{$step}: #{$value};
+	}
+
+	@each $name, $value in space.$space-aliases {
+		--bgcf-space-#{$name}: #{$value};
+	}
+
+	@each $name, $value in space.$section-spaces {
+		--bgcf-section-space-#{$name}: #{$value};
+	}
+
+	--bgcf-flow-space: #{space.$flow-space};
+	--bgcf-grid-gap: #{space.$grid-gap};
+
+	// -------------------------------------------------------------------------
+	// Layout.
+	// -------------------------------------------------------------------------
+	@each $name, $value in layout.$containers {
+		--bgcf-container-#{$name}: #{$value};
+	}
+
+	--bgcf-container-gutter: #{layout.$container-gutter};
+	--bgcf-grid-gutter: #{layout.$grid-gutter};
+	--bgcf-header-height: #{layout.$header-height};
+	--bgcf-target-size: #{layout.$target-size-min};
+	--bgcf-target-size-comfortable: #{layout.$target-size-comfortable};
+	--bgcf-border-width: #{layout.$border-width};
+	--bgcf-border-width-thick: #{layout.$border-width-thick};
+	--bgcf-focus-ring-width: #{layout.$focus-ring-width};
+	--bgcf-focus-ring-offset: #{layout.$focus-ring-offset};
+
+	// -------------------------------------------------------------------------
+	// Radii.
+	// -------------------------------------------------------------------------
+	@each $name, $value in radius.$radii {
+		--bgcf-radius-#{$name}: #{$value};
+	}
+
+	// -------------------------------------------------------------------------
+	// Shadows.
+	// -------------------------------------------------------------------------
+	@each $name, $value in shadow.$shadows {
+		--bgcf-shadow-#{$name}: #{$value};
+	}
+
+	--bgcf-shadow-cta: #{shadow.$shadow-cta};
+	--bgcf-shadow-cta-hover: #{shadow.$shadow-cta-hover};
+
+	// -------------------------------------------------------------------------
+	// Motion. `--bgcf-motion-scale` is the single switch the reduced-motion
+	// guard in generic/_motion.scss flips to 0 — every transition token is
+	// multiplied by it, so one media query disables the whole system.
+	// -------------------------------------------------------------------------
+	--bgcf-motion-scale: 1;
+
+	@each $name, $value in motion.$durations {
+		--bgcf-duration-#{$name}: calc(#{$value} * var(--bgcf-motion-scale));
+	}
+
+	@each $name, $value in motion.$eases {
+		--bgcf-ease-#{$name}: #{$value};
+	}
+
+	--bgcf-lift-distance: #{motion.$lift-distance};
+	--bgcf-reveal-distance: #{motion.$reveal-distance};
+
+	// -------------------------------------------------------------------------
+	// Z-index ladder.
+	// -------------------------------------------------------------------------
+	@each $name, $value in z.$z-layers {
+		--bgcf-z-#{$name}: #{$value};
+	}
+}

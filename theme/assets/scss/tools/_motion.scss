@@ -1,0 +1,120 @@
+// =============================================================================
+// TOOLS / MOTION
+// -----------------------------------------------------------------------------
+// Motion is opt-in, never assumed. Three rules:
+//
+//   1. Animate `transform` and `opacity` only. Anything else triggers layout or
+//      paint on every frame and shows up as a Lighthouse regression.
+//   2. Wrap non-essential motion in `motion-ok` — it only runs when the user has
+//      NOT asked for reduced motion. `prefers-reduced-motion: no-preference` is
+//      the correct query; testing for `reduce` and undoing it later leaves a
+//      flash of animation on the first paint.
+//   3. Content must never depend on an animation finishing. Reveal animations
+//      start from a visible state whenever motion is reduced.
+//
+// The durations resolve to `calc(<ms> * var(--bgcf-motion-scale))`, and
+// generic/_motion.scss sets that scale to 0 under reduced motion — so even a
+// transition that slips through the mixins collapses to instant.
+// =============================================================================
+
+@use 'sass:list';
+@use '../settings/breakpoints' as bp;
+@use '../settings/motion' as motion;
+
+/// Content that only runs when motion is welcome.
+@mixin motion-ok {
+	@media #{bp.$motion-ok-query} {
+		@content;
+	}
+}
+
+/// Content that only runs when the user has asked for reduced motion.
+@mixin motion-reduce {
+	@media #{bp.$reduced-motion-query} {
+		@content;
+	}
+}
+
+/// A transition that is safe to declare unconditionally: the duration token is
+/// already multiplied by `--bgcf-motion-scale`.
+///
+/// @param {List}   $properties - CSS properties to transition.
+/// @param {String} $duration   - Duration token name.
+/// @param {String} $ease       - Easing token name.
+@mixin transition($properties: (opacity, transform), $duration: 'base', $ease: 'standard') {
+	$out: ();
+
+	@each $property in $properties {
+		$out: list.append(
+			$out,
+			#{$property} var(--bgcf-duration-#{$duration}) var(--bgcf-ease-#{$ease}),
+			$separator: comma
+		);
+	}
+
+	transition: $out;
+}
+
+/// Card / tile hover lift. Motion-gated, and the shadow change is what carries
+/// the affordance when motion is off.
+@mixin lift($shadow-rest: var(--bgcf-shadow-sm), $shadow-hover: var(--bgcf-shadow-lg)) {
+	box-shadow: $shadow-rest;
+
+	@include transition((transform, box-shadow), 'base', 'emphasized');
+
+	@include motion-ok {
+		&:hover,
+		&:focus-within {
+			transform: translateY(var(--bgcf-lift-distance));
+		}
+	}
+
+	&:hover,
+	&:focus-within {
+		box-shadow: $shadow-hover;
+	}
+}
+
+/// Entry state for scroll-revealed elements.
+///
+/// The element is rendered VISIBLE by default and only hidden once JavaScript
+/// has confirmed it can animate (`html[data-bgcf-motion="on"]`). No-JS and
+/// reduced-motion users therefore never meet an invisible page — the failure
+/// mode of every `opacity: 0` reveal system.
+@mixin reveal-from($axis: 'y', $distance: var(--bgcf-reveal-distance)) {
+	html[data-bgcf-motion='on'] & {
+		opacity: 0;
+
+		@if $axis == 'y' {
+			transform: translate3d(0, $distance, 0);
+		} @else if $axis == 'x' {
+			transform: translate3d($distance, 0, 0);
+		} @else {
+			transform: scale(0.96);
+		}
+
+		@include transition((opacity, transform), 'slower', 'emphasized');
+
+		&.is-revealed,
+		&[data-bgcf-revealed] {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}
+
+/// Skeleton / loading shimmer. Collapses to a static tint under reduced motion.
+@mixin shimmer {
+	background-color: var(--bgcf-color-bg-muted);
+
+	@include motion-ok {
+		background-image: linear-gradient(
+			90deg,
+			rgb(var(--bgcf-rgb-base) / 0%) 0%,
+			rgb(var(--bgcf-rgb-base) / 60%) 50%,
+			rgb(var(--bgcf-rgb-base) / 0%) 100%
+		);
+		background-size: 200% 100%;
+		animation: bgcf-shimmer #{motion.$duration-slowest} #{motion.$ease-in-out} infinite;
+	}
+}

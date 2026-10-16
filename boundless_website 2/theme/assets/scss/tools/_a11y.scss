@@ -1,0 +1,104 @@
+// =============================================================================
+// TOOLS / ACCESSIBILITY
+// -----------------------------------------------------------------------------
+// The focus ring is the single most important thing in this file. ARCHITECTURE
+// §10: "Never remove an outline without replacing it with something at least as
+// visible." Nothing in this theme sets `outline: none` without calling
+// `focus-ring()` in the same rule.
+// =============================================================================
+
+@use '../settings/layout' as layout;
+@use './breakpoints' as mq;
+
+/// Visually hidden but available to assistive technology.
+/// The clip-path + 1px box combination is the version that survives RTL,
+/// `display: contents` parents and Safari's text selection quirks.
+@mixin visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	clip-path: inset(50%) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+/// Undo `visually-hidden`. Used by the skip link when it receives focus.
+@mixin visually-shown {
+	position: static !important;
+	width: auto !important;
+	height: auto !important;
+	margin: 0 !important;
+	overflow: visible !important;
+	clip: auto !important;
+	clip-path: none !important;
+	white-space: normal !important;
+}
+
+/// The theme's focus indicator.
+///
+/// - `outline` (not `box-shadow`) so it survives Windows High Contrast Mode and
+///   follows `border-radius` in every current browser.
+/// - `--bgcf-color-focus` is a semantic token: dark sections re-declare it to
+///   the accent yellow, so one mixin covers light and dark surfaces.
+/// - `outline-offset` guarantees the ring is legible against the component's own
+///   fill as well as the page behind it (WCAG 2.2 SC 2.4.11 / 2.4.13).
+@mixin focus-ring($offset: var(--bgcf-focus-ring-offset), $color: var(--bgcf-color-focus)) {
+	outline: var(--bgcf-focus-ring-width) solid $color;
+	outline-offset: $offset;
+
+	@include mq.forced-colors {
+		outline-color: Highlight;
+	}
+}
+
+/// Attach the ring to :focus-visible, with a :focus fallback for browsers that
+/// do not support the pseudo-class. The `:focus:not(:focus-visible)` reset is
+/// what stops the ring appearing on mouse clicks in modern browsers while still
+/// showing for keyboard users everywhere else.
+@mixin focusable($offset: var(--bgcf-focus-ring-offset), $color: var(--bgcf-color-focus)) {
+	&:focus {
+		@include focus-ring($offset, $color);
+	}
+
+	&:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	&:focus-visible {
+		@include focus-ring($offset, $color);
+	}
+}
+
+/// Minimum interactive target. WCAG 2.2 SC 2.5.8 (AA) requires 24x24 CSS px.
+/// Pass `$comfortable: true` for anything a thumb operates.
+@mixin target-size($comfortable: false) {
+	// @if rather than the if() function — see tools/_functions.scss.
+	$size: layout.$target-size-min;
+
+	@if $comfortable {
+		$size: layout.$target-size-comfortable;
+	}
+
+	min-width: $size;
+	min-height: $size;
+}
+
+/// Expand a small control's hit area without changing its visual size.
+@mixin target-padding($inset: -8px) {
+	position: relative;
+
+	&::after {
+		position: absolute;
+		inset: $inset;
+		content: '';
+	}
+}
+
+/// Hide from everyone, including assistive technology.
+@mixin hidden-completely {
+	display: none !important;
+}

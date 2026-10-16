@@ -1,0 +1,165 @@
+// =============================================================================
+// ELEMENTS / TEXT
+// -----------------------------------------------------------------------------
+// Paragraphs, inline semantics, quotes, rules, code.
+// =============================================================================
+
+@use '../tools' as t;
+
+p {
+	margin-block: 0;
+
+	&:not(:first-child) {
+		margin-block-start: var(--bgcf-space-4);
+	}
+}
+
+// Inline semantics keep their meaning and gain a brand-appropriate treatment.
+strong,
+b {
+	font-weight: var(--bgcf-font-weight-semibold);
+	color: inherit;
+}
+
+em,
+i {
+	font-style: italic;
+}
+
+small {
+	font-size: var(--bgcf-font-size-sm);
+}
+
+mark {
+	padding-inline: 0.2em;
+	color: var(--bgcf-color-ink); // 9.62:1 on accent yellow
+	background-color: var(--bgcf-color-accent-200);
+	border-radius: var(--bgcf-radius-xs);
+}
+
+// A dotted underline is the only conventional affordance for an abbreviation,
+// and `cursor: help` tells pointer users the title attribute is there. Screen
+// readers announce the expansion from `title` regardless.
+abbr[title] {
+	text-decoration: underline dotted;
+	text-underline-offset: 0.2em;
+	cursor: help;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+ins {
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+}
+
+sub,
+sup {
+	font-size: 0.75em;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+kbd {
+	padding: 0.15em 0.4em;
+	font-family: var(--bgcf-font-mono);
+	font-size: 0.875em;
+	background-color: var(--bgcf-color-bg-muted);
+	border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	border-radius: var(--bgcf-radius-xs);
+}
+
+// -----------------------------------------------------------------------------
+// Blockquote — an editorial device on this site (supporter and beneficiary
+// quotes), so it earns a real treatment rather than a grey left border.
+// -----------------------------------------------------------------------------
+
+blockquote {
+	position: relative;
+	padding-inline-start: var(--bgcf-space-6);
+	margin-block: var(--bgcf-space-lg);
+	font-family: var(--bgcf-font-heading);
+	font-size: var(--bgcf-font-size-lg);
+	font-weight: var(--bgcf-font-weight-medium);
+	line-height: var(--bgcf-line-height-snug);
+	color: var(--bgcf-color-heading);
+	border-inline-start: var(--bgcf-border-width-thick) solid var(--bgcf-color-cta);
+
+	p:not(:first-child) {
+		margin-block-start: var(--bgcf-space-3);
+	}
+
+	cite {
+		display: block;
+		margin-block-start: var(--bgcf-space-4);
+		font-family: var(--bgcf-font-body);
+		font-size: var(--bgcf-font-size-sm);
+		font-style: normal;
+		font-weight: var(--bgcf-font-weight-medium);
+		color: var(--bgcf-color-text-muted);
+
+		&::before {
+			content: '— ';
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Rules
+// -----------------------------------------------------------------------------
+
+hr {
+	margin-block: var(--bgcf-space-xl);
+}
+
+// -----------------------------------------------------------------------------
+// Code. Rare on this site, but the editor offers the block, so it must not look
+// broken when someone uses it.
+// -----------------------------------------------------------------------------
+
+code,
+kbd,
+samp,
+pre {
+	font-family: var(--bgcf-font-mono);
+	// Monospace faces render optically larger than the surrounding text.
+	font-size: 0.9em;
+}
+
+code {
+	padding: 0.15em 0.35em;
+	color: var(--bgcf-color-primary-700);
+	background-color: var(--bgcf-color-bg-subtle);
+	border-radius: var(--bgcf-radius-xs);
+
+	@include t.wrap-anywhere;
+}
+
+pre {
+	padding: var(--bgcf-space-5);
+	overflow-x: auto;
+	color: var(--bgcf-color-text);
+	background-color: var(--bgcf-color-bg-subtle);
+	border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	border-radius: var(--bgcf-radius-md);
+
+	code {
+		padding: 0;
+		background: none;
+	}
+}
+
+address {
+	font-style: normal;
+}

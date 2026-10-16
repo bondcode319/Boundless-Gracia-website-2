@@ -1,0 +1,180 @@
+{
+    "key": "group_bgcf_cta",
+    "title": "Block — Call to Action",
+    "fields": [
+        {
+            "key": "field_bgcf_cta_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_cta_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_cta_text",
+            "label": "Supporting text",
+            "name": "text",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_cta_background",
+            "label": "Background",
+            "name": "background",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "secondary": "Emerald green",
+                "primary": "Deep blue",
+                "surface": "Light grey"
+            },
+            "return_format": "value",
+            "default_value": "secondary"
+        },
+        {
+            "key": "field_bgcf_cta_layout",
+            "label": "Layout",
+            "name": "layout",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "centered": "Centred",
+                "split": "Image beside text"
+            },
+            "return_format": "value",
+            "default_value": "centered"
+        },
+        {
+            "key": "field_bgcf_cta_image",
+            "label": "Image",
+            "name": "image",
+            "aria_label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_bgcf_cta_layout",
+                        "operator": "==",
+                        "value": "split"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_bgcf_cta_primary_cta",
+            "label": "Primary button",
+            "name": "primary_cta",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_cta_secondary_cta",
+            "label": "Secondary button",
+            "name": "secondary_cta",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/cta"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/cta"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "A conversion band for anything that is not a donation ask — volunteering, partnering, downloading a report.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

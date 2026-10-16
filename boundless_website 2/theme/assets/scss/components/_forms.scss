@@ -1,0 +1,186 @@
+// =============================================================================
+// COMPONENTS / FORMS, SEARCH, COMMENTS, SIDEBAR
+// -----------------------------------------------------------------------------
+// Component-level form patterns that build on the bare control styling in
+// elements/_forms.scss:
+//   .bgcf-search-form  — get_search_form() override
+//   .bgcf-field        — the label + control + error group used site-wide (CF7,
+//                        volunteer, newsletter all adopt it in later phases)
+//   .bgcf-comments / .bgcf-comment-form — blog discussion
+//   .bgcf-sidebar / .bgcf-widget        — blog widget area
+// =============================================================================
+
+@use '../tools' as t;
+
+// -----------------------------------------------------------------------------
+// Reusable field group. A labelled control with optional help and error text
+// wired via aria-describedby (the PHP owns the wiring; this styles it).
+// -----------------------------------------------------------------------------
+
+.bgcf-field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bgcf-space-2);
+
+	&__label {
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-heading);
+	}
+
+	&__help {
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	&__error {
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-medium);
+		color: var(--bgcf-color-danger);
+	}
+
+	// Honeypot: visually and programmatically hidden, but NOT display:none — some
+	// bots skip display:none fields. Kept out of the tab order and the a11y tree.
+	&--honeypot {
+		position: absolute !important;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+}
+
+// A status region for async form feedback (newsletter, volunteer). role="status"
+// is set in the markup; this just gives success/error states a look.
+.bgcf-form-status {
+	margin-block-start: var(--bgcf-space-4);
+	padding: var(--bgcf-space-3) var(--bgcf-space-4);
+	font-size: var(--bgcf-font-size-sm);
+	border-radius: var(--bgcf-radius-md);
+
+	&:empty {
+		display: none;
+	}
+
+	&[data-bgcf-status='success'] {
+		color: var(--bgcf-color-success);
+		background-color: var(--bgcf-color-success-bg);
+		border: var(--bgcf-border-width) solid var(--bgcf-color-success-border);
+	}
+
+	&[data-bgcf-status='error'] {
+		color: var(--bgcf-color-danger);
+		background-color: var(--bgcf-color-danger-bg);
+		border: var(--bgcf-border-width) solid var(--bgcf-color-danger-border);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Search form (searchform.php).
+// -----------------------------------------------------------------------------
+
+.bgcf-search-form {
+	display: flex;
+	gap: var(--bgcf-space-2);
+
+	&__label {
+		@include t.visually-hidden;
+	}
+
+	&__input {
+		flex: 1 1 auto;
+	}
+
+	&__submit {
+		flex: none;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Comments.
+// -----------------------------------------------------------------------------
+
+.bgcf-comments {
+	margin-block-start: var(--bgcf-space-2xl);
+	padding-block-start: var(--bgcf-space-xl);
+	border-block-start: var(--bgcf-border-width) solid var(--bgcf-color-border);
+
+	&__title {
+		@include t.heading('h3');
+
+		margin: 0 0 var(--bgcf-space-lg);
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bgcf-space-lg);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		// Threaded replies indent one step.
+		.children {
+			padding-inline-start: var(--bgcf-space-6);
+			margin-block-start: var(--bgcf-space-lg);
+			list-style: none;
+			border-inline-start: var(--bgcf-border-width-thick) solid var(--bgcf-color-border);
+		}
+	}
+
+	&__nav {
+		margin-block-start: var(--bgcf-space-lg);
+	}
+
+	&__closed {
+		font-style: italic;
+		color: var(--bgcf-color-text-muted);
+	}
+}
+
+.bgcf-comment-form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bgcf-space-5);
+	max-inline-size: var(--bgcf-measure);
+	margin-block-start: var(--bgcf-space-xl);
+}
+
+// -----------------------------------------------------------------------------
+// Sidebar & widgets (blog).
+// -----------------------------------------------------------------------------
+
+.bgcf-sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bgcf-space-xl);
+}
+
+.bgcf-widget {
+	&__title {
+		@include t.heading('h4');
+
+		margin: 0 0 var(--bgcf-space-4);
+		padding-block-end: var(--bgcf-space-3);
+		border-block-end: var(--bgcf-border-width-thick) solid var(--bgcf-color-cta);
+	}
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bgcf-space-2);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	a {
+		text-decoration: none;
+
+		@include t.hover {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}

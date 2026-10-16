@@ -1,0 +1,555 @@
+// =============================================================================
+// COMPONENTS / CARD
+// -----------------------------------------------------------------------------
+// The base card shell. Program, campaign, story and post cards (Phase 3/4) all
+// extend this so their radius, shadow, media ratio and hover lift stay in step.
+// Emitted markup (ARCHITECTURE §3):
+//
+//   .bgcf-card [--archive|--related|--search]
+//     .bgcf-card__media > .bgcf-card__image
+//     .bgcf-card__body
+//       .bgcf-card__meta  .bgcf-card__title > .bgcf-card__link  .bgcf-card__excerpt
+//
+// The whole card is made clickable via the "stretched link" pattern on
+// `.bgcf-card__link`: the title holds the real anchor, and a pseudo-element
+// covers the card. That keeps ONE focus stop and a real, readable link text
+// (never a `div` with a click handler — ARCHITECTURE §10).
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	block-size: 100%;
+	overflow: hidden;
+
+	@include t.surface(var(--bgcf-radius-lg), 'sm');
+	@include t.surface-interactive('sm', 'lg');
+
+	// -------------------------------------------------------------------------
+	// Media.
+	// -------------------------------------------------------------------------
+	&__media {
+		position: relative;
+		overflow: hidden;
+
+		@include t.ratio(4, 3);
+	}
+
+	&__image {
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+
+		@include t.transition(transform, 'slow', 'emphasized');
+	}
+
+	// Subtle zoom on hover — the shadow lift already carries the affordance when
+	// motion is off, so this is pure enhancement.
+	@include t.hover {
+		&:hover &__image {
+			@include t.motion-ok {
+				transform: scale(1.04);
+			}
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Body.
+	// -------------------------------------------------------------------------
+	&__body {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		gap: var(--bgcf-space-3);
+		padding: var(--bgcf-space-6);
+	}
+
+	&__meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-2) var(--bgcf-space-4);
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	&__title {
+		@include t.heading('h4');
+
+		margin: 0;
+		color: var(--bgcf-color-heading);
+	}
+
+	// The stretched link. `::after` covers the card; the link text stays real.
+	&__link {
+		color: inherit;
+		text-decoration: none;
+
+		&::after {
+			position: absolute;
+			inset: 0;
+			z-index: var(--bgcf-z-raised);
+			content: '';
+		}
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-link-hover);
+			}
+		}
+
+		// The stretched pseudo-element removes the anchor's own focus outline
+		// context, so the ring is drawn on the card instead.
+		&:focus-visible::after {
+			@include t.focus-ring;
+		}
+
+		&:focus:not(:focus-visible)::after {
+			outline: none;
+		}
+	}
+
+	&__excerpt {
+		margin: 0;
+		color: var(--bgcf-color-text-muted);
+
+		@include t.line-clamp(3);
+	}
+
+	// Any real interactive control inside the card (a tag link, a secondary
+	// button) must sit ABOVE the stretched pseudo-element to stay clickable.
+	:where(a, button):not(.bgcf-card__link) {
+		position: relative;
+		z-index: var(--bgcf-z-raised);
+	}
+
+	// -------------------------------------------------------------------------
+	// Context modifiers. Base shell is identical; these tune density/ratio for
+	// where the card appears.
+	// -------------------------------------------------------------------------
+	&--related &__body,
+	&--search &__body {
+		padding: var(--bgcf-space-5);
+	}
+
+	&--search {
+		flex-direction: row;
+		align-items: stretch;
+	}
+
+	&--search &__media {
+		flex: 0 0 32%;
+		max-inline-size: 12rem;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Event and block card additions (1.2.0).
+// -----------------------------------------------------------------------------
+.bgcf-card__date,
+.bgcf-card__meta {
+	display: flex;
+	gap: var(--bgcf-space-2);
+	align-items: center;
+	margin-block: 0 var(--bgcf-space-2);
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-text-muted);
+
+	.bgcf-icon {
+		flex: 0 0 auto;
+		color: var(--bgcf-color-secondary);
+	}
+}
+
+.bgcf-card__date time {
+	font-weight: var(--bgcf-font-weight-medium);
+	color: var(--bgcf-color-heading);
+}
+
+.bgcf-card__badge {
+	display: inline-flex;
+	align-items: center;
+	padding: var(--bgcf-space-1) var(--bgcf-space-3);
+	margin-block: var(--bgcf-space-3) 0;
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-text-muted);
+	background-color: var(--bgcf-color-bg-muted);
+	border-radius: var(--bgcf-radius-pill);
+}
+
+.bgcf-card__cta {
+	margin-block: auto 0;
+	padding-block-start: var(--bgcf-space-4);
+
+	a {
+		display: inline-flex;
+		gap: var(--bgcf-space-2);
+		align-items: center;
+		font-family: var(--bgcf-font-heading);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-link);
+		text-decoration: none;
+
+		@include t.focusable;
+
+		.bgcf-icon {
+			@include t.transition(transform, 'fast');
+		}
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-cta);
+
+				.bgcf-icon {
+					transform: translateX(#{t.rem(3)});
+				}
+			}
+		}
+	}
+}
+
+// =============================================================================
+// THE HORIZON CARD FAMILY
+// -----------------------------------------------------------------------------
+// Six variants on the shell above, rendered by `partials/cards/card-*.php` and
+// only ever through `bgcf_card()`. Each one is a different ANSWER TO A DIFFERENT
+// QUESTION, which is why they are six variants rather than six sets of options
+// on one card:
+//
+//   --project  "Where can I read more about this?"    image + tint + text link
+//   --news     "What has happened recently?"          image + date + text link
+//   --stat     "How much of it is there?"             figure, no link
+//   --service  "What does this include?"              text only, on a dark band
+//   --action   "What can I do right now?"             image + real button
+//   --person   "Who is this?"                         portrait + name + role
+//
+// SHARED RULES
+// ------------
+// All six are `block-size: 100%` inside a grid cell, so a row of cards is the
+// height of its tallest member and the text links line up along the bottom.
+// `margin-block-start: auto` on the affordance is what pushes it there (see
+// `_text-link.scss`), and it only works because the body is a flex column.
+//
+// The hover lift and the image zoom come from the shell. None of the variants
+// re-declares them.
+// =============================================================================
+
+.bgcf-card--project,
+.bgcf-card--news,
+.bgcf-card--action {
+	// These three lead with a photograph, so their media box takes the 4:3 card
+	// crop. The shell already sets that; what they add is a flat top edge on the
+	// image so it meets the tinted body with no sliver of card background
+	// showing between the two.
+	.bgcf-card__media {
+		border-end-start-radius: 0;
+		border-end-end-radius: 0;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Project card. Emerald-tinted body — the "programme" colour.
+// -----------------------------------------------------------------------------
+.bgcf-card--project {
+	.bgcf-card__body {
+		background-color: var(--bgcf-surface-leaf);
+	}
+
+	.bgcf-card__eyebrow {
+		margin: 0;
+		font-size: var(--bgcf-font-size-xs);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-secondary-600);
+		letter-spacing: var(--bgcf-tracking-wider);
+		text-transform: uppercase;
+	}
+
+	.bgcf-card__text {
+		margin: 0;
+		color: var(--bgcf-color-text-muted);
+
+		@include t.line-clamp(3);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// News card. Warm orange-tinted body — the "recent" colour.
+// -----------------------------------------------------------------------------
+.bgcf-card--news {
+	.bgcf-card__body {
+		background-color: var(--bgcf-surface-bloom);
+	}
+
+	.bgcf-card__text {
+		margin: 0;
+		color: var(--bgcf-color-text-muted);
+
+		@include t.line-clamp(3);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Stat card.
+// No link, no media, no hover state — a figure is not interactive, and giving
+// it a lift would promise a click that never comes. The shell's interactive
+// treatment is therefore switched off rather than inherited.
+// -----------------------------------------------------------------------------
+.bgcf-card--stat {
+	// The stat card is the one card that is a DIRECT child of its grid (see
+	// block-statistics.php for why the figures are not a list), so it carries
+	// `data-bgcf-reveal` itself and needs the reveal transition here rather
+	// than inheriting it from a `.bgcf-grid__item` wrapper.
+	@include t.reveal-from('y');
+
+	gap: var(--bgcf-space-3);
+	padding: var(--bgcf-space-8) var(--bgcf-space-6);
+	text-align: center;
+	box-shadow: var(--bgcf-shadow-xs);
+	transform: none;
+
+	&:hover,
+	&:focus-within {
+		box-shadow: var(--bgcf-shadow-xs);
+		transform: none;
+	}
+
+	.bgcf-card__icon {
+		display: grid;
+		place-items: center;
+		inline-size: t.rem(48);
+		block-size: t.rem(48);
+		margin-inline: auto;
+		color: var(--bgcf-color-secondary-700);
+		background-color: var(--bgcf-surface-leaf);
+		border-radius: var(--bgcf-radius-circle);
+
+		> svg {
+			inline-size: t.rem(24);
+			block-size: t.rem(24);
+		}
+	}
+
+	// The thin rule between the icon and the figure. Decorative, and the one
+	// place the brand emerald is used at full strength — it carries no text, so
+	// the 4.34:1 ceiling on emerald-500 does not apply.
+	.bgcf-card__rule {
+		inline-size: t.rem(40);
+		block-size: 3px;
+		margin-inline: auto;
+		background-color: var(--bgcf-color-secondary);
+		border-radius: var(--bgcf-radius-pill);
+	}
+
+	// The figure and its label are a description list. `column-reverse` puts the
+	// value above the label visually while the DOM keeps the label first, so a
+	// screen reader hears "children reached — 12,400" rather than a number with
+	// no context. This is the one place in the theme where visual order and DOM
+	// order deliberately disagree, and it is safe because neither element is
+	// focusable, so no tab order is affected.
+	.bgcf-card__figure-list {
+		display: flex;
+		flex-direction: column-reverse;
+		gap: var(--bgcf-space-2);
+		margin: 0;
+	}
+
+	.bgcf-card__figure {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-5xl);
+		font-weight: var(--bgcf-font-weight-bold);
+		line-height: var(--bgcf-line-height-none);
+		color: var(--bgcf-color-heading);
+		letter-spacing: var(--bgcf-tracking-tighter);
+
+		// Tabular figures so a counting animation does not make the number
+		// jitter as digit widths change mid-count.
+		font-variant-numeric: tabular-nums;
+	}
+
+	.bgcf-card__figure-prefix,
+	.bgcf-card__figure-suffix {
+		font-size: 0.55em;
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-cta-700);
+	}
+
+	.bgcf-card__label {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-base);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-heading);
+	}
+
+	.bgcf-card__text {
+		margin: 0;
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Service card.
+// Designed for a dark band, where the near-white fill reads as paper rather than
+// as a lighter patch of the band. `on-light` restores the light-surface roles so
+// the card's own text is dark even though its parent band inverted them.
+// -----------------------------------------------------------------------------
+.bgcf-card--service {
+	@include t.on-light(var(--bgcf-surface-card-muted));
+
+	gap: var(--bgcf-space-3);
+	padding: var(--bgcf-space-6);
+
+	.bgcf-card__icon {
+		color: var(--bgcf-color-secondary-700);
+
+		> svg {
+			inline-size: t.rem(28);
+			block-size: t.rem(28);
+		}
+	}
+
+	.bgcf-card__text {
+		margin: 0;
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Action card.
+// The one card with a real button, which means it must NOT use the stretched
+// link — two overlapping targets produce a dead zone at the button's edge where
+// a click lands on the overlay instead. `bgcf_card()` renders no text link here,
+// so there is nothing to stretch; this block only has to make the button sit at
+// the bottom of the body.
+// -----------------------------------------------------------------------------
+.bgcf-card--action {
+	.bgcf-card__body {
+		background-color: var(--bgcf-color-base);
+	}
+
+	.bgcf-card__eyebrow {
+		margin: 0;
+		font-size: var(--bgcf-font-size-xs);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-cta-700);
+		letter-spacing: var(--bgcf-tracking-wider);
+		text-transform: uppercase;
+	}
+
+	.bgcf-card__text {
+		margin: 0;
+		color: var(--bgcf-color-text-muted);
+
+		@include t.line-clamp(3);
+	}
+
+	.bgcf-card__button {
+		align-self: flex-start;
+		margin-block-start: auto;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Person card.
+// Portrait at 4:5, name, role. The portrait is decorative (the name is beside
+// it), and where there is none the initial is rendered on a brand tint — a
+// directory with three missing photographs should look sparse, not broken.
+// -----------------------------------------------------------------------------
+.bgcf-card--person {
+	.bgcf-card__portrait {
+		display: grid;
+		place-items: center;
+		background-color: var(--bgcf-color-primary-50);
+
+		@include t.ratio(4, 5);
+	}
+
+	.bgcf-card__initials {
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-4xl);
+		font-weight: var(--bgcf-font-weight-bold);
+		color: var(--bgcf-color-primary-300);
+	}
+
+	.bgcf-card__body {
+		gap: var(--bgcf-space-1);
+		padding: var(--bgcf-space-5);
+	}
+
+	.bgcf-card__role {
+		margin: 0;
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-medium);
+		color: var(--bgcf-color-secondary-600);
+	}
+
+	.bgcf-card__text {
+		margin-block: var(--bgcf-space-2) 0;
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Shared card internals used by more than one variant.
+// -----------------------------------------------------------------------------
+// The Horizon card title is one step larger than the shell's `h4` scale and
+// clamps to two lines: a three-line title in a four-column grid pushes every
+// card in the row taller for one outlier.
+//
+// Scoped to the six Horizon variants rather than applied to `.bgcf-card__title`
+// outright, because the archive and search cards inherited from the shell are
+// laid out differently — a search result is a wide row, where a clamped title
+// loses information it has the space to show.
+.bgcf-card--project,
+.bgcf-card--news,
+.bgcf-card--service,
+.bgcf-card--action,
+.bgcf-card--person {
+	.bgcf-card__title {
+		font-size: var(--bgcf-font-size-xl);
+
+		@include t.line-clamp(2);
+	}
+}
+
+.bgcf-card__meta-item {
+	display: inline-flex;
+	align-items: center;
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-text-muted);
+
+	// A middot between items, never before the first one.
+	& + & {
+		&::before {
+			margin-inline: var(--bgcf-space-2);
+			content: '·';
+		}
+	}
+}
+
+// A grid of cards is a list, so the `<li>` wrappers must not draw markers or
+// add indentation — and `display: flex` on the item is what lets the card
+// inside it stretch to the row height.
+.bgcf-grid--list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	> .bgcf-grid__item {
+		@include t.reveal-from('y');
+
+		display: flex;
+		margin: 0;
+	}
+
+	> .bgcf-grid__item > * {
+		inline-size: 100%;
+	}
+}
+

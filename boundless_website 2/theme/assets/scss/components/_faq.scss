@@ -1,0 +1,79 @@
+// =============================================================================
+// COMPONENTS / FAQ ACCORDION
+// -----------------------------------------------------------------------------
+// Markup: partials/blocks/block-faq.php. Behaviour: assets/js/src/accordion.js.
+//
+// The trigger is a `<button>` inside an `<h3>`, and the panel is a sibling
+// region hidden with the `hidden` attribute. That combination is what makes the
+// questions navigable as headings AND operable as controls; a clickable `<div>`
+// is neither, and a `<details>` element still prints and announces
+// inconsistently across engines.
+//
+// The whole row is the hit target, not just the text — the button is full-width
+// so a thumb anywhere on the question works.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-faq {
+	border-block-start: var(--bgcf-border-width) solid var(--bgcf-color-border);
+
+	&__item {
+		border-block-end: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	}
+
+	&__heading {
+		margin: 0;
+		font-size: inherit;
+	}
+
+	&__trigger {
+		display: flex;
+		gap: var(--bgcf-space-4);
+		align-items: center;
+		justify-content: space-between;
+		inline-size: 100%;
+		min-block-size: var(--bgcf-target-size-comfortable);
+		padding: var(--bgcf-space-4) 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-lg);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-heading);
+		text-align: start;
+		background: none;
+		border: 0;
+		cursor: pointer;
+
+		@include t.focusable(#{t.rem(-2)});
+		@include t.transition(color, 'fast');
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-cta);
+			}
+		}
+	}
+
+	&__icon {
+		flex: 0 0 auto;
+		color: var(--bgcf-color-secondary);
+
+		@include t.transition(transform, 'fast');
+	}
+
+	&__trigger[aria-expanded='true'] .bgcf-faq__icon {
+		transform: rotate(180deg);
+	}
+
+	&__panel {
+		padding-block-end: var(--bgcf-space-5);
+
+		&[hidden] {
+			display: none;
+		}
+
+		.bgcf-prose {
+			max-inline-size: var(--bgcf-measure);
+		}
+	}
+}

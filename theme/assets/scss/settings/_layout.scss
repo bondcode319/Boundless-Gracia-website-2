@@ -1,0 +1,49 @@
+// =============================================================================
+// SETTINGS / LAYOUT
+// -----------------------------------------------------------------------------
+// Container widths map 1:1 to the modifiers `bgcf_section_open()` emits:
+// `bgcf-container--{default|wide|narrow|full}`. Adding a width here means adding
+// it to the `$widths` allow-list in inc/template-tags.php too.
+// =============================================================================
+
+@use '../tools/functions' as fn;
+
+$container-narrow: fn.rem(760); // long-form reading measure
+$container-default: fn.rem(1160); // standard page content
+$container-wide: fn.rem(1400); // header, footer, full-bleed sections
+$container-full: 100%; // edge to edge, gutters only
+
+$containers: (
+	'narrow': $container-narrow,
+	'default': $container-default,
+	'wide': $container-wide,
+	'full': $container-full,
+);
+
+/// Horizontal breathing room inside a container. Fluid so phones get 16px and
+/// desktops get 40px without a media query.
+$container-gutter: fn.fluid(16, 40, 320, 1280);
+
+/// Bootstrap's grid gutter is set from this value (vendor/_bootstrap.scss) so
+/// `.row > .col` spacing matches our own card grids.
+$grid-gutter: fn.rem(24);
+
+/// Sticky header height. Phase 2 owns the header itself; this token exists now
+/// so `scroll-margin-top` and the skip-link offset are correct from day one.
+$header-height: fn.rem(72);
+$header-height-lg: fn.rem(88);
+
+/// Minimum target size. WCAG 2.2 SC 2.5.8 (AA) requires 24x24 CSS px; we design
+/// to 44px for anything thumb-operated and never ship below 24.
+$target-size-min: fn.rem(24);
+$target-size-comfortable: fn.rem(44);
+
+/// Border widths.
+$border-width: 1px;
+$border-width-thick: 2px;
+$border-width-heavy: 4px;
+
+/// Focus ring geometry. Kept here (not in _colors) because it is a size, and
+/// because components override the colour but never the geometry.
+$focus-ring-width: 3px;
+$focus-ring-offset: 2px;

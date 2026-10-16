@@ -1,0 +1,155 @@
+// =============================================================================
+// TOOLS / ELEVATION & SURFACES
+// -----------------------------------------------------------------------------
+// A "surface" is a rounded, shadowed, background-filled box. Cards, panels,
+// popovers and form groups all start here so their corner radius and shadow
+// ramp stay in step.
+// =============================================================================
+
+@use 'sass:map';
+@use '../settings/shadow' as shadow;
+@use './motion' as motion;
+
+/// Apply a named elevation from the shadow scale.
+@mixin elevation($level: 'md') {
+	$value: map.get(shadow.$shadows, $level);
+
+	@if not $value {
+		@error 'Unknown elevation `#{$level}`. Available: #{map.keys(shadow.$shadows)}.';
+	}
+
+	box-shadow: var(--bgcf-shadow-#{$level});
+}
+
+/// Base card/panel surface.
+///
+/// A 1px border is drawn as well as a shadow: shadows vanish in Windows High
+/// Contrast Mode and in print, and without the border the card boundary would
+/// disappear with them.
+@mixin surface($radius: var(--bgcf-radius-lg), $elevation: 'sm', $background: var(--bgcf-color-base)) {
+	background-color: $background;
+	border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	border-radius: $radius;
+
+	@include elevation($elevation);
+}
+
+/// Interactive surface: adds the hover lift and a focus-within ring.
+@mixin surface-interactive($rest: 'sm', $hover: 'lg') {
+	@include motion.lift(var(--bgcf-shadow-#{$rest}), var(--bgcf-shadow-#{$hover}));
+}
+
+/// Dark surface treatment. Re-declares the semantic colour roles so every
+/// descendant — headings, links, borders, focus rings, muted text — flips at
+/// once. This is the ONLY sanctioned way to invert a region.
+@mixin on-dark($background: var(--bgcf-color-primary)) {
+	--bgcf-color-text: var(--bgcf-color-base);
+	--bgcf-color-text-muted: var(--bgcf-color-primary-100);
+	--bgcf-color-text-subtle: var(--bgcf-color-primary-200);
+	--bgcf-color-text-inverse: var(--bgcf-color-ink);
+	--bgcf-color-heading: var(--bgcf-color-base);
+	--bgcf-color-eyebrow: var(--bgcf-color-accent);
+	--bgcf-color-link: var(--bgcf-color-base);
+	--bgcf-color-link-hover: var(--bgcf-color-accent);
+	--bgcf-color-link-visited: var(--bgcf-color-primary-100);
+	--bgcf-color-border: var(--bgcf-color-primary-400);
+	--bgcf-color-border-subtle: var(--bgcf-color-primary-600);
+	--bgcf-color-border-strong: var(--bgcf-color-primary-200);
+	--bgcf-color-bg: transparent;
+	--bgcf-color-bg-subtle: var(--bgcf-color-primary-700);
+	--bgcf-color-bg-muted: var(--bgcf-color-primary-600);
+	// Accent yellow clears 3:1 against every dark brand surface (7.03 on Deep
+	// Blue, 4.10 on Emerald 700, 9.62 on ink) where the default blue ring would
+	// disappear entirely.
+	--bgcf-color-focus: var(--bgcf-color-accent);
+
+	background-color: $background;
+	color: var(--bgcf-color-text);
+}
+
+/// Light surface treatment — the inverse of `on-dark`.
+///
+/// Needed for an island of light surface inside a dark band: the footer's
+/// subscribe card, a white panel on a photographic hero, a popover anchored to
+/// dark chrome. Without it, such an island inherits the band's inverted roles
+/// and renders white text on its own white fill.
+///
+/// This is NOT simply "unset what on-dark set": the roles have to be restored to
+/// their declared values, and those live in `settings/_colors.scss`. Every role
+/// `on-dark` touches is restored here, in the same order, so the two mixins can
+/// be diffed against each other when either changes.
+@mixin on-light($background: var(--bgcf-color-base)) {
+	--bgcf-color-text: var(--bgcf-color-neutral-900);
+	--bgcf-color-text-muted: var(--bgcf-color-neutral-600);
+	--bgcf-color-text-subtle: var(--bgcf-color-neutral-500);
+	--bgcf-color-text-inverse: var(--bgcf-color-base);
+	--bgcf-color-heading: var(--bgcf-color-primary);
+	--bgcf-color-eyebrow: var(--bgcf-color-secondary-600);
+	--bgcf-color-link: var(--bgcf-color-primary);
+	--bgcf-color-link-hover: var(--bgcf-color-cta-700);
+	--bgcf-color-link-visited: var(--bgcf-color-primary-700);
+	--bgcf-color-border: var(--bgcf-color-neutral-200);
+	--bgcf-color-border-subtle: var(--bgcf-color-neutral-100);
+	--bgcf-color-border-strong: var(--bgcf-color-neutral-500);
+	--bgcf-color-bg: var(--bgcf-color-base);
+	--bgcf-color-bg-subtle: var(--bgcf-color-surface);
+	--bgcf-color-bg-muted: var(--bgcf-color-neutral-100);
+	--bgcf-color-focus: var(--bgcf-color-primary);
+
+	background-color: $background;
+	color: var(--bgcf-color-text);
+}
+
+/// Photographic surface treatment.
+///
+/// A band whose background is a photograph still has to guarantee contrast for
+/// the text on top of it, and a photograph's own luminance is unknowable at
+/// build time — a hero shot swapped by an editor can turn a readable headline
+/// into an unreadable one. The fix is not to trust the image: a deep-blue scrim
+/// is laid over it at an opacity high enough that white text clears AA against
+/// the SCRIM ALONE, so the photograph underneath can be anything.
+///
+/// At 62% the composite is never lighter than the scrim over white, which
+/// measures 4.9:1 against white text; the default 72% used by the hero takes
+/// that to 6.6:1. Going below 55% is not safe and the floor is enforced here.
+///
+/// Applied to a `position: relative` element; paints into `::before`, so the
+/// element's own children need no z-index of their own beyond `--bgcf-z-base`.
+@mixin photo-scrim($opacity: 62%) {
+	// `@if` rather than the `if()` function: the latter is deprecated in Dart
+	// Sass in favour of CSS's own `if()`, which means something different.
+	$safe: $opacity;
+
+	@if $opacity < 55% {
+		$safe: 55%;
+	}
+
+	@include on-dark(transparent);
+
+	position: relative;
+	isolation: isolate;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	// The scrim sits above the background image and below the content.
+	// `--bgcf-section-scrim` is written inline by `bgcf_section_open()` when an
+	// editor has dialled the scrim up for a busy photograph; the mixin argument
+	// is the default when they have not.
+	&::before {
+		position: absolute;
+		z-index: var(--bgcf-z-below);
+		inset: 0;
+		background-color: rgb(var(--bgcf-rgb-primary) / var(--bgcf-section-scrim, #{$safe}));
+		content: '';
+	}
+
+	// Forced-colors mode discards both the image and the scrim, so the band
+	// needs a real background colour to fall back to or the text lands on the
+	// page background with no contrast guarantee at all.
+	@media (forced-colors: active) {
+		background-image: none !important;
+		background-color: Canvas;
+		color: CanvasText;
+	}
+}

@@ -1,0 +1,56 @@
+// =============================================================================
+// ELEMENTS / TABLES
+// -----------------------------------------------------------------------------
+// Bare tables from the editor's Table block. The reset already collapsed
+// borders; this makes a data table legible and keeps it from breaking narrow
+// layouts. Wrapped in an overflow container by the editor, but we also let the
+// table itself scroll as a safety net.
+// =============================================================================
+
+table:not([class]) {
+	width: 100%;
+	margin-block: var(--bgcf-space-lg);
+	font-size: var(--bgcf-font-size-sm);
+	background-color: var(--bgcf-color-base);
+	border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	border-radius: var(--bgcf-radius-md);
+	// Radius clips the header fill to the rounded corner.
+	border-collapse: separate;
+	border-spacing: 0;
+
+	caption {
+		padding-block-end: var(--bgcf-space-3);
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+		text-align: start;
+		caption-side: bottom;
+	}
+
+	th,
+	td {
+		padding: var(--bgcf-space-3) var(--bgcf-space-4);
+		text-align: start;
+		border-block-start: var(--bgcf-border-width) solid var(--bgcf-color-border-subtle);
+	}
+
+	thead th {
+		font-family: var(--bgcf-font-heading);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-base);
+		background-color: var(--bgcf-color-primary);
+		border-block-start: 0;
+
+		&:first-child {
+			border-start-start-radius: var(--bgcf-radius-md);
+		}
+
+		&:last-child {
+			border-start-end-radius: var(--bgcf-radius-md);
+		}
+	}
+
+	// Zebra striping on the body improves row tracking on wide tables.
+	tbody tr:nth-child(even) {
+		background-color: var(--bgcf-color-bg-subtle);
+	}
+}

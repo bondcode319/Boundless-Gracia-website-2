@@ -1,0 +1,56 @@
+// =============================================================================
+// UTILITIES / VISIBILITY
+// -----------------------------------------------------------------------------
+// Namespaced (`bgcf-u-`) so they never collide with Bootstrap's own utilities,
+// which we also load. These cover the accessibility-critical cases Bootstrap's
+// `.visually-hidden` does not handle as robustly (RTL, display:contents parents).
+// =============================================================================
+
+@use '../tools' as t;
+
+// Available to assistive tech, invisible on screen.
+.bgcf-u-visually-hidden {
+	@include t.visually-hidden;
+}
+
+// Visually hidden until focused (skip-link style), for "skip" affordances.
+.bgcf-u-visually-hidden-focusable {
+	@include t.visually-hidden;
+
+	&:focus,
+	&:focus-within {
+		@include t.visually-shown;
+	}
+}
+
+// Hidden from everyone, beats a component's own display.
+.bgcf-u-hidden {
+	display: none !important;
+}
+
+// Present in layout but invisible and non-interactive — for JS to reveal.
+.bgcf-u-invisible {
+	visibility: hidden;
+}
+
+// An island of light surface inside a dark band: the footer's subscribe card, a
+// white panel over a photographic hero. Restores every colour role that
+// `on-dark` inverted, so shared components (forms, buttons, prose) render here
+// exactly as they do on a light page and need no dark-band variant of their own.
+//
+// This is a utility rather than a component because it is a surface CONTEXT,
+// not a thing — several unrelated components need it and none of them owns it.
+.bgcf-u-on-light {
+	@include t.on-light;
+}
+
+// The mirror case: a dark island inside a light band.
+.bgcf-u-on-dark {
+	@include t.on-dark;
+}
+
+// NOTE: there is no CSS utility for "hide from assistive tech but keep it
+// visible" — that is `aria-hidden="true"` in the markup, and nothing else. The
+// old `speak: none` idiom is not implemented by any browser, so a class here
+// would be a comforting no-op. Decorative content gets the attribute (or
+// `role="presentation"` / an empty `alt`) at the template, not a class.

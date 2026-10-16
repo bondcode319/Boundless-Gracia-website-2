@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Environment / secrets — API keys (Maps, reCAPTCHA, SMTP) never enter the repo.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs and caches
+npm-debug.log*
+yarn-error.log*
+.npm/
+.cache/
+.sass-cache/
+*.log
+
+# Editor / OS noise
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.sublime-*
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Lint / test reports
+.phpcs-cache
+phpcs-report.*
+coverage/
+.stylelintcache
+.eslintcache
+
+# WordPress runtime (should this repo ever sit inside an install)
+wp-config.php
+wp-content/uploads/
+*.sql
+*.sql.gz
+
+# ---------------------------------------------------------------------------
+# NOT ignored, on purpose: theme/assets/css/, theme/assets/js/main.js and
+# theme/assets/js/vendor/ are build artefacts but ARE committed, so the theme
+# folder is a self-contained, deployable WordPress theme without a build step on
+# the server. Run `npm run build` before committing style or script changes —
+# editing the artefacts by hand is a lint-visible mistake (ARCHITECTURE §1).
+# ---------------------------------------------------------------------------

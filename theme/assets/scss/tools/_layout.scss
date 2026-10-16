@@ -1,0 +1,128 @@
+// =============================================================================
+// TOOLS / LAYOUT
+// -----------------------------------------------------------------------------
+// Container, stack and grid primitives. These exist so components do not each
+// re-derive the same three declarations, and so the container width stays in
+// lock-step with `bgcf_section_open()`'s `--{default|wide|narrow|full}`
+// modifiers.
+// =============================================================================
+
+@use 'sass:map';
+@use '../settings/layout' as layout;
+@use '../settings/spacing' as space;
+@use './breakpoints' as mq;
+
+/// Centred, gutter-padded container.
+@mixin container($width: 'default') {
+	$max: map.get(layout.$containers, $width);
+
+	@if not $max {
+		@error 'Unknown container width `#{$width}`. Available: #{map.keys(layout.$containers)}.';
+	}
+
+	width: 100%;
+	max-width: $max;
+	padding-right: var(--bgcf-container-gutter);
+	padding-left: var(--bgcf-container-gutter);
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/// Vertical rhythm between siblings, using the owl selector so the first child
+/// never picks up a stray top margin.
+@mixin flow($space: var(--bgcf-flow-space)) {
+	> * + * {
+		margin-block-start: $space;
+	}
+}
+
+/// Flex column with a gap. Preferred over `flow()` when the container is already
+/// a flex/grid context.
+@mixin stack($gap: var(--bgcf-space-md), $align: stretch) {
+	display: flex;
+	flex-direction: column;
+	gap: $gap;
+	align-items: $align;
+}
+
+/// Horizontal cluster that wraps rather than overflowing.
+@mixin cluster($gap: var(--bgcf-space-sm), $align: center, $justify: flex-start) {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $gap;
+	align-items: $align;
+	justify-content: $justify;
+}
+
+/// Responsive auto-fitting grid. No media queries needed — the track size does
+/// the work, which also means it behaves correctly inside a narrow container.
+@mixin auto-grid($min: 17rem, $gap: var(--bgcf-grid-gap)) {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(#{$min}, 100%), 1fr));
+	gap: $gap;
+}
+
+/// Fixed-column grid that steps up through the breakpoints. Use when the design
+/// calls for exact column counts (e.g. a 3-up programme grid).
+@mixin columns($counts: ('xs': 1, 'md': 2, 'lg': 3), $gap: var(--bgcf-grid-gap)) {
+	display: grid;
+	gap: $gap;
+
+	@each $breakpoint, $count in $counts {
+		@include mq.mq($breakpoint) {
+			grid-template-columns: repeat(#{$count}, minmax(0, 1fr));
+		}
+	}
+}
+
+/// Fixed aspect ratio media box. Explicit ratios prevent cumulative layout
+/// shift; they mirror the crops registered in `inc/setup.php`.
+/// Width and height are separate arguments so the emitted value is CSS's
+/// `aspect-ratio: 4 / 3`, not a Sass division collapsed to `1.33333`. For a
+/// pre-computed decimal, pass `null` as the height: `ratio(1.5, null)`.
+@mixin ratio($width: 4, $height: 3) {
+	position: relative;
+	overflow: hidden;
+
+	@if not $height {
+		aspect-ratio: #{$width};
+	} @else {
+		aspect-ratio: #{$width} / #{$height};
+	}
+
+	> img,
+	> video,
+	> iframe,
+	> picture > img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+/// Break an element out of its container to full viewport width.
+/// `100vw` would overflow when a scrollbar is present; `100cqw`/`100%` on the
+/// body plus negative margins is the safe version.
+@mixin full-bleed {
+	width: 100%;
+	max-width: 100%;
+	margin-right: calc(50% - 50vw);
+	margin-left: calc(50% - 50vw);
+}
+
+/// Section vertical rhythm.
+@mixin section-space($size: 'md') {
+	$value: map.get(space.$section-spaces, $size);
+
+	@if not $value {
+		@error 'Unknown section space `#{$size}`.';
+	}
+
+	padding-block: $value;
+}
+
+/// Cover the parent completely — scrims, hero overlays, decorative art.
+@mixin cover {
+	position: absolute;
+	inset: 0;
+}

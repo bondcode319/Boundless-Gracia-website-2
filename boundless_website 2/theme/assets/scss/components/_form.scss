@@ -1,0 +1,173 @@
+// =============================================================================
+// COMPONENTS / FORM-LEVEL PATTERNS
+// -----------------------------------------------------------------------------
+// Two scopes, deliberately two namespaces — this is not drift:
+//   .bgcf-field — ONE labelled control, its help text and its error
+//                 (components/_forms.scss)
+//   .bgcf-form  — the WHOLE form: its status region, its consent checkbox, its
+//                 honeypot, and the panel that replaces it on success
+//
+// Used by the newsletter, volunteer and contact forms, all of which share
+// assets/js/src/forms.js.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-form {
+	// -------------------------------------------------------------------------
+	// Honeypot.
+	//
+	// NOT `display: none`. A field that is display:none is skipped by a good
+	// number of form-filling bots, which defeats the trap. Off-screen keeps it
+	// in the DOM for them to find, and the markup carries `aria-hidden` plus
+	// `tabindex="-1"` so no human ever meets it.
+	// -------------------------------------------------------------------------
+	&__hp {
+		position: absolute !important;
+		inline-size: 1px;
+		block-size: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+
+	// -------------------------------------------------------------------------
+	// Consent and other inline checkboxes.
+	//
+	// Grid rather than flex, so a label that wraps to three lines stays aligned
+	// to the checkbox instead of centring itself against it.
+	// -------------------------------------------------------------------------
+	&__check {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: var(--bgcf-space-3);
+		align-items: start;
+		margin-block-start: var(--bgcf-space-4);
+
+		input[type='checkbox'] {
+			// Nudge onto the first line's optical centre.
+			margin-block-start: #{t.rem(3)};
+		}
+
+		label {
+			font-size: var(--bgcf-font-size-sm);
+			line-height: var(--bgcf-line-height-snug);
+			color: var(--bgcf-color-text-muted);
+		}
+
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Status region. `role="status" aria-live="polite"` lives in the markup;
+	// this gives each tone a look. Empty collapses so there is no reserved gap.
+	// -------------------------------------------------------------------------
+	&__status {
+		margin-block: var(--bgcf-space-4) 0;
+		padding: var(--bgcf-space-3) var(--bgcf-space-4);
+		font-size: var(--bgcf-font-size-sm);
+		border-radius: var(--bgcf-radius-md);
+
+		&:empty {
+			display: none;
+		}
+
+		&[data-bgcf-tone='busy'] {
+			color: var(--bgcf-color-info);
+			background-color: var(--bgcf-color-info-bg);
+			border: var(--bgcf-border-width) solid var(--bgcf-color-info-border);
+		}
+
+		&[data-bgcf-tone='error'] {
+			color: var(--bgcf-color-danger);
+			background-color: var(--bgcf-color-danger-bg);
+			border: var(--bgcf-border-width) solid var(--bgcf-color-danger-border);
+		}
+
+		&[data-bgcf-tone='success'] {
+			color: var(--bgcf-color-success);
+			background-color: var(--bgcf-color-success-bg);
+			border: var(--bgcf-border-width) solid var(--bgcf-color-success-border);
+		}
+	}
+
+	&__error {
+		margin-block: var(--bgcf-space-2) 0;
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-medium);
+		color: var(--bgcf-color-danger);
+	}
+
+	// -------------------------------------------------------------------------
+	// The panel that replaces a form once it has been submitted successfully.
+	//
+	// It receives focus (`tabindex="-1"` in JS), so it needs a focus style that
+	// does not look like an error.
+	// -------------------------------------------------------------------------
+	&__success {
+		padding: var(--bgcf-space-5);
+		font-size: var(--bgcf-font-size-lg);
+		color: var(--bgcf-color-success);
+		background-color: var(--bgcf-color-success-bg);
+		border: var(--bgcf-border-width) solid var(--bgcf-color-success-border);
+		border-radius: var(--bgcf-radius-lg);
+
+		@include t.focusable;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Newsletter.
+// -----------------------------------------------------------------------------
+.bgcf-newsletter {
+	&__row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-3);
+		align-items: flex-end;
+	}
+
+	&__field {
+		flex: 1 1 #{t.rem(220)};
+	}
+
+	&__submit {
+		flex: 0 0 auto;
+	}
+
+	// In the footer the surface is dark, so the label and consent text need the
+	// inverse treatment and the focus ring needs the inverse token.
+	&--footer {
+		--bgcf-color-focus: var(--bgcf-color-focus-inverse);
+
+		.bgcf-field__label {
+			color: var(--bgcf-color-primary-100);
+		}
+
+		.bgcf-form__check label {
+			color: var(--bgcf-color-primary-100);
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Contact form: two columns on wide screens, one on narrow.
+// -----------------------------------------------------------------------------
+.bgcf-contact-form {
+	display: grid;
+	gap: var(--bgcf-space-4);
+
+	@include t.mq(md) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	// Anything that needs the full width says so, rather than the grid guessing.
+	&__wide {
+		@include t.mq(md) {
+			grid-column: 1 / -1;
+		}
+	}
+}

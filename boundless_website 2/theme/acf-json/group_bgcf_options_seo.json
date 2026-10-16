@@ -1,0 +1,158 @@
+{
+    "key": "group_bgcf_options_seo",
+    "title": "Options — SEO defaults",
+    "fields": [
+        {
+            "key": "field_bgcf_options_seo_seo_default_description",
+            "label": "Default description",
+            "name": "seo_default_description",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "Used where a page has no description of its own. Around 155 characters.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_options_seo_seo_default_image",
+            "label": "Default share image",
+            "name": "seo_default_image",
+            "aria_label": "",
+            "type": "image",
+            "instructions": "1200×630 works everywhere.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_bgcf_options_seo_default_featured_image",
+            "label": "Fallback featured image",
+            "name": "default_featured_image",
+            "aria_label": "",
+            "type": "image",
+            "instructions": "Shown on cards for posts with no image of their own.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_bgcf_options_seo_twitter_handle",
+            "label": "X / Twitter handle",
+            "name": "twitter_handle",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Without the @.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_seo_org_description",
+            "label": "Organisation description",
+            "name": "org_description",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "Used in structured data for search engines and AI assistants.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_options_seo_org_registration_number",
+            "label": "Charity registration number",
+            "name": "org_registration_number",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Published in structured data as a trust signal. Leave empty to omit.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_seo_org_country",
+            "label": "Country code",
+            "name": "org_country",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Two letters, e.g. UG.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "UG"
+        },
+        {
+            "key": "field_bgcf_options_seo_gallery_require_consent",
+            "label": "Require consent before publishing a photo",
+            "name": "gallery_require_consent",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "Strongly recommended. Hides any gallery image not marked as consent-cleared in the Media library.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "bgcf-seo-defaults"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

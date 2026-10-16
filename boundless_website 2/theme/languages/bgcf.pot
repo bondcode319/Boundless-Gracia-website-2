@@ -1,0 +1,3331 @@
+# Copyright (C) Boundless Gracia Children Foundation
+# This file is distributed under the same licence as the theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: Boundless Gracia Children Foundation 1.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/bgcf\n"
+"POT-Creation-Date: 2026-10-16 13:45:23+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: build/makepot.mjs\n"
+"X-Domain: bgcf\n"
+
+#: 404.php:40
+msgid "We could not find that page"
+msgstr ""
+
+#: 404.php:44
+msgid "The page may have moved, or the link may be out of date. Try a search, or head back to the homepage."
+msgstr ""
+
+#: 404.php:55
+msgid "Back to homepage"
+msgstr ""
+
+#: 404.php:96
+msgid "You might be looking for"
+msgstr ""
+
+#: archive-bgcf_event.php:122
+msgid "Nothing is scheduled just now. Our newsletter is the first place new dates appear."
+msgstr ""
+
+#: archive-bgcf_event.php:130
+msgid "Recently held"
+msgstr ""
+
+#: archive-bgcf_event.php:99
+msgid "Coming up"
+msgstr ""
+
+#: archive.php:100
+msgid "Your support turns these pages into outcomes"
+msgstr ""
+
+#: archive.php:101
+msgid "Every programme on this site is funded by people who chose to act. Join them."
+msgstr ""
+
+#. translators: %s: number of comments.
+#: comments.php:35
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:57 comments.php:58
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:67
+msgid "Join the conversation"
+msgstr ""
+
+#: comments.php:74
+msgid "Comments are closed on this post."
+msgstr ""
+
+#: comments.php:83
+msgid "Leave a comment"
+msgstr ""
+
+#: comments.php:84
+msgid "Reply to %s"
+msgstr ""
+
+#: comments.php:85
+msgid "Post comment"
+msgstr ""
+
+#: footer.php:135
+msgid "Accreditations and memberships"
+msgstr ""
+
+#. translators: 1: current year, 2: site name.
+#: footer.php:195
+msgid "© %1$s %2$s. All rights reserved."
+msgstr ""
+
+#: footer.php:209
+msgid "Legal"
+msgstr ""
+
+#: footer.php:33
+msgid "Quick links"
+msgstr ""
+
+#: footer.php:34
+msgid "Our programs"
+msgstr ""
+
+#: footer.php:69 partials/global/header-drawer.php:119
+msgid "Social profiles"
+msgstr ""
+
+#: front-page.php:39 partials/content/content-page.php:102 partials/content/content-single.php:76
+msgid "Page sections"
+msgstr ""
+
+#. translators: %s: theme module file path.
+#: functions.php:124
+msgid "BGCF: missing theme module %s"
+msgstr ""
+
+#: header.php:102 searchform.php:34
+msgid "Search"
+msgstr ""
+
+#: header.php:147 inc/enqueue.php:182 partials/global/header-drawer.php:43
+msgid "Menu"
+msgstr ""
+
+#: header.php:49
+msgid "Skip to main content"
+msgstr ""
+
+#: header.php:80 partials/global/header-drawer.php:54
+msgid "Primary"
+msgstr ""
+
+#: inc/acf.php:104 inc/acf.php:105
+msgid "Header"
+msgstr ""
+
+#: inc/acf.php:108 inc/acf.php:109
+msgid "Footer"
+msgstr ""
+
+#: inc/acf.php:112 inc/acf.php:113
+msgid "Global CTAs"
+msgstr ""
+
+#: inc/acf.php:116 inc/acf.php:117
+msgid "Announcement"
+msgstr ""
+
+#: inc/acf.php:120 inc/acf.php:121
+msgid "SEO Defaults"
+msgstr ""
+
+#: inc/acf.php:251
+msgid "Boundless Gracia theme:"
+msgstr ""
+
+#: inc/acf.php:252
+msgid "Advanced Custom Fields Pro is required. Page content, options pages and all custom blocks are unavailable until it is activated."
+msgstr ""
+
+#: inc/acf.php:90 inc/acf.php:91 inc/admin.php:53
+msgid "Site Options"
+msgstr ""
+
+#: inc/acf.php:97
+msgid "Save options"
+msgstr ""
+
+#: inc/acf.php:98
+msgid "Site options saved."
+msgstr ""
+
+#: inc/admin.php:134
+msgid "Recent payment warnings"
+msgstr ""
+
+#. translators: %s: human-readable time difference, e.g. "2 hours".
+#: inc/admin.php:149
+msgid "%s ago"
+msgstr ""
+
+#: inc/admin.php:152
+msgid "unknown time"
+msgstr ""
+
+#: inc/admin.php:163
+msgid "Run the donation health check"
+msgstr ""
+
+#: inc/admin.php:31
+msgid "Boundless Gracia — where to edit what"
+msgstr ""
+
+#. translators: %s: site name.
+#: inc/admin.php:336
+msgid "%s — content managed website."
+msgstr ""
+
+#: inc/admin.php:358
+msgid "Image"
+msgstr ""
+
+#: inc/admin.php:54
+msgid "Header, footer, global calls to action and SEO defaults."
+msgstr ""
+
+#: inc/admin.php:58
+msgid "Pages"
+msgstr ""
+
+#: inc/admin.php:59
+msgid "Every page is built from Boundless Gracia blocks in the editor."
+msgstr ""
+
+#: inc/admin.php:63
+msgid "Programs"
+msgstr ""
+
+#: inc/admin.php:64
+msgid "Areas of work shown across the homepage and programme pages."
+msgstr ""
+
+#: inc/admin.php:68
+msgid "Campaigns"
+msgstr ""
+
+#: inc/admin.php:69
+msgid "Fundraising appeals with goals, totals and deadlines."
+msgstr ""
+
+#: inc/admin.php:73
+msgid "Menus"
+msgstr ""
+
+#: inc/admin.php:74
+msgid "Primary navigation, footer link columns and social profiles."
+msgstr ""
+
+#: inc/admin.php:88
+msgid "All content on this website is editable here — nothing is hardcoded."
+msgstr ""
+
+#: inc/ajax.php:118 inc/enqueue.php:194
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: inc/ajax.php:213 inc/payments-routes.php:138
+msgid "Too many attempts. Please wait a few minutes and try again."
+msgstr ""
+
+#: inc/ajax.php:305
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: inc/ajax.php:311
+msgid "Please tick the box to confirm we may email you."
+msgstr ""
+
+#: inc/ajax.php:326
+msgid "We could not save your details. Please try again."
+msgstr ""
+
+#: inc/ajax.php:335
+msgid "Thank you — you are on the list. Watch your inbox for our next update."
+msgstr ""
+
+#: inc/ajax.php:399
+msgid "That file appears to be empty."
+msgstr ""
+
+#. translators: %s: maximum file size, e.g. "5 MB".
+#: inc/ajax.php:407
+msgid "Please upload a file smaller than %s."
+msgstr ""
+
+#: inc/ajax.php:423
+msgid "Please upload your CV as a PDF or Word document."
+msgstr ""
+
+#: inc/ajax.php:453
+msgid "Volunteer CV"
+msgstr ""
+
+#: inc/ajax.php:460
+msgid "We could not store that file."
+msgstr ""
+
+#: inc/ajax.php:491 inc/ajax.php:599
+msgid "Please tell us your name."
+msgstr ""
+
+#: inc/ajax.php:495 inc/ajax.php:603
+msgid "Please enter an email address we can reply to."
+msgstr ""
+
+#: inc/ajax.php:501
+msgid "Please confirm we may store your details to process your application."
+msgstr ""
+
+#: inc/ajax.php:536
+msgid "We could not save your application. Please try again."
+msgstr ""
+
+#. translators: %s: applicant name.
+#: inc/ajax.php:542
+msgid "New volunteer application: %s"
+msgstr ""
+
+#. translators: %s: applicant name. */ __( 'New volunteer application: %s', 'bgcf' ), $name ), sprintf( /* translators: 1: reference, 2: name, 3: email, 4: admin URL.
+#: inc/ajax.php:547
+msgid "Reference: %1\\$s\nName: %2\\$s\nEmail: %3\\$s\n\nReview it here: %4\\$s"
+msgstr ""
+
+#: inc/ajax.php:562
+msgid "Thank you for offering your time. Your reference is %s — we will be in touch within a week."
+msgstr ""
+
+#: inc/ajax.php:607
+msgid "Please tell us a little more so we can help."
+msgstr ""
+
+#: inc/ajax.php:611
+msgid "Please confirm we may store your message to reply to it."
+msgstr ""
+
+#: inc/ajax.php:625
+msgid "We could not send your message. Please try again."
+msgstr ""
+
+#. translators: %s: message subject.
+#: inc/ajax.php:631
+msgid "Website enquiry: %s"
+msgstr ""
+
+#. translators: %s: message subject. */ __( 'Website enquiry: %s', 'bgcf' ), '' !== $subject ? $subject : $name ), sprintf( /* translators: 1: name, 2: email, 3: phone, 4: message body.
+#: inc/ajax.php:636
+msgid "From: %1\\$s <%2\\$s>\nPhone: %3\\$s\n\n%4\\$s"
+msgstr ""
+
+#: inc/ajax.php:649
+msgid "Thank you — your message is with us and we will reply as soon as we can."
+msgstr ""
+
+#: inc/blocks.php:104
+msgid "Program Cards"
+msgstr ""
+
+#: inc/blocks.php:105
+msgid "Grid of programs pulled from the Programs post type."
+msgstr ""
+
+#: inc/blocks.php:111 inc/enqueue.php:187
+msgid "Gallery"
+msgstr ""
+
+#: inc/blocks.php:112
+msgid "Filterable photo and video grid with a lightbox."
+msgstr ""
+
+#: inc/blocks.php:118
+msgid "Testimonials"
+msgstr ""
+
+#: inc/blocks.php:119
+msgid "Carousel of quotes from the Testimonials post type."
+msgstr ""
+
+#: inc/blocks.php:125
+msgid "Timeline"
+msgstr ""
+
+#: inc/blocks.php:126
+msgid "Chronological milestones, used for the foundation history."
+msgstr ""
+
+#: inc/blocks.php:132
+msgid "Partners"
+msgstr ""
+
+#: inc/blocks.php:133
+msgid "Logo wall or marquee of supporting organisations."
+msgstr ""
+
+#: inc/blocks.php:139
+msgid "FAQ"
+msgstr ""
+
+#: inc/blocks.php:140
+msgid "Accessible accordion of questions and answers."
+msgstr ""
+
+#: inc/blocks.php:146
+msgid "Newsletter"
+msgstr ""
+
+#: inc/blocks.php:147
+msgid "Email sign-up form submitted over AJAX."
+msgstr ""
+
+#: inc/blocks.php:164
+msgid "Split Section"
+msgstr ""
+
+#: inc/blocks.php:165
+msgid "Image on one side, heading and text on the other. The workhorse band: choose the side, the column ratio and the background."
+msgstr ""
+
+#: inc/blocks.php:172
+msgid "Photo CTA Band"
+msgstr ""
+
+#: inc/blocks.php:173
+msgid "Full-bleed photograph behind a scrim, with a centred heading, one sentence and a button. Used to break up the coloured bands."
+msgstr ""
+
+#: inc/blocks.php:180
+msgid "Service Cards"
+msgstr ""
+
+#: inc/blocks.php:181
+msgid "Grid of text-only cards, each with an icon, a title and a short description. Designed to sit on a dark band."
+msgstr ""
+
+#: inc/blocks.php:187
+msgid "News Cards"
+msgstr ""
+
+#: inc/blocks.php:188
+msgid "Latest posts or success stories as dated cards. Pulls automatically, or pick the items by hand."
+msgstr ""
+
+#: inc/blocks.php:194
+msgid "Action Grid"
+msgstr ""
+
+#: inc/blocks.php:195
+msgid "Grid of ways to get involved, each with an image, a title and its own button. The body of the Take Action page."
+msgstr ""
+
+#: inc/blocks.php:201
+msgid "Team Grid"
+msgstr ""
+
+#: inc/blocks.php:202
+msgid "People from the Team post type, as portrait cards, optionally grouped by department."
+msgstr ""
+
+#. translators: %s: expected partial file path.
+#: inc/blocks.php:345
+msgid "Missing block template: %s"
+msgstr ""
+
+#: inc/blocks.php:54 inc/patterns.php:130
+msgid "Boundless Gracia"
+msgstr ""
+
+#: inc/blocks.php:75
+msgid "Hero"
+msgstr ""
+
+#: inc/blocks.php:76
+msgid "Full-width opening section: image, overlay, headline and two calls to action."
+msgstr ""
+
+#: inc/blocks.php:83
+msgid "Statistics"
+msgstr ""
+
+#: inc/blocks.php:84
+msgid "Band of animated impact counters."
+msgstr ""
+
+#: inc/blocks.php:90
+msgid "Call to Action"
+msgstr ""
+
+#: inc/blocks.php:91
+msgid "Headline, supporting text and buttons on a brand background."
+msgstr ""
+
+#: inc/blocks.php:97
+msgid "Donation Banner"
+msgstr ""
+
+#: inc/blocks.php:98
+msgid "Donation prompt with amount presets and the Flutterwave giving form (mobile money and cards)."
+msgstr ""
+
+#: inc/cpt.php:100
+msgid "Set program image"
+msgstr ""
+
+#: inc/cpt.php:101
+msgid "Remove program image"
+msgstr ""
+
+#: inc/cpt.php:102
+msgid "Use as program image"
+msgstr ""
+
+#: inc/cpt.php:103
+msgid "Programs list"
+msgstr ""
+
+#: inc/cpt.php:104
+msgid "Programs list navigation"
+msgstr ""
+
+#: inc/cpt.php:105
+msgid "Filter programs list"
+msgstr ""
+
+#: inc/cpt.php:107
+msgid "Long-running areas of work, e.g. Medical Support or Education."
+msgstr ""
+
+#: inc/cpt.php:132
+msgctxt "post type general name"
+msgid "Events"
+msgstr ""
+
+#: inc/cpt.php:133
+msgctxt "post type singular name"
+msgid "Event"
+msgstr ""
+
+#: inc/cpt.php:134
+msgctxt "admin menu"
+msgid "Events"
+msgstr ""
+
+#: inc/cpt.php:135
+msgctxt "add new on admin bar"
+msgid "Event"
+msgstr ""
+
+#: inc/cpt.php:137
+msgid "Add New Event"
+msgstr ""
+
+#: inc/cpt.php:138
+msgid "New Event"
+msgstr ""
+
+#: inc/cpt.php:139
+msgid "Edit Event"
+msgstr ""
+
+#: inc/cpt.php:140
+msgid "View Event"
+msgstr ""
+
+#: inc/cpt.php:141
+msgid "View Events"
+msgstr ""
+
+#: inc/cpt.php:142
+msgid "All Events"
+msgstr ""
+
+#: inc/cpt.php:143
+msgid "Search Events"
+msgstr ""
+
+#: inc/cpt.php:144
+msgid "No events found."
+msgstr ""
+
+#: inc/cpt.php:145
+msgid "No events found in Trash."
+msgstr ""
+
+#: inc/cpt.php:146
+msgid "Event Archives"
+msgstr ""
+
+#: inc/cpt.php:147
+msgid "Event Image"
+msgstr ""
+
+#: inc/cpt.php:148
+msgid "Set event image"
+msgstr ""
+
+#: inc/cpt.php:149
+msgid "Remove event image"
+msgstr ""
+
+#: inc/cpt.php:150
+msgid "Use as event image"
+msgstr ""
+
+#: inc/cpt.php:151
+msgid "Events list"
+msgstr ""
+
+#: inc/cpt.php:152
+msgid "Events list navigation"
+msgstr ""
+
+#: inc/cpt.php:153
+msgid "Filter events list"
+msgstr ""
+
+#: inc/cpt.php:155
+msgid "Dated activities: fundraisers, outreach days, volunteer drives."
+msgstr ""
+
+#: inc/cpt.php:182
+msgctxt "post type general name"
+msgid "Campaigns"
+msgstr ""
+
+#: inc/cpt.php:183
+msgctxt "post type singular name"
+msgid "Campaign"
+msgstr ""
+
+#: inc/cpt.php:184
+msgctxt "admin menu"
+msgid "Campaigns"
+msgstr ""
+
+#: inc/cpt.php:185
+msgctxt "add new on admin bar"
+msgid "Campaign"
+msgstr ""
+
+#: inc/cpt.php:187
+msgid "Add New Campaign"
+msgstr ""
+
+#: inc/cpt.php:188
+msgid "New Campaign"
+msgstr ""
+
+#: inc/cpt.php:189
+msgid "Edit Campaign"
+msgstr ""
+
+#: inc/cpt.php:190
+msgid "View Campaign"
+msgstr ""
+
+#: inc/cpt.php:191
+msgid "View Campaigns"
+msgstr ""
+
+#: inc/cpt.php:192
+msgid "All Campaigns"
+msgstr ""
+
+#: inc/cpt.php:193
+msgid "Search Campaigns"
+msgstr ""
+
+#: inc/cpt.php:194
+msgid "No campaigns found."
+msgstr ""
+
+#: inc/cpt.php:195
+msgid "No campaigns found in Trash."
+msgstr ""
+
+#: inc/cpt.php:196
+msgid "Campaign Archives"
+msgstr ""
+
+#: inc/cpt.php:197
+msgid "Campaign Image"
+msgstr ""
+
+#: inc/cpt.php:198
+msgid "Set campaign image"
+msgstr ""
+
+#: inc/cpt.php:199
+msgid "Remove campaign image"
+msgstr ""
+
+#: inc/cpt.php:200
+msgid "Use as campaign image"
+msgstr ""
+
+#: inc/cpt.php:201
+msgid "Campaigns list"
+msgstr ""
+
+#: inc/cpt.php:202
+msgid "Campaigns list navigation"
+msgstr ""
+
+#: inc/cpt.php:203
+msgid "Filter campaigns list"
+msgstr ""
+
+#: inc/cpt.php:205
+msgid "Time-boxed fundraising appeals with a goal, a total raised and a deadline."
+msgstr ""
+
+#: inc/cpt.php:232
+msgctxt "post type general name"
+msgid "Success Stories"
+msgstr ""
+
+#: inc/cpt.php:233
+msgctxt "post type singular name"
+msgid "Success Story"
+msgstr ""
+
+#: inc/cpt.php:234
+msgctxt "admin menu"
+msgid "Success Stories"
+msgstr ""
+
+#: inc/cpt.php:235
+msgctxt "add new on admin bar"
+msgid "Success Story"
+msgstr ""
+
+#: inc/cpt.php:237
+msgid "Add New Success Story"
+msgstr ""
+
+#: inc/cpt.php:238
+msgid "New Success Story"
+msgstr ""
+
+#: inc/cpt.php:239
+msgid "Edit Success Story"
+msgstr ""
+
+#: inc/cpt.php:240
+msgid "View Success Story"
+msgstr ""
+
+#: inc/cpt.php:241
+msgid "View Success Stories"
+msgstr ""
+
+#: inc/cpt.php:242
+msgid "All Success Stories"
+msgstr ""
+
+#: inc/cpt.php:243
+msgid "Search Success Stories"
+msgstr ""
+
+#: inc/cpt.php:244
+msgid "No success stories found."
+msgstr ""
+
+#: inc/cpt.php:245
+msgid "No success stories found in Trash."
+msgstr ""
+
+#: inc/cpt.php:246
+msgid "Success Story Archives"
+msgstr ""
+
+#: inc/cpt.php:247
+msgid "Story Image"
+msgstr ""
+
+#: inc/cpt.php:248
+msgid "Set story image"
+msgstr ""
+
+#: inc/cpt.php:249
+msgid "Remove story image"
+msgstr ""
+
+#: inc/cpt.php:250
+msgid "Use as story image"
+msgstr ""
+
+#: inc/cpt.php:251
+msgid "Success stories list"
+msgstr ""
+
+#: inc/cpt.php:252
+msgid "Success stories list navigation"
+msgstr ""
+
+#: inc/cpt.php:253
+msgid "Filter success stories list"
+msgstr ""
+
+#: inc/cpt.php:255
+msgid "Beneficiary outcomes told as before/after narratives. Requires documented consent."
+msgstr ""
+
+#: inc/cpt.php:280
+msgctxt "post type general name"
+msgid "Team"
+msgstr ""
+
+#: inc/cpt.php:281
+msgctxt "post type singular name"
+msgid "Team Member"
+msgstr ""
+
+#: inc/cpt.php:282
+msgctxt "admin menu"
+msgid "Team"
+msgstr ""
+
+#: inc/cpt.php:283
+msgctxt "add new on admin bar"
+msgid "Team Member"
+msgstr ""
+
+#: inc/cpt.php:285
+msgid "Add New Team Member"
+msgstr ""
+
+#: inc/cpt.php:286
+msgid "New Team Member"
+msgstr ""
+
+#: inc/cpt.php:287
+msgid "Edit Team Member"
+msgstr ""
+
+#: inc/cpt.php:288
+msgid "View Team Member"
+msgstr ""
+
+#: inc/cpt.php:289
+msgid "View Team"
+msgstr ""
+
+#: inc/cpt.php:290
+msgid "All Team Members"
+msgstr ""
+
+#: inc/cpt.php:291
+msgid "Search Team"
+msgstr ""
+
+#: inc/cpt.php:292
+msgid "No team members found."
+msgstr ""
+
+#: inc/cpt.php:293
+msgid "No team members found in Trash."
+msgstr ""
+
+#: inc/cpt.php:294
+msgid "Team Archives"
+msgstr ""
+
+#: inc/cpt.php:295
+msgid "Portrait"
+msgstr ""
+
+#: inc/cpt.php:296
+msgid "Set portrait"
+msgstr ""
+
+#: inc/cpt.php:297
+msgid "Remove portrait"
+msgstr ""
+
+#: inc/cpt.php:298
+msgid "Use as portrait"
+msgstr ""
+
+#: inc/cpt.php:299
+msgid "Team list"
+msgstr ""
+
+#: inc/cpt.php:300
+msgid "Team list navigation"
+msgstr ""
+
+#: inc/cpt.php:301
+msgid "Filter team list"
+msgstr ""
+
+#: inc/cpt.php:303
+msgid "Board, leadership and staff profiles."
+msgstr ""
+
+#: inc/cpt.php:328
+msgctxt "post type general name"
+msgid "Partners"
+msgstr ""
+
+#: inc/cpt.php:329
+msgctxt "post type singular name"
+msgid "Partner"
+msgstr ""
+
+#: inc/cpt.php:330
+msgctxt "admin menu"
+msgid "Partners"
+msgstr ""
+
+#: inc/cpt.php:331
+msgctxt "add new on admin bar"
+msgid "Partner"
+msgstr ""
+
+#: inc/cpt.php:333
+msgid "Add New Partner"
+msgstr ""
+
+#: inc/cpt.php:334
+msgid "New Partner"
+msgstr ""
+
+#: inc/cpt.php:335
+msgid "Edit Partner"
+msgstr ""
+
+#: inc/cpt.php:336
+msgid "View Partner"
+msgstr ""
+
+#: inc/cpt.php:337
+msgid "View Partners"
+msgstr ""
+
+#: inc/cpt.php:338
+msgid "All Partners"
+msgstr ""
+
+#: inc/cpt.php:339
+msgid "Search Partners"
+msgstr ""
+
+#: inc/cpt.php:340
+msgid "No partners found."
+msgstr ""
+
+#: inc/cpt.php:341
+msgid "No partners found in Trash."
+msgstr ""
+
+#: inc/cpt.php:342
+msgid "Logo"
+msgstr ""
+
+#: inc/cpt.php:343
+msgid "Set logo"
+msgstr ""
+
+#: inc/cpt.php:344
+msgid "Remove logo"
+msgstr ""
+
+#: inc/cpt.php:345
+msgid "Use as logo"
+msgstr ""
+
+#: inc/cpt.php:346
+msgid "Partners list"
+msgstr ""
+
+#: inc/cpt.php:347
+msgid "Partners list navigation"
+msgstr ""
+
+#: inc/cpt.php:348
+msgid "Filter partners list"
+msgstr ""
+
+#: inc/cpt.php:350
+msgid "Supporting organisations, shown as logos that link off-site."
+msgstr ""
+
+#: inc/cpt.php:377
+msgctxt "post type general name"
+msgid "Testimonials"
+msgstr ""
+
+#: inc/cpt.php:378
+msgctxt "post type singular name"
+msgid "Testimonial"
+msgstr ""
+
+#: inc/cpt.php:379
+msgctxt "admin menu"
+msgid "Testimonials"
+msgstr ""
+
+#: inc/cpt.php:380
+msgctxt "add new on admin bar"
+msgid "Testimonial"
+msgstr ""
+
+#: inc/cpt.php:382
+msgid "Add New Testimonial"
+msgstr ""
+
+#: inc/cpt.php:383
+msgid "New Testimonial"
+msgstr ""
+
+#: inc/cpt.php:384
+msgid "Edit Testimonial"
+msgstr ""
+
+#: inc/cpt.php:385
+msgid "View Testimonial"
+msgstr ""
+
+#: inc/cpt.php:386
+msgid "View Testimonials"
+msgstr ""
+
+#: inc/cpt.php:387
+msgid "All Testimonials"
+msgstr ""
+
+#: inc/cpt.php:388
+msgid "Search Testimonials"
+msgstr ""
+
+#: inc/cpt.php:389
+msgid "No testimonials found."
+msgstr ""
+
+#: inc/cpt.php:390
+msgid "No testimonials found in Trash."
+msgstr ""
+
+#: inc/cpt.php:391
+msgid "Photo"
+msgstr ""
+
+#: inc/cpt.php:392
+msgid "Set photo"
+msgstr ""
+
+#: inc/cpt.php:393
+msgid "Remove photo"
+msgstr ""
+
+#: inc/cpt.php:394
+msgid "Use as photo"
+msgstr ""
+
+#: inc/cpt.php:395
+msgid "Testimonials list"
+msgstr ""
+
+#: inc/cpt.php:396
+msgid "Testimonials list navigation"
+msgstr ""
+
+#: inc/cpt.php:397
+msgid "Filter testimonials list"
+msgstr ""
+
+#: inc/cpt.php:399
+msgid "Short quotes from beneficiaries, volunteers, donors and partners."
+msgstr ""
+
+#: inc/cpt.php:427
+msgctxt "post type general name"
+msgid "Reports"
+msgstr ""
+
+#: inc/cpt.php:428
+msgctxt "post type singular name"
+msgid "Report"
+msgstr ""
+
+#: inc/cpt.php:429
+msgctxt "admin menu"
+msgid "Reports"
+msgstr ""
+
+#: inc/cpt.php:430
+msgctxt "add new on admin bar"
+msgid "Report"
+msgstr ""
+
+#: inc/cpt.php:432
+msgid "Add New Report"
+msgstr ""
+
+#: inc/cpt.php:433
+msgid "New Report"
+msgstr ""
+
+#: inc/cpt.php:434
+msgid "Edit Report"
+msgstr ""
+
+#: inc/cpt.php:435
+msgid "View Report"
+msgstr ""
+
+#: inc/cpt.php:436
+msgid "View Reports"
+msgstr ""
+
+#: inc/cpt.php:437
+msgid "All Reports"
+msgstr ""
+
+#: inc/cpt.php:438
+msgid "Search Reports"
+msgstr ""
+
+#: inc/cpt.php:439
+msgid "No reports found."
+msgstr ""
+
+#: inc/cpt.php:440
+msgid "No reports found in Trash."
+msgstr ""
+
+#: inc/cpt.php:441
+msgid "Cover"
+msgstr ""
+
+#: inc/cpt.php:442
+msgid "Set cover"
+msgstr ""
+
+#: inc/cpt.php:443
+msgid "Remove cover"
+msgstr ""
+
+#: inc/cpt.php:444
+msgid "Use as cover"
+msgstr ""
+
+#: inc/cpt.php:445
+msgid "Reports list"
+msgstr ""
+
+#: inc/cpt.php:446
+msgid "Reports list navigation"
+msgstr ""
+
+#: inc/cpt.php:447
+msgid "Filter reports list"
+msgstr ""
+
+#: inc/cpt.php:449
+msgid "Annual reports, financial statements and downloadable publications."
+msgstr ""
+
+#: inc/cpt.php:491
+msgctxt "taxonomy general name"
+msgid "Program Categories"
+msgstr ""
+
+#: inc/cpt.php:492
+msgctxt "taxonomy singular name"
+msgid "Program Category"
+msgstr ""
+
+#: inc/cpt.php:493
+msgid "Program Categories"
+msgstr ""
+
+#: inc/cpt.php:494
+msgid "All Program Categories"
+msgstr ""
+
+#: inc/cpt.php:495
+msgid "Edit Program Category"
+msgstr ""
+
+#: inc/cpt.php:496
+msgid "View Program Category"
+msgstr ""
+
+#: inc/cpt.php:497
+msgid "Update Program Category"
+msgstr ""
+
+#: inc/cpt.php:498
+msgid "Add New Program Category"
+msgstr ""
+
+#: inc/cpt.php:499
+msgid "New Program Category Name"
+msgstr ""
+
+#: inc/cpt.php:500
+msgid "Parent Program Category"
+msgstr ""
+
+#: inc/cpt.php:501
+msgid "Parent Program Category:"
+msgstr ""
+
+#: inc/cpt.php:502
+msgid "Search Program Categories"
+msgstr ""
+
+#: inc/cpt.php:503
+msgid "No program categories found."
+msgstr ""
+
+#: inc/cpt.php:504
+msgid "Back to Program Categories"
+msgstr ""
+
+#: inc/cpt.php:506
+msgid "Areas of work. Shared by Programs and Success Stories."
+msgstr ""
+
+#: inc/cpt.php:528
+msgctxt "taxonomy general name"
+msgid "Event Types"
+msgstr ""
+
+#: inc/cpt.php:529
+msgctxt "taxonomy singular name"
+msgid "Event Type"
+msgstr ""
+
+#: inc/cpt.php:530
+msgid "Event Types"
+msgstr ""
+
+#: inc/cpt.php:531
+msgid "All Event Types"
+msgstr ""
+
+#: inc/cpt.php:532
+msgid "Edit Event Type"
+msgstr ""
+
+#: inc/cpt.php:533
+msgid "View Event Type"
+msgstr ""
+
+#: inc/cpt.php:534
+msgid "Update Event Type"
+msgstr ""
+
+#: inc/cpt.php:535
+msgid "Add New Event Type"
+msgstr ""
+
+#: inc/cpt.php:536
+msgid "New Event Type Name"
+msgstr ""
+
+#: inc/cpt.php:537
+msgid "Search Event Types"
+msgstr ""
+
+#: inc/cpt.php:538
+msgid "No event types found."
+msgstr ""
+
+#: inc/cpt.php:539
+msgid "Back to Event Types"
+msgstr ""
+
+#: inc/cpt.php:541
+msgid "Fundraiser, outreach, workshop, volunteer drive, and so on."
+msgstr ""
+
+#: inc/cpt.php:562
+msgctxt "taxonomy general name"
+msgid "Departments"
+msgstr ""
+
+#: inc/cpt.php:563
+msgctxt "taxonomy singular name"
+msgid "Department"
+msgstr ""
+
+#: inc/cpt.php:564
+msgid "Departments"
+msgstr ""
+
+#: inc/cpt.php:565
+msgid "All Departments"
+msgstr ""
+
+#: inc/cpt.php:566
+msgid "Edit Department"
+msgstr ""
+
+#: inc/cpt.php:567
+msgid "View Department"
+msgstr ""
+
+#: inc/cpt.php:568
+msgid "Update Department"
+msgstr ""
+
+#: inc/cpt.php:569
+msgid "Add New Department"
+msgstr ""
+
+#: inc/cpt.php:570
+msgid "New Department Name"
+msgstr ""
+
+#: inc/cpt.php:571
+msgid "Search Departments"
+msgstr ""
+
+#: inc/cpt.php:572
+msgid "No departments found."
+msgstr ""
+
+#: inc/cpt.php:573
+msgid "Back to Departments"
+msgstr ""
+
+#: inc/cpt.php:575
+msgid "Board, leadership, programs, operations, and so on."
+msgstr ""
+
+#: inc/cpt.php:595
+msgctxt "taxonomy general name"
+msgid "Partner Types"
+msgstr ""
+
+#: inc/cpt.php:596
+msgctxt "taxonomy singular name"
+msgid "Partner Type"
+msgstr ""
+
+#: inc/cpt.php:597
+msgid "Partner Types"
+msgstr ""
+
+#: inc/cpt.php:598
+msgid "All Partner Types"
+msgstr ""
+
+#: inc/cpt.php:599
+msgid "Edit Partner Type"
+msgstr ""
+
+#: inc/cpt.php:600
+msgid "View Partner Type"
+msgstr ""
+
+#: inc/cpt.php:601
+msgid "Update Partner Type"
+msgstr ""
+
+#: inc/cpt.php:602
+msgid "Add New Partner Type"
+msgstr ""
+
+#: inc/cpt.php:603
+msgid "New Partner Type Name"
+msgstr ""
+
+#: inc/cpt.php:604
+msgid "Search Partner Types"
+msgstr ""
+
+#: inc/cpt.php:605
+msgid "No partner types found."
+msgstr ""
+
+#: inc/cpt.php:606
+msgid "Back to Partner Types"
+msgstr ""
+
+#: inc/cpt.php:608
+msgid "Corporate, institutional, NGO, government, media."
+msgstr ""
+
+#: inc/cpt.php:632
+msgctxt "taxonomy general name"
+msgid "Report Years"
+msgstr ""
+
+#: inc/cpt.php:633
+msgctxt "taxonomy singular name"
+msgid "Report Year"
+msgstr ""
+
+#: inc/cpt.php:634
+msgid "Years"
+msgstr ""
+
+#: inc/cpt.php:635
+msgid "All Years"
+msgstr ""
+
+#: inc/cpt.php:636
+msgid "Edit Year"
+msgstr ""
+
+#: inc/cpt.php:637
+msgid "View Year"
+msgstr ""
+
+#: inc/cpt.php:638
+msgid "Update Year"
+msgstr ""
+
+#: inc/cpt.php:639
+msgid "Add New Year"
+msgstr ""
+
+#: inc/cpt.php:640
+msgid "New Year"
+msgstr ""
+
+#: inc/cpt.php:641
+msgid "Search Years"
+msgstr ""
+
+#: inc/cpt.php:642
+msgid "No years found."
+msgstr ""
+
+#: inc/cpt.php:643
+msgid "Back to Years"
+msgstr ""
+
+#: inc/cpt.php:645
+msgid "Publication year used to group reports."
+msgstr ""
+
+#: inc/cpt.php:84
+msgctxt "post type general name"
+msgid "Programs"
+msgstr ""
+
+#: inc/cpt.php:85
+msgctxt "post type singular name"
+msgid "Program"
+msgstr ""
+
+#: inc/cpt.php:86
+msgctxt "admin menu"
+msgid "Programs"
+msgstr ""
+
+#: inc/cpt.php:87
+msgctxt "add new on admin bar"
+msgid "Program"
+msgstr ""
+
+#: inc/cpt.php:88 inc/cpt.php:136 inc/cpt.php:186 inc/cpt.php:236 inc/cpt.php:284 inc/cpt.php:332
+msgid "Add New"
+msgstr ""
+
+#: inc/cpt.php:89
+msgid "Add New Program"
+msgstr ""
+
+#: inc/cpt.php:90
+msgid "New Program"
+msgstr ""
+
+#: inc/cpt.php:91
+msgid "Edit Program"
+msgstr ""
+
+#: inc/cpt.php:92
+msgid "View Program"
+msgstr ""
+
+#: inc/cpt.php:93
+msgid "View Programs"
+msgstr ""
+
+#: inc/cpt.php:94
+msgid "All Programs"
+msgstr ""
+
+#: inc/cpt.php:95
+msgid "Search Programs"
+msgstr ""
+
+#: inc/cpt.php:96
+msgid "No programs found."
+msgstr ""
+
+#: inc/cpt.php:97
+msgid "No programs found in Trash."
+msgstr ""
+
+#: inc/cpt.php:98
+msgid "Program Archives"
+msgstr ""
+
+#: inc/cpt.php:99
+msgid "Program Image"
+msgstr ""
+
+#: inc/donations.php:164
+msgid "Mobile Money (MTN or Airtel)"
+msgstr ""
+
+#: inc/donations.php:168
+msgid "Debit or credit card"
+msgstr ""
+
+#: inc/donations.php:237
+msgid "Pending"
+msgstr ""
+
+#: inc/donations.php:238
+msgid "Successful"
+msgstr ""
+
+#: inc/donations.php:239
+msgid "Failed"
+msgstr ""
+
+#: inc/donations.php:240
+msgid "Abandoned"
+msgstr ""
+
+#: inc/donations.php:261
+msgctxt "post type general name"
+msgid "Donations"
+msgstr ""
+
+#: inc/donations.php:262
+msgctxt "post type singular name"
+msgid "Donation"
+msgstr ""
+
+#: inc/donations.php:263
+msgctxt "admin menu"
+msgid "Donations"
+msgstr ""
+
+#: inc/donations.php:264
+msgid "All Donations"
+msgstr ""
+
+#: inc/donations.php:265
+msgid "Donation"
+msgstr ""
+
+#: inc/donations.php:266
+msgid "Search Donations"
+msgstr ""
+
+#: inc/donations.php:267
+msgid "No donations found."
+msgstr ""
+
+#: inc/donations.php:268
+msgid "No donations found in Trash."
+msgstr ""
+
+#: inc/donations.php:270
+msgid "One record per attempted donation, successful or not."
+msgstr ""
+
+#. translators: 1: formatted amount, 2: donor name or fallback.
+#: inc/donations.php:343
+msgid "%1$s from %2$s"
+msgstr ""
+
+#: inc/donations.php:345
+msgid "a supporter"
+msgstr ""
+
+#: inc/donations.php:788
+msgid "Friend"
+msgstr ""
+
+#. translators: %s: organisation name.
+#: inc/donations.php:799
+msgid "Thank you for supporting %s"
+msgstr ""
+
+#. translators: %s: organisation name. */ __( 'Thank you for supporting %s', 'bgcf' ), $org ); $lines = array( sprintf( /* translators: %s: donor first name.
+#: inc/donations.php:806
+msgid "Dear %s,"
+msgstr ""
+
+#. translators: %s: organisation name. */ __( 'Thank you for supporting %s', 'bgcf' ), $org ); $lines = array( sprintf( /* translators: %s: donor first name. */ __( 'Dear %s,', 'bgcf' ), $name ), '', sprintf( /* translators: 1: formatted amount, 2: organisation name.
+#: inc/donations.php:812
+msgid "We have received your gift of %1$s to %2$s. Thank you."
+msgstr ""
+
+#. translators: %s: donor first name. */ __( 'Dear %s,', 'bgcf' ), $name ), '', sprintf( /* translators: 1: formatted amount, 2: organisation name. */ __( 'We have received your gift of %1$s to %2$s. Thank you.', 'bgcf' ), $amount, $org ), '', sprintf( /* translators: %s: transaction reference.
+#: inc/donations.php:819
+msgid "Your reference: %s"
+msgstr ""
+
+#. translators: 1: formatted amount, 2: organisation name. */ __( 'We have received your gift of %1$s to %2$s. Thank you.', 'bgcf' ), $amount, $org ), '', sprintf( /* translators: %s: transaction reference. */ __( 'Your reference: %s', 'bgcf' ), $tx_ref ), sprintf( /* translators: %s: date and time.
+#: inc/donations.php:824
+msgid "Date: %s"
+msgstr ""
+
+#: inc/donations.php:828
+msgid "Please keep this email for your records."
+msgstr ""
+
+#: inc/donations.php:837
+msgid "*** TEST MODE — no money has moved. This is a sandbox transaction. ***"
+msgstr ""
+
+#. translators: 1: formatted amount, 2: payment method.
+#: inc/donations.php:889
+msgid "New donation: %1$s via %2$s."
+msgstr ""
+
+#. translators: 1: formatted amount, 2: payment method. */ __( 'New donation: %1$s via %2$s.', 'bgcf' ), $amount, (string) bgcf_donation_get( $donation_id, 'method' ) ), sprintf( /* translators: %s: donor name.
+#: inc/donations.php:895
+msgid "Donor: %s"
+msgstr ""
+
+#: inc/donations.php:896 inc/payments-admin.php:437
+msgid "Not given"
+msgstr ""
+
+#. translators: %s: donor name. */ __( 'Donor: %s', 'bgcf' ), (string) bgcf_donation_get( $donation_id, 'donor_name', __( 'Not given', 'bgcf' ) ) ), sprintf( /* translators: %s: transaction reference.
+#: inc/donations.php:900
+msgid "Reference: %s"
+msgstr ""
+
+#. translators: %s: donor name. */ __( 'Donor: %s', 'bgcf' ), (string) bgcf_donation_get( $donation_id, 'donor_name', __( 'Not given', 'bgcf' ) ) ), sprintf( /* translators: %s: transaction reference. */ __( 'Reference: %s', 'bgcf' ), (string) bgcf_donation_get( $donation_id, 'tx_ref' ) ), sprintf( /* translators: %s: gateway mode.
+#: inc/donations.php:905
+msgid "Mode: %s"
+msgstr ""
+
+#. translators: %s: gateway mode. */ __( 'Mode: %s', 'bgcf' ), (string) bgcf_donation_get( $donation_id, 'mode', 'test' ) ), '', admin_url( 'post.php?post=' . $donation_id . '&action=edit' ), ) ); return (bool) wp_mail( $to, sprintf( /* translators: %s: formatted amount.
+#: inc/donations.php:917
+msgid "Donation received: %s"
+msgstr ""
+
+#: inc/enqueue.php:183 inc/enqueue.php:186
+msgid "Close"
+msgstr ""
+
+#: inc/enqueue.php:184
+msgid "Loading…"
+msgstr ""
+
+#: inc/enqueue.php:185
+msgid "Load more"
+msgstr ""
+
+#: inc/enqueue.php:188
+msgid "Map of our location"
+msgstr ""
+
+#: inc/enqueue.php:189 inc/template-tags.php:1069 single.php:51
+msgid "Previous"
+msgstr ""
+
+#: inc/enqueue.php:190 inc/template-tags.php:1070 single.php:52
+msgid "Next"
+msgstr ""
+
+#: inc/enqueue.php:191
+msgid "Go to slide {{index}}"
+msgstr ""
+
+#: inc/enqueue.php:192 partials/blocks/block-testimonials.php:193
+msgid "Pause the slideshow"
+msgstr ""
+
+#: inc/enqueue.php:193
+msgid "Start the slideshow"
+msgstr ""
+
+#: inc/enqueue.php:195
+msgid "Thank you — we have received your details."
+msgstr ""
+
+#: inc/enqueue.php:196
+msgid "This field is required."
+msgstr ""
+
+#: inc/gallery.php:224
+msgid "Publication consent"
+msgstr ""
+
+#: inc/gallery.php:230
+msgid "Documented consent is on file for everyone identifiable in this image."
+msgstr ""
+
+#: inc/gallery.php:232
+msgid "Required before the image can appear in a public gallery. See the safeguarding policy."
+msgstr ""
+
+#: inc/gallery.php:50 inc/gallery.php:52
+msgid "Albums"
+msgstr ""
+
+#: inc/gallery.php:51
+msgid "Album"
+msgstr ""
+
+#: inc/gallery.php:53
+msgid "All albums"
+msgstr ""
+
+#: inc/gallery.php:54
+msgid "Add album"
+msgstr ""
+
+#. translators: 1: card type that was requested, 2: comma-separated list of valid types.
+#: inc/horizon.php:217
+msgid "Unknown card type \"%1$s\". Available types: %2$s."
+msgstr ""
+
+#: inc/horizon.php:788
+msgid "Split section: add a heading."
+msgstr ""
+
+#: inc/horizon.php:842
+msgid "Photo call-to-action band: add a heading."
+msgstr ""
+
+#: inc/leads-admin.php:116
+msgid "Download"
+msgstr ""
+
+#: inc/leads-admin.php:257
+msgid "Source"
+msgstr ""
+
+#: inc/leads-admin.php:258 inc/privacy.php:193
+msgid "Consent given"
+msgstr ""
+
+#: inc/leads-admin.php:271 inc/privacy.php:205
+msgid "Availability"
+msgstr ""
+
+#: inc/leads-admin.php:292
+msgid "Gift"
+msgstr ""
+
+#: inc/leads-admin.php:293
+msgid "Fee covered"
+msgstr ""
+
+#: inc/leads-admin.php:294
+msgid "Charged"
+msgstr ""
+
+#: inc/leads-admin.php:295 inc/payments-admin.php:81 inc/privacy.php:125
+msgid "Currency"
+msgstr ""
+
+#: inc/leads-admin.php:296 inc/payments-admin.php:384 inc/payments-admin.php:590
+msgid "Method"
+msgstr ""
+
+#: inc/leads-admin.php:297 partials/global/donation-form.php:269
+msgid "Network"
+msgstr ""
+
+#: inc/leads-admin.php:298 inc/payments-admin.php:383 inc/payments-admin.php:592
+msgid "Donor"
+msgstr ""
+
+#: inc/leads-admin.php:300
+msgid "Campaign ID"
+msgstr ""
+
+#: inc/leads-admin.php:301 inc/payments-admin.php:386 inc/payments-admin.php:591
+msgid "Mode"
+msgstr ""
+
+#: inc/leads-admin.php:302
+msgid "Created"
+msgstr ""
+
+#: inc/leads-admin.php:303
+msgid "Verified"
+msgstr ""
+
+#: inc/leads-admin.php:34 inc/leads-admin.php:39 inc/leads-admin.php:48 inc/leads-admin.php:255 inc/leads-admin.php:267 inc/leads-admin.php:280
+msgid "Email"
+msgstr ""
+
+#: inc/leads-admin.php:345
+msgid "Export CSV"
+msgstr ""
+
+#: inc/leads-admin.php:35 inc/leads-admin.php:256 inc/leads-admin.php:266 inc/leads-admin.php:279 inc/privacy.php:191 inc/privacy.php:200
+msgid "Name"
+msgstr ""
+
+#: inc/leads-admin.php:36 inc/privacy.php:192
+msgid "Signed up from"
+msgstr ""
+
+#: inc/leads-admin.php:368
+msgid "Unknown export."
+msgstr ""
+
+#: inc/leads-admin.php:374
+msgid "You do not have permission to export this data."
+msgstr ""
+
+#: inc/leads-admin.php:40 inc/leads-admin.php:49 inc/leads-admin.php:268 inc/leads-admin.php:281 inc/payments-admin.php:594 inc/privacy.php:202
+msgid "Phone"
+msgstr ""
+
+#: inc/leads-admin.php:401
+msgid "Could not start the export."
+msgstr ""
+
+#: inc/leads-admin.php:41 inc/leads-admin.php:269 inc/privacy.php:203
+msgid "Location"
+msgstr ""
+
+#: inc/leads-admin.php:42 inc/leads-admin.php:270 inc/privacy.php:204
+msgid "Skills"
+msgstr ""
+
+#: inc/leads-admin.php:43
+msgid "CV"
+msgstr ""
+
+#: inc/leads-admin.php:44 inc/leads-admin.php:51 inc/leads-admin.php:151 inc/leads-admin.php:175 inc/leads-admin.php:272 inc/leads-admin.php:283
+msgid "Status"
+msgstr ""
+
+#: inc/leads-admin.php:45 inc/leads-admin.php:265 inc/leads-admin.php:290 inc/payments-admin.php:385 inc/privacy.php:120 inc/privacy.php:199
+msgid "Reference"
+msgstr ""
+
+#: inc/leads-admin.php:50 inc/leads-admin.php:282 inc/privacy.php:215
+msgid "Subject"
+msgstr ""
+
+#: inc/leads.php:105 inc/leads.php:107
+msgid "Subscribers"
+msgstr ""
+
+#: inc/leads.php:106
+msgid "Subscriber"
+msgstr ""
+
+#: inc/leads.php:108
+msgid "Search subscribers"
+msgstr ""
+
+#: inc/leads.php:109
+msgid "No subscribers yet."
+msgstr ""
+
+#: inc/leads.php:122 inc/leads.php:124
+msgid "Volunteers"
+msgstr ""
+
+#: inc/leads.php:123 inc/privacy.php:197
+msgid "Volunteer application"
+msgstr ""
+
+#: inc/leads.php:125
+msgid "Search applications"
+msgstr ""
+
+#: inc/leads.php:126
+msgid "No applications yet."
+msgstr ""
+
+#: inc/leads.php:140 inc/leads.php:142
+msgid "Messages"
+msgstr ""
+
+#: inc/leads.php:141 inc/payments-admin.php:595 inc/privacy.php:130 inc/privacy.php:251
+msgid "Message"
+msgstr ""
+
+#: inc/leads.php:143
+msgid "Search messages"
+msgstr ""
+
+#: inc/leads.php:144
+msgid "No messages yet."
+msgstr ""
+
+#: inc/leads.php:162
+msgid "New"
+msgstr ""
+
+#: inc/leads.php:163
+msgid "Reviewing"
+msgstr ""
+
+#: inc/leads.php:164
+msgid "Contacted"
+msgstr ""
+
+#: inc/leads.php:165
+msgid "Accepted"
+msgstr ""
+
+#: inc/leads.php:166
+msgid "Declined"
+msgstr ""
+
+#: inc/leads.php:222
+msgid "That email address does not look right."
+msgstr ""
+
+#: inc/mega-menu.php:179
+msgid "%s overview"
+msgstr ""
+
+#: inc/mega-menu.php:284
+msgid "%s menu"
+msgstr ""
+
+#. translators: %d: number of menu items nested too deeply.
+#: inc/mega-menu.php:454
+msgid "%d item in the primary menu is nested three levels deep. The header menu renders two levels, so that item will not appear on the site. Move it up one level."
+msgid_plural "%d items in the primary menu are nested three levels deep. The header menu renders two levels, so those items will not appear on the site. Move them up one level."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: parent menu item title.
+#: inc/nav.php:133
+msgid "Show submenu for %s"
+msgstr ""
+
+#: inc/nav.php:319
+msgid "Language"
+msgstr ""
+
+#: inc/patterns.php:131
+msgid "Complete starter pages built from the theme’s own bands."
+msgstr ""
+
+#: inc/patterns.php:161
+msgid "Kampala, Uganda · since 2014"
+msgstr ""
+
+#: inc/patterns.php:162
+msgid "Every child deserves a place to belong"
+msgstr ""
+
+#: inc/patterns.php:163
+msgid "a place to belong"
+msgstr ""
+
+#: inc/patterns.php:165
+msgid "We walk with children who have been left without a safety net — through school, through illness, through the years it takes to build a life they choose for themselves."
+msgstr ""
+
+#: inc/patterns.php:175
+msgid "Why this work exists"
+msgstr ""
+
+#: inc/patterns.php:176
+msgid "A school fee is rarely the only thing missing"
+msgstr ""
+
+#: inc/patterns.php:177
+msgid "A child who stops coming to school has usually been losing ground for months — a parent who fell ill, a harvest that failed, a long walk that became unsafe. By the time the fees go unpaid, the fees are the smallest part of the problem."
+msgstr ""
+
+#: inc/patterns.php:177
+msgid "So we do not start with fees. We start with the household, work out what is actually in the way, and stay long enough to see it change."
+msgstr ""
+
+#: inc/patterns.php:190
+msgid "One decision changes one childhood"
+msgstr ""
+
+#: inc/patterns.php:191
+msgid "Sponsor a child’s year, and we will show you exactly what it paid for."
+msgstr ""
+
+#: inc/patterns.php:201
+msgid "How we work"
+msgstr ""
+
+#: inc/patterns.php:202
+msgid "Ten years in the same neighbourhoods"
+msgstr ""
+
+#: inc/patterns.php:203
+msgid "That is deliberate. Programmes that arrive, spend and leave look efficient on paper. Staying is what lets us follow a child from a first interview to a first payslip."
+msgstr ""
+
+#: inc/patterns.php:203
+msgid "We began in 2014 with eleven children and one rented room in Nansana. We have never moved out of the district, and most of our staff grew up in it."
+msgstr ""
+
+#: inc/patterns.php:215 partials/blocks/block-program-cards.php:110
+msgid "Our programmes"
+msgstr ""
+
+#: inc/patterns.php:216
+msgid "Four things we do, and do properly"
+msgstr ""
+
+#: inc/patterns.php:217
+msgid "Each programme is costed, measured and reported on. Open any one of them to see what it spends and what it has changed."
+msgstr ""
+
+#: inc/patterns.php:232
+msgid "Measured, not estimated"
+msgstr ""
+
+#: inc/patterns.php:233
+msgid "Where ten years has got us"
+msgstr ""
+
+#: inc/patterns.php:234
+msgid "Figures from our 2025 annual report, independently audited."
+msgstr ""
+
+#: inc/patterns.php:245
+msgid "Children supported through school"
+msgstr ""
+
+#: inc/patterns.php:252
+msgid "Stayed enrolled the following year"
+msgstr ""
+
+#: inc/patterns.php:258
+msgid "Partner schools and clinics"
+msgstr ""
+
+#: inc/patterns.php:265
+msgid "Of every shilling reaches programmes"
+msgstr ""
+
+#: inc/patterns.php:278 partials/cards/card-action.php:41
+msgid "Get involved"
+msgstr ""
+
+#: inc/patterns.php:279
+msgid "We need teachers, drivers, builders and listeners"
+msgstr ""
+
+#: inc/patterns.php:280
+msgid "Volunteering here is not a week of photographs. It is a term, a skill, and a child who learns your name."
+msgstr ""
+
+#: inc/patterns.php:291
+msgid "What support actually involves"
+msgstr ""
+
+#: inc/patterns.php:292
+msgid "Five things a sponsored year pays for"
+msgstr ""
+
+#: inc/patterns.php:293
+msgid "Sponsorship is not a transfer of fees. It is a package, and this is what is in it."
+msgstr ""
+
+#: inc/patterns.php:304
+msgid "School fees and materials"
+msgstr ""
+
+#: inc/patterns.php:305
+msgid "Termly fees paid directly to the school, plus uniform, shoes and the exercise books that are quietly the reason half of absences happen."
+msgstr ""
+
+#: inc/patterns.php:309
+msgid "Health cover"
+msgstr ""
+
+#: inc/patterns.php:310
+msgid "Registration at a partner clinic, so a fever does not become a month out of class or a debt the family cannot clear."
+msgstr ""
+
+#: inc/patterns.php:314
+msgid "A caseworker who knows them"
+msgstr ""
+
+#: inc/patterns.php:315
+msgid "One named person, visiting the household each term, holding the whole picture rather than a file."
+msgstr ""
+
+#: inc/patterns.php:319
+msgid "After-school teaching"
+msgstr ""
+
+#: inc/patterns.php:320
+msgid "Small-group catch-up in reading and maths, run by teachers from the child’s own school."
+msgstr ""
+
+#: inc/patterns.php:324
+msgid "A plan for after school"
+msgstr ""
+
+#: inc/patterns.php:325
+msgid "From sixteen onward: vocational training, an apprenticeship or university, chosen by the young person and funded to completion."
+msgstr ""
+
+#: inc/patterns.php:337
+msgid "The people we do this with"
+msgstr ""
+
+#: inc/patterns.php:338
+msgid "Schools, clinics, local government and the funders who let us plan beyond one year at a time."
+msgstr ""
+
+#: inc/patterns.php:347
+msgid "From the field"
+msgstr ""
+
+#: inc/patterns.php:348
+msgid "What has been happening"
+msgstr ""
+
+#: inc/patterns.php:383
+msgid "Choose how you help"
+msgstr ""
+
+#: inc/patterns.php:384
+msgid "All of these matter, and none of them matters more than the others. Pick the one that fits your life."
+msgstr ""
+
+#: inc/patterns.php:393
+msgid "Monthly"
+msgstr ""
+
+#: inc/patterns.php:394
+msgid "Sponsor a child’s year"
+msgstr ""
+
+#: inc/patterns.php:395
+msgid "UGX 180,000 a month covers fees, materials, health cover and a caseworker. You get two written updates a year."
+msgstr ""
+
+#: inc/patterns.php:397
+msgid "Sponsor a child"
+msgstr ""
+
+#: inc/patterns.php:403
+msgid "One-off"
+msgstr ""
+
+#: inc/patterns.php:404
+msgid "Give to the fund that needs it"
+msgstr ""
+
+#: inc/patterns.php:405
+msgid "Unrestricted gifts are the ones that let us act in the week something goes wrong rather than the quarter after."
+msgstr ""
+
+#: inc/patterns.php:407
+msgid "Give once"
+msgstr ""
+
+#: inc/patterns.php:413
+msgid "Your time"
+msgstr ""
+
+#: inc/patterns.php:414
+msgid "Volunteer a term"
+msgstr ""
+
+#: inc/patterns.php:415
+msgid "Teaching, driving, building, bookkeeping, mentoring. We ask for a term because children deserve consistency."
+msgstr ""
+
+#: inc/patterns.php:417
+msgid "Volunteer with us"
+msgstr ""
+
+#: inc/patterns.php:423
+msgid "Your workplace"
+msgstr ""
+
+#: inc/patterns.php:424
+msgid "Partner as an organisation"
+msgstr ""
+
+#: inc/patterns.php:425
+msgid "Match your staff’s giving, fund a programme outright, or lend us the skills you already pay for."
+msgstr ""
+
+#: inc/patterns.php:427
+msgid "Talk to us"
+msgstr ""
+
+#: inc/patterns.php:433
+msgid "Your circle"
+msgstr ""
+
+#: inc/patterns.php:434
+msgid "Fundraise for us"
+msgstr ""
+
+#: inc/patterns.php:435
+msgid "A birthday, a run, a church collection. We will send you everything you need and a figure to aim at."
+msgstr ""
+
+#: inc/patterns.php:437
+msgid "Start fundraising"
+msgstr ""
+
+#: inc/patterns.php:443
+msgid "Free"
+msgstr ""
+
+#: inc/patterns.php:444
+msgid "Tell one person"
+msgstr ""
+
+#: inc/patterns.php:445
+msgid "Most of our supporters came because somebody they trust mentioned us. That is not a small thing to offer."
+msgstr ""
+
+#: inc/patterns.php:447
+msgid "Read a story to share"
+msgstr ""
+
+#: inc/patterns.php:461
+msgid "Not sure which of these is you?"
+msgstr ""
+
+#: inc/patterns.php:462
+msgid "Tell us what you have got — time, money, a skill, a contact — and we will tell you honestly where it goes furthest."
+msgstr ""
+
+#: inc/patterns.php:483
+msgid "Homepage — the full page"
+msgstr ""
+
+#: inc/patterns.php:484
+msgid "The complete eleven-band homepage: hero, the case for the work, two photographic calls to action, programmes, impact figures, what support includes, partners and recent news. Insert it on the page set as your front page, then replace the copy and add photographs band by band."
+msgstr ""
+
+#: inc/patterns.php:489
+msgid "Take action — ways to get involved"
+msgstr ""
+
+#: inc/patterns.php:490
+msgid "A grid of six ways to help, each with its own button, and a closing call to action. Use it on a page set to the Action hub template."
+msgstr ""
+
+#: inc/payments-admin.php:121
+msgid "Amounts are in whole currency units — Ugandan shillings have no cents, so enter 50000, not 50000.00."
+msgstr ""
+
+#: inc/payments-admin.php:131
+msgid "In Ugandan shillings Flutterwave settles mobile money and cards only. Bank transfer, USSD and virtual accounts are not available in UGX, so they are not offered."
+msgstr ""
+
+#: inc/payments-admin.php:166
+msgid "Comma separated, for example: 20000, 50000, 100000, 250000"
+msgstr ""
+
+#: inc/payments-admin.php:185
+msgid "— Use the home page —"
+msgstr ""
+
+#: inc/payments-admin.php:286
+msgid "Gateway status"
+msgstr ""
+
+#: inc/payments-admin.php:291
+msgid "Sandbox (test) mode."
+msgstr ""
+
+#: inc/payments-admin.php:292
+msgid "The configured secret key is a test key, so no real money can move. Swap in live keys and re-register the webhook for live mode before launch."
+msgstr ""
+
+#: inc/payments-admin.php:297
+msgid "Live mode. Real payments are being taken."
+msgstr ""
+
+#: inc/payments-admin.php:303
+msgid "Giving is switched off until the public key, secret key and webhook secret hash are all defined in wp-config.php. See PAYMENTS.md."
+msgstr ""
+
+#: inc/payments-admin.php:314
+msgid "Not set"
+msgstr ""
+
+#: inc/payments-admin.php:326
+msgid "Webhook URL"
+msgstr ""
+
+#: inc/payments-admin.php:329
+msgid "Paste this into Flutterwave → Settings → Webhooks, with the same secret hash, for BOTH test and live mode."
+msgstr ""
+
+#: inc/payments-admin.php:33 inc/payments-admin.php:284
+msgid "Donation Settings"
+msgstr ""
+
+#: inc/payments-admin.php:333
+msgid "Return URL"
+msgstr ""
+
+#: inc/payments-admin.php:337
+msgid "Reconciliation"
+msgstr ""
+
+#: inc/payments-admin.php:34
+msgid "Settings"
+msgstr ""
+
+#. translators: %s: human-readable time difference.
+#: inc/payments-admin.php:343
+msgid "Next pending-donation check in %s."
+msgstr ""
+
+#: inc/payments-admin.php:348
+msgid "Not scheduled. Check that WP-Cron is running."
+msgstr ""
+
+#: inc/payments-admin.php:359
+msgid "Save settings"
+msgstr ""
+
+#: inc/payments-admin.php:381 inc/payments-admin.php:581
+msgid "Amount"
+msgstr ""
+
+#: inc/payments-admin.php:387 inc/privacy.php:153
+msgid "Date"
+msgstr ""
+
+#: inc/payments-admin.php:429
+msgid "Needs review — provider data did not match this record."
+msgstr ""
+
+#: inc/payments-admin.php:444
+msgid "Anonymous publicly"
+msgstr ""
+
+#: inc/payments-admin.php:452
+msgid "Card"
+msgstr ""
+
+#: inc/payments-admin.php:493
+msgid "All statuses"
+msgstr ""
+
+#: inc/payments-admin.php:554
+msgid "Transaction detail"
+msgstr ""
+
+#: inc/payments-admin.php:585
+msgid "Charged amount"
+msgstr ""
+
+#: inc/payments-admin.php:586
+msgid "Our reference"
+msgstr ""
+
+#: inc/payments-admin.php:587
+msgid "Flutterwave ID"
+msgstr ""
+
+#: inc/payments-admin.php:588
+msgid "Flutterwave ref"
+msgstr ""
+
+#: inc/payments-admin.php:589
+msgid "Processor response"
+msgstr ""
+
+#: inc/payments-admin.php:596
+msgid "Last webhook event"
+msgstr ""
+
+#: inc/payments-admin.php:602
+msgid "Campaign"
+msgstr ""
+
+#: inc/payments-admin.php:61
+msgid "Amounts"
+msgstr ""
+
+#: inc/payments-admin.php:618
+msgid "This record was left pending because the verified transaction did not match its amount, currency or reference. Investigate in the Flutterwave dashboard before treating it as income."
+msgstr ""
+
+#: inc/payments-admin.php:68
+msgid "Payment methods"
+msgstr ""
+
+#: inc/payments-admin.php:75
+msgid "After the donation"
+msgstr ""
+
+#: inc/payments-admin.php:82
+msgid "Suggested amounts"
+msgstr ""
+
+#: inc/payments-admin.php:83
+msgid "Pre-selected amount"
+msgstr ""
+
+#: inc/payments-admin.php:84
+msgid "Minimum amount"
+msgstr ""
+
+#: inc/payments-admin.php:85
+msgid "Maximum amount"
+msgstr ""
+
+#: inc/payments-admin.php:86 inc/payments-admin.php:452
+msgid "Mobile money"
+msgstr ""
+
+#: inc/payments-admin.php:87
+msgid "Cards"
+msgstr ""
+
+#: inc/payments-admin.php:88
+msgid "Checkout title"
+msgstr ""
+
+#: inc/payments-admin.php:89
+msgid "Thank-you page"
+msgstr ""
+
+#: inc/payments-admin.php:90
+msgid "Email the donor a receipt"
+msgstr ""
+
+#: inc/payments-admin.php:91
+msgid "Notify the team"
+msgstr ""
+
+#: inc/payments-admin.php:92
+msgid "Notification address"
+msgstr ""
+
+#: inc/payments-health.php:135
+msgid "Flutterwave keys are missing, so no donation can be taken. Add them to wp-config.php."
+msgstr ""
+
+#: inc/payments-health.php:145
+msgid "No webhook secret is set, so every webhook from Flutterwave is rejected. Donations will still complete, but receipts will be up to fifteen minutes late."
+msgstr ""
+
+#: inc/payments-health.php:152
+msgid "No thank-you page is set, so donors are returned to the homepage with no confirmation of their gift."
+msgstr ""
+
+#: inc/payments-health.php:159
+msgid "The donation reconciliation job is not scheduled. Any donation whose webhook is lost will stay pending forever."
+msgstr ""
+
+#: inc/payments-health.php:166
+msgid "WP-Cron is disabled. Reconciliation only runs if a real server cron calls wp-cron.php — confirm that it does, then define BGCF_SERVER_CRON to silence this notice."
+msgstr ""
+
+#: inc/payments-health.php:173
+msgid "Flutterwave is in test mode. Real donations cannot be taken until the live keys are in place."
+msgstr ""
+
+#: inc/payments-health.php:180
+msgid "No payment method is enabled under Donations → Settings, so the giving form cannot be shown."
+msgstr ""
+
+#: inc/payments-health.php:222
+msgid "Donations:"
+msgstr ""
+
+#: inc/payments-health.php:242
+msgid "Donation processing"
+msgstr ""
+
+#: inc/payments-health.php:260
+msgid "Donations can be taken"
+msgstr ""
+
+#: inc/payments-health.php:263 inc/privacy.php:160
+msgid "Donations"
+msgstr ""
+
+#: inc/payments-health.php:266
+msgid "Flutterwave is configured, the webhook secret is set, the reconciliation job is scheduled and a thank-you page is assigned."
+msgstr ""
+
+#: inc/payments-health.php:284
+msgid "Donations cannot be taken reliably"
+msgstr ""
+
+#: inc/payments-health.php:285
+msgid "Donation processing needs attention"
+msgstr ""
+
+#: inc/payments-health.php:291
+msgid "Open donation settings"
+msgstr ""
+
+#: inc/payments-health.php:92
+msgid "A donation has been disputed or refunded"
+msgstr ""
+
+#. translators: 1: event name, 2: transaction reference, 3: admin URL.
+#: inc/payments-health.php:95
+msgid "Flutterwave reported: %1\\$s\nReference: %2\\$s\n\nReview the record here: %3\\$s\n\nThe donation has been flagged but its status has not been changed automatically — check the bank correspondence before adjusting it."
+msgstr ""
+
+#: inc/payments-routes.php:148
+msgid "Online giving is temporarily unavailable. Please try again later."
+msgstr ""
+
+#: inc/payments-routes.php:171
+msgid "Please choose how you would like to give."
+msgstr ""
+
+#: inc/payments-routes.php:175
+msgid "Please enter an email address we can send your receipt to."
+msgstr ""
+
+#: inc/payments-routes.php:181
+msgid "Please confirm we may store your details to process your gift and send your receipt."
+msgstr ""
+
+#. translators: 1: minimum amount, 2: maximum amount.
+#: inc/payments-routes.php:194
+msgid "Please enter an amount between %1$s and %2$s."
+msgstr ""
+
+#: inc/payments-routes.php:210
+msgid "Please enter a Ugandan mobile money number, for example 0772 123 456."
+msgstr ""
+
+#: inc/payments-routes.php:224
+msgid "Please choose whether this is an MTN or an Airtel number."
+msgstr ""
+
+#: inc/payments-routes.php:272
+msgid "We could not start your donation. Please try again."
+msgstr ""
+
+#. translators: %s: formatted amount.
+#: inc/payments-routes.php:312
+msgid "Donation of %s"
+msgstr ""
+
+#: inc/payments-routes.php:350
+msgid "The payment provider did not return a payment page. Please try again."
+msgstr ""
+
+#: inc/payments-routes.php:364
+msgid "Approve the payment prompt on your phone to complete your gift."
+msgstr ""
+
+#: inc/payments-routes.php:365
+msgid "Taking you to our secure payment page…"
+msgstr ""
+
+#: inc/payments-routes.php:397
+msgid "We could not find that donation."
+msgstr ""
+
+#: inc/payments-routes.php:765
+msgid "Invalid signature."
+msgstr ""
+
+#: inc/payments-routes.php:850
+msgid "Every 15 minutes (BGCF donations)"
+msgstr ""
+
+#: inc/payments.php:152
+msgid "Online giving is not available right now. Please try again later."
+msgstr ""
+
+#: inc/payments.php:190
+msgid "We could not reach the payment provider. Please try again in a moment."
+msgstr ""
+
+#: inc/payments.php:209
+msgid "The payment provider returned an unexpected response."
+msgstr ""
+
+#: inc/payments.php:217
+msgid "The payment could not be started."
+msgstr ""
+
+#: inc/payments.php:459
+msgid "MTN Mobile Money"
+msgstr ""
+
+#: inc/payments.php:460
+msgid "Airtel Money"
+msgstr ""
+
+#: inc/privacy.php:122
+msgid "Gift amount"
+msgstr ""
+
+#: inc/privacy.php:123
+msgid "Processing fee covered"
+msgstr ""
+
+#: inc/privacy.php:124
+msgid "Total charged"
+msgstr ""
+
+#: inc/privacy.php:126
+msgid "Payment method"
+msgstr ""
+
+#: inc/privacy.php:127
+msgid "Name given"
+msgstr ""
+
+#: inc/privacy.php:128
+msgid "Email given"
+msgstr ""
+
+#: inc/privacy.php:129
+msgid "Phone given"
+msgstr ""
+
+#: inc/privacy.php:188
+msgid "Newsletter subscription"
+msgstr ""
+
+#: inc/privacy.php:210
+msgid "Enquiry"
+msgstr ""
+
+#: inc/privacy.php:258
+msgid "Sign-ups and enquiries"
+msgstr ""
+
+#. translators: %s: formatted donation amount.
+#: inc/privacy.php:300
+msgid "%s from an anonymised donor"
+msgstr ""
+
+#: inc/privacy.php:313
+msgid "Donation records were anonymised rather than deleted: the charity is required to retain the financial record of a completed gift. The amount, date and reference remain; the donor’s name, email, phone number and message have been removed."
+msgstr ""
+
+#: inc/privacy.php:39 inc/privacy.php:62
+msgid "Boundless Gracia donations"
+msgstr ""
+
+#: inc/privacy.php:44 inc/privacy.php:67
+msgid "Boundless Gracia sign-ups and enquiries"
+msgstr ""
+
+#: inc/security.php:181
+msgid "Those credentials are not valid. Please try again."
+msgstr ""
+
+#: inc/security.php:265
+msgid "Your session expired. Please reload the page and try again."
+msgstr ""
+
+#: inc/security.php:273
+msgid "You do not have permission to do that."
+msgstr ""
+
+#: inc/setup.php:106
+msgid "Deep Blue"
+msgstr ""
+
+#: inc/setup.php:111
+msgid "Emerald Green"
+msgstr ""
+
+#: inc/setup.php:116
+msgid "Action Orange"
+msgstr ""
+
+#: inc/setup.php:121
+msgid "Accent Yellow"
+msgstr ""
+
+#: inc/setup.php:126
+msgid "Light Gray"
+msgstr ""
+
+#: inc/setup.php:131
+msgid "White"
+msgstr ""
+
+#: inc/setup.php:136
+msgid "Dark Text"
+msgstr ""
+
+#: inc/setup.php:161
+msgid "Small"
+msgstr ""
+
+#: inc/setup.php:166
+msgid "Body"
+msgstr ""
+
+#: inc/setup.php:171
+msgid "Lead"
+msgstr ""
+
+#: inc/setup.php:176
+msgid "Heading"
+msgstr ""
+
+#: inc/setup.php:181
+msgid "Display"
+msgstr ""
+
+#: inc/setup.php:242
+msgid "BGCF Hero (16:9)"
+msgstr ""
+
+#: inc/setup.php:243
+msgid "BGCF Card (4:3)"
+msgstr ""
+
+#: inc/setup.php:244
+msgid "BGCF Story (3:2)"
+msgstr ""
+
+#: inc/setup.php:245
+msgid "BGCF Portrait (4:5)"
+msgstr ""
+
+#: inc/setup.php:246
+msgid "BGCF Partner Logo"
+msgstr ""
+
+#: inc/setup.php:247
+msgid "BGCF Report Cover"
+msgstr ""
+
+#: inc/setup.php:266
+msgid "Primary Navigation"
+msgstr ""
+
+#: inc/setup.php:267
+msgid "Footer — Quick Links"
+msgstr ""
+
+#: inc/setup.php:268
+msgid "Footer — Programs"
+msgstr ""
+
+#: inc/setup.php:269
+msgid "Legal / Utility"
+msgstr ""
+
+#: inc/setup.php:270
+msgid "Social Profiles"
+msgstr ""
+
+#: inc/setup.php:310
+msgid "Blog Sidebar"
+msgstr ""
+
+#: inc/setup.php:312
+msgid "Shown beside blog archives and single posts."
+msgstr ""
+
+#: inc/template-tags.php:1071 inc/template-tags.php:1072
+msgid "Page navigation"
+msgstr ""
+
+#: inc/template-tags.php:817
+msgid "Home"
+msgstr ""
+
+#: inc/template-tags.php:848
+msgid "Search results"
+msgstr ""
+
+#: inc/template-tags.php:853
+msgid "Page not found"
+msgstr ""
+
+#: inc/template-tags.php:894
+msgid "Breadcrumb"
+msgstr ""
+
+#. translators: %s: estimated reading time in whole minutes.
+#: inc/template-tags.php:982
+msgid "%s min read"
+msgid_plural "%s min read"
+msgstr[0] ""
+msgstr[1] ""
+
+#: index.php:35
+msgid "Latest updates"
+msgstr ""
+
+#: partials/blocks/block-action-grid.php:74
+msgid "Action grid: add at least one way to get involved in the block settings."
+msgstr ""
+
+#: partials/blocks/block-action-grid.php:96 templates/page-take-action.php:61
+msgid "Ways to get involved"
+msgstr ""
+
+#: partials/blocks/block-cta.php:66
+msgid "Call to action: add a heading and at least one button in the block settings."
+msgstr ""
+
+#. translators: 1: goal amount, 2: percentage of goal reached.
+#: partials/blocks/block-donation-banner.php:104
+msgid "raised of our %1$s goal (%2$s%%)"
+msgstr ""
+
+#. translators: %s: number of supporters.
+#: partials/blocks/block-donation-banner.php:117
+msgid "%s supporter so far"
+msgid_plural "%s supporters so far"
+msgstr[0] ""
+msgstr[1] ""
+
+#: partials/blocks/block-donation-banner.php:126
+msgid "final day"
+msgstr ""
+
+#. translators: %s: number of days remaining.
+#: partials/blocks/block-donation-banner.php:129
+msgid "%s day left"
+msgid_plural "%s days left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: partials/blocks/block-donation-banner.php:64
+msgid "Donation banner: add a heading, or switch the donation form on in the block settings."
+msgstr ""
+
+#: partials/blocks/block-faq.php:52
+msgid "FAQ: add questions and answers in the block settings."
+msgstr ""
+
+#: partials/blocks/block-gallery.php:103
+msgid "Filter the gallery by album"
+msgstr ""
+
+#: partials/blocks/block-gallery.php:110
+msgid "All"
+msgstr ""
+
+#: partials/blocks/block-gallery.php:145
+msgid "Load more photos"
+msgstr ""
+
+#: partials/blocks/block-gallery.php:70
+msgid "Gallery: upload photos in Media, tick an album on each one, and confirm publication consent. Then choose the album here."
+msgstr ""
+
+#: partials/blocks/block-hero.php:60
+msgid "Hero: add a background image, headline and calls to action in the block settings."
+msgstr ""
+
+#: partials/blocks/block-news-cards.php:105
+msgid "Latest news"
+msgstr ""
+
+#: partials/blocks/block-news-cards.php:63
+msgid "News cards: publish a post, or choose which items to show in the block settings."
+msgstr ""
+
+#: partials/blocks/block-newsletter.php:41
+msgid "Newsletter: add a heading and consent text in the block settings."
+msgstr ""
+
+#. translators: %s: partner name.
+#: partials/blocks/block-partners.php:146
+msgid "%s (opens in a new tab)"
+msgstr ""
+
+#: partials/blocks/block-partners.php:86
+msgid "Partners: add partner organisations, then choose which to show here."
+msgstr ""
+
+#: partials/blocks/block-program-cards.php:58
+msgid "Program cards: publish a programme, or choose which programmes to show in the block settings."
+msgstr ""
+
+#: partials/blocks/block-program-cards.php:83 partials/cards/card-service.php:54
+msgid "Learn more"
+msgstr ""
+
+#: partials/blocks/block-service-cards.php:69
+msgid "Service cards: add at least one item in the block settings."
+msgstr ""
+
+#: partials/blocks/block-service-cards.php:91
+msgid "What this includes"
+msgstr ""
+
+#: partials/blocks/block-statistics.php:47
+msgid "Statistics: add the impact figures you want to highlight in the block settings."
+msgstr ""
+
+#: partials/blocks/block-team-grid.php:181
+msgid "Our team"
+msgstr ""
+
+#: partials/blocks/block-team-grid.php:188
+msgid "Team grid: add people under Team in the admin menu."
+msgstr ""
+
+#. translators: 1: given rating, 2: maximum rating.
+#: partials/blocks/block-testimonials.php:151
+msgid "Rated %1$s out of %2$s"
+msgstr ""
+
+#: partials/blocks/block-testimonials.php:185
+msgid "Previous testimonial"
+msgstr ""
+
+#: partials/blocks/block-testimonials.php:203
+msgid "Next testimonial"
+msgstr ""
+
+#: partials/blocks/block-testimonials.php:86
+msgid "Testimonials: add a testimonial, or choose which quotes to show in the block settings."
+msgstr ""
+
+#: partials/blocks/block-timeline.php:51
+msgid "Timeline: add the milestones you want to show in the block settings."
+msgstr ""
+
+#. translators: 1: button label, e.g. "Get involved", 2: the action card's title.
+#: partials/cards/card-action.php:88
+msgctxt "action card button"
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: partials/cards/card-news.php:83
+msgid "Read the story"
+msgstr ""
+
+#: partials/cards/card-person.php:82
+msgid "Read profile"
+msgstr ""
+
+#: partials/cards/card-project.php:40
+msgid "Read more"
+msgstr ""
+
+#: partials/content/content-event.php:100
+msgid "This event has finished"
+msgstr ""
+
+#: partials/content/content-event.php:106
+msgid "Register free"
+msgstr ""
+
+#: partials/content/content-event.php:107
+msgid "Get tickets"
+msgstr ""
+
+#. translators: %s: event title.
+#: partials/content/content-event.php:116
+msgid "Register for %s"
+msgstr ""
+
+#: partials/content/content-none.php:25
+msgid "No results found"
+msgstr ""
+
+#: partials/content/content-none.php:27
+msgid "Nothing here yet"
+msgstr ""
+
+#: partials/content/content-none.php:35
+msgid "Try a different word, or browse our programs and stories."
+msgstr ""
+
+#: partials/content/content-none.php:37
+msgid "New content is on its way. Please check back soon."
+msgstr ""
+
+#. translators: %s: post title, so each "read more" link has a unique accessible name.
+#: partials/content/content.php:93
+msgid "about %s"
+msgstr ""
+
+#: partials/global/contact-form.php:101
+msgid "Please choose…"
+msgstr ""
+
+#: partials/global/contact-form.php:118
+msgid "Your message"
+msgstr ""
+
+#: partials/global/contact-form.php:141
+msgid "I agree that my details may be stored so you can reply to me."
+msgstr ""
+
+#: partials/global/contact-form.php:144 partials/global/donation-form.php:384 partials/global/newsletter-form.php:137 partials/global/volunteer-form.php:150
+msgid "Privacy policy"
+msgstr ""
+
+#: partials/global/contact-form.php:153
+msgid "Send message"
+msgstr ""
+
+#: partials/global/contact-form.php:46 partials/global/donation-form.php:122 partials/global/newsletter-form.php:74 partials/global/volunteer-form.php:54
+msgid "Leave this field empty"
+msgstr ""
+
+#: partials/global/contact-form.php:52 partials/global/donation-form.php:290 partials/global/newsletter-form.php:81 partials/global/volunteer-form.php:60
+msgid "Your name"
+msgstr ""
+
+#: partials/global/contact-form.php:67 partials/global/donation-form.php:303 partials/global/newsletter-form.php:99 partials/global/volunteer-form.php:68
+msgid "Email address"
+msgstr ""
+
+#: partials/global/contact-form.php:82 partials/global/volunteer-form.php:76
+msgid "Phone number"
+msgstr ""
+
+#: partials/global/contact-form.php:91
+msgid "Optional — only if you would rather we called."
+msgstr ""
+
+#: partials/global/contact-form.php:96
+msgid "What is this about?"
+msgstr ""
+
+#. translators: %s: currency code.
+#: partials/global/donation-form.php:133
+msgid "Choose an amount (%s)"
+msgstr ""
+
+#. translators: %s: currency code.
+#: partials/global/donation-form.php:168
+msgid "Amount (%s)"
+msgstr ""
+
+#: partials/global/donation-form.php:223
+msgid "How would you like to give?"
+msgstr ""
+
+#: partials/global/donation-form.php:250
+msgid "Mobile money number"
+msgstr ""
+
+#: partials/global/donation-form.php:263
+msgid "You will get a prompt on this phone to approve the payment."
+msgstr ""
+
+#: partials/global/donation-form.php:277
+msgid "Detect from my number"
+msgstr ""
+
+#: partials/global/donation-form.php:314
+msgid "We send your receipt here. We never share it."
+msgstr ""
+
+#: partials/global/donation-form.php:325
+msgid "Keep my gift anonymous publicly"
+msgstr ""
+
+#: partials/global/donation-form.php:344
+msgid "Add the processing fee so my whole gift reaches the children"
+msgstr ""
+
+#: partials/global/donation-form.php:355
+msgid "Total today:"
+msgstr ""
+
+#: partials/global/donation-form.php:378
+msgid "I agree that my details may be stored to process this gift and send my receipt."
+msgstr ""
+
+#: partials/global/donation-form.php:394
+msgid "Give now"
+msgstr ""
+
+#. translators: %s: currency code.
+#: partials/global/donation-form.php:412
+msgid "Payments are processed securely by Flutterwave in %s. We never see or store your card or mobile money PIN."
+msgstr ""
+
+#: partials/global/donation-form.php:421
+msgid "This form needs JavaScript to reach our payment provider. Please enable it, or contact us and we will send you a payment link."
+msgstr ""
+
+#: partials/global/donation-form.php:61
+msgid "Donations: add the Flutterwave keys to wp-config.php and enable at least one payment method under Donations → Settings."
+msgstr ""
+
+#: partials/global/donation-form.php:68
+msgid "Online giving is temporarily unavailable. Please contact us and we will help you give another way."
+msgstr ""
+
+#: partials/global/donation-form.php:97
+msgid "Test mode: no real money will be taken. Mobile money prompts approve themselves automatically after a few seconds."
+msgstr ""
+
+#: partials/global/donation-result.php:34
+msgid "We could not find that donation. If you were charged, email us your reference and we will sort it out."
+msgstr ""
+
+#. translators: %s: formatted amount.
+#: partials/global/donation-result.php:51
+msgid "Thank you. Your gift of %s has been received, and a receipt is on its way to your email."
+msgstr ""
+
+#. translators: %s: formatted amount. */ __( 'Thank you. Your gift of %s has been received, and a receipt is on its way to your email.', 'bgcf' ), $bgcf_amount ), 'pending'    => sprintf( /* translators: %s: formatted amount.
+#: partials/global/donation-result.php:56
+msgid "Your gift of %s is still being confirmed. If you were asked to approve a prompt on your phone, please complete it — this page will update by itself."
+msgstr ""
+
+#: partials/global/donation-result.php:59
+msgid "That payment did not go through, and you have not been charged. Please try again, or use a different method."
+msgstr ""
+
+#: partials/global/donation-result.php:60
+msgid "This donation was not completed. You have not been charged."
+msgstr ""
+
+#: partials/global/donation-result.php:68
+msgid "This is taking longer than usual. We will email you as soon as the payment is confirmed."
+msgstr ""
+
+#: partials/global/donation-result.php:75
+msgid "Reference:"
+msgstr ""
+
+#: partials/global/donation-result.php:81
+msgid "Test mode: this was a sandbox transaction and no money moved."
+msgstr ""
+
+#: partials/global/donation-result.php:89
+msgid "Try again"
+msgstr ""
+
+#: partials/global/footer-contact.php:24
+msgid "Get in touch"
+msgstr ""
+
+#: partials/global/gallery-item.php:86
+msgid "Watch the video"
+msgstr ""
+
+#: partials/global/gallery-item.php:87
+msgid "View the larger image"
+msgstr ""
+
+#: partials/global/header-drawer.php:38
+msgid "Site menu"
+msgstr ""
+
+#: partials/global/header-drawer.php:47
+msgid "Close menu"
+msgstr ""
+
+#: partials/global/newsletter-form.php:108
+msgid "you@example.com"
+msgstr ""
+
+#: partials/global/newsletter-form.php:50
+msgid "Yes, email me occasional updates about this work. I can unsubscribe at any time."
+msgstr ""
+
+#: partials/global/newsletter-form.php:57
+msgid "Subscribe"
+msgstr ""
+
+#: partials/global/newsletter-form.php:83
+msgid "(optional)"
+msgstr ""
+
+#: partials/global/promo-modal.php:78
+msgid "Close announcement"
+msgstr ""
+
+#: partials/global/related-posts.php:107
+msgid "Related reading"
+msgstr ""
+
+#: partials/global/related-posts.php:108
+msgid "More from Boundless Gracia"
+msgstr ""
+
+#: partials/global/subscribe-card.php:29
+msgid "Stay in the loop"
+msgstr ""
+
+#: partials/global/volunteer-form.php:109
+msgid "When are you usually free?"
+msgstr ""
+
+#: partials/global/volunteer-form.php:116
+msgid "e.g. weekday mornings, or one Saturday a month"
+msgstr ""
+
+#: partials/global/volunteer-form.php:122
+msgid "Tell us a little about yourself"
+msgstr ""
+
+#: partials/global/volunteer-form.php:129
+msgid "Your CV"
+msgstr ""
+
+#: partials/global/volunteer-form.php:139
+msgid "Optional. PDF or Word, up to 5 MB. You are just as welcome without one."
+msgstr ""
+
+#: partials/global/volunteer-form.php:147
+msgid "I agree that my details may be stored so my application can be considered."
+msgstr ""
+
+#: partials/global/volunteer-form.php:159
+msgid "Send my application"
+msgstr ""
+
+#: partials/global/volunteer-form.php:33
+msgid "Teaching and tutoring"
+msgstr ""
+
+#: partials/global/volunteer-form.php:34
+msgid "Healthcare"
+msgstr ""
+
+#: partials/global/volunteer-form.php:35
+msgid "Administration"
+msgstr ""
+
+#: partials/global/volunteer-form.php:36
+msgid "Fundraising"
+msgstr ""
+
+#: partials/global/volunteer-form.php:37
+msgid "Construction and repairs"
+msgstr ""
+
+#: partials/global/volunteer-form.php:38
+msgid "Photography and media"
+msgstr ""
+
+#: partials/global/volunteer-form.php:39
+msgid "Driving"
+msgstr ""
+
+#: partials/global/volunteer-form.php:83
+msgid "Where are you based?"
+msgstr ""
+
+#: partials/global/volunteer-form.php:89
+msgid "What could you help with?"
+msgstr ""
+
+#. translators: 1: number of results, 2: search term.
+#: search.php:36
+msgid "%1$s result for “%2$s”"
+msgid_plural "%1$s results for “%2$s”"
+msgstr[0] ""
+msgstr[1] ""
+
+#: searchform.php:20
+msgid "Search this site"
+msgstr ""
+
+#: searchform.php:29
+msgid "Search…"
+msgstr ""
+
+#: sidebar.php:18
+msgid "Blog sidebar"
+msgstr ""
+
+#: single-bgcf_program.php:107
+msgid "How it works"
+msgstr ""
+
+#: single-bgcf_program.php:108
+msgid "Our approach"
+msgstr ""
+
+#: single-bgcf_program.php:142
+msgid "Fund this work"
+msgstr ""
+
+#: single-bgcf_program.php:147
+msgid "Give to this campaign"
+msgstr ""
+
+#: single-bgcf_program.php:50
+msgid "Programme"
+msgstr ""
+
+#: single-bgcf_program.php:70
+msgid "What this programme has changed"
+msgstr ""
+
+#: single.php:48 single.php:49
+msgid "Continue reading"
+msgstr ""
+
+#: templates/page-contact.php:124
+msgid "The map is loaded from Google, which may set cookies on your device."
+msgstr ""
+
+#: templates/page-contact.php:130
+msgid "Show the map"
+msgstr ""
+
+#: templates/page-contact.php:52
+msgid "Send us a message"
+msgstr ""
+
+#: templates/page-contact.php:64
+msgid "Other ways to reach us"
+msgstr ""
+
+#: templates/page-donate.php:92
+msgid "What your gift pays for"
+msgstr ""
+
+#: templates/page-take-action.php:87
+msgid "Action hub: add an Action Grid block to this page to list the ways people can help."
+msgstr ""
+
+#: templates/page-team.php:72
+msgid "There is a place here for you too"
+msgstr ""
+
+#: templates/page-team.php:73
+msgid "Our work runs on volunteers — teachers, builders, drivers, mentors and people who are simply willing to show up."
+msgstr ""
+
+#: templates/page-volunteer.php:55
+msgid "Apply to volunteer"
+msgstr ""
+
+#: templates/page-volunteer.php:58
+msgid "Tell us a little about yourself and we will be in touch within a week."
+msgstr ""

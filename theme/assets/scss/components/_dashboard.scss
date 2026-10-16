@@ -1,0 +1,70 @@
+// =============================================================================
+// COMPONENTS / DASHBOARD LINKS
+// -----------------------------------------------------------------------------
+// `.bgcf-dashboard-links` styles the quick-links list inside the admin welcome
+// widget rendered by inc/admin.php. It is tiny and lives here so the §3 class
+// registry is fully covered by the design system; inc/admin.php loads the
+// compiled sheet in the dashboard context in a later phase.
+// =============================================================================
+
+.bgcf-dashboard-links {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+	gap: var(--bgcf-space-3);
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	li {
+		margin: 0;
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		gap: var(--bgcf-space-2);
+		padding: var(--bgcf-space-3) var(--bgcf-space-4);
+		font-weight: var(--bgcf-font-weight-medium);
+		text-decoration: none;
+		background-color: var(--bgcf-color-bg-subtle);
+		border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+		border-radius: var(--bgcf-radius-md);
+
+		&:hover {
+			background-color: var(--bgcf-color-primary-50);
+			border-color: var(--bgcf-color-primary-200);
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Payment warnings on the dashboard widget (1.2.0).
+//
+// Deliberately styled with wp-admin's own visual language rather than the brand
+// palette: this is a system message in an admin screen, and making it look like
+// marketing is how people learn to ignore it.
+// -----------------------------------------------------------------------------
+.bgcf-dashboard-heading {
+	margin-block: 1.25em 0.5em;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.bgcf-dashboard-incidents {
+	margin: 0;
+	font-size: 13px;
+
+	li {
+		padding-block: 0.3em;
+		// wp-admin's own hairline and muted text. Referenced as CSS system
+		// colours rather than brand tokens because this sits inside WordPress
+		// chrome, and a branded admin notice is one people learn to ignore.
+		border-block-end: var(--bgcf-border-width) solid var(--bgcf-color-border-subtle);
+	}
+
+	time {
+		color: var(--bgcf-color-text-muted);
+		white-space: nowrap;
+	}
+}

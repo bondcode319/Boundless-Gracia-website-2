@@ -1,0 +1,340 @@
+// =============================================================================
+// COMPONENTS / NAVIGATION
+// -----------------------------------------------------------------------------
+// The menus WordPress renders via wp_nav_menu() with our `menu_class`:
+//   .bgcf-nav--primary  header primary navigation (desktop bar)
+//   .bgcf-nav--drawer   the same menu inside the mobile drawer
+//   .bgcf-nav--footer   footer link columns
+//   .bgcf-nav--legal    bottom-bar legal links
+//   .bgcf-nav--social   social profiles (icon + .bgcf-nav__label)
+//
+// SUBMENUS. `Bgcf_Walker_Nav_Menu` emits a real `<button aria-expanded>` next to
+// each parent link, and the panel is `hidden` when closed. So:
+//   - the button is the contract, in both the bar and the drawer;
+//   - hover on the desktop bar is a convenience layered on top, and is scoped
+//     to `@include t.hover` so touch users never get a state they cannot leave;
+//   - with no JavaScript the panel stays `hidden` and the parent link still
+//     navigates to its own page, which is a working site rather than a dead
+//     menu item.
+//
+// Hover-opening is done with `:hover > [hidden]` overriding `display: none`.
+// That is deliberate: toggling the attribute from CSS is impossible, so the
+// attribute stays truthful for assistive technology and only the painting
+// changes.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-nav {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	a {
+		text-decoration: none;
+
+		@include t.focusable;
+	}
+
+	// Current page / ancestor gets a weight + underline treatment (colour alone
+	// is never the only signal — WCAG 1.4.1).
+	.current-menu-item > a,
+	.current-menu-ancestor > a {
+		font-weight: var(--bgcf-font-weight-semibold);
+		text-decoration: underline;
+		text-underline-offset: 0.3em;
+	}
+
+	// ---------------------------------------------------------------------------
+	// The submenu disclosure button.
+	// ---------------------------------------------------------------------------
+	&__toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		color: inherit;
+		background: none;
+		border: 0;
+		cursor: pointer;
+
+		@include t.target-size;
+		@include t.focusable;
+		@include t.transition(color, 'fast');
+	}
+
+	// The label is for screen readers; the chevron carries the meaning visually.
+	&__toggle-label {
+		@include t.visually-hidden;
+	}
+
+	&__toggle-icon {
+		@include t.transition(transform, 'fast');
+	}
+
+	// Rotate the chevron from the button's own state, so the indicator can never
+	// disagree with what assistive technology is told.
+	&__toggle[aria-expanded='true'] .bgcf-nav__toggle-icon {
+		transform: rotate(180deg);
+	}
+
+	// ---------------------------------------------------------------------------
+	// Primary (desktop bar).
+	// ---------------------------------------------------------------------------
+	&--primary {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-1) var(--bgcf-space-4);
+		align-items: center;
+		justify-content: center;
+
+		> li {
+			position: relative;
+			display: flex;
+			align-items: center;
+		}
+
+		> li > a {
+			display: inline-flex;
+			align-items: center;
+			min-block-size: var(--bgcf-target-size-comfortable);
+			padding-inline: var(--bgcf-space-2);
+			font-family: var(--bgcf-font-heading);
+			font-weight: var(--bgcf-font-weight-medium);
+			color: var(--bgcf-color-ink);
+
+			@include t.transition(color, 'fast');
+
+			@include t.hover {
+				&:hover {
+					color: var(--bgcf-color-cta);
+				}
+			}
+		}
+
+		.bgcf-nav__submenu {
+			position: absolute;
+			z-index: var(--bgcf-z-dropdown);
+			inset-block-start: 100%;
+			inset-inline: 0 auto;
+			min-inline-size: #{t.rem(240)};
+			padding: var(--bgcf-space-2);
+			background-color: var(--bgcf-color-base);
+			border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+			border-radius: var(--bgcf-radius-lg);
+			box-shadow: var(--bgcf-shadow-lg);
+
+			a {
+				display: flex;
+				align-items: center;
+				min-block-size: var(--bgcf-target-size-comfortable);
+				padding: var(--bgcf-space-2) var(--bgcf-space-3);
+				font-size: var(--bgcf-font-size-sm);
+				color: var(--bgcf-color-text);
+				border-radius: var(--bgcf-radius-sm);
+
+				@include t.hover {
+					&:hover {
+						color: var(--bgcf-color-primary);
+						background-color: var(--bgcf-color-bg-subtle);
+					}
+				}
+			}
+
+		}
+		// A submenu on one of the last items would otherwise overflow the
+		// viewport and widen the page; anchor those to the right instead.
+		> li:nth-last-child(-n + 2) > .bgcf-nav__submenu {
+			inset-inline: auto 0;
+		}
+
+		// Hover and keyboard-focus opening, pointer devices only. The `hidden`
+		// attribute stays in place; only its painting is overridden, so the
+		// accessibility tree still reflects what the button says.
+		@include t.hover {
+			> li:hover > .bgcf-nav__submenu,
+			> li:focus-within > .bgcf-nav__submenu {
+				display: block;
+			}
+		}
+	}
+
+	// ---------------------------------------------------------------------------
+	// Drawer (mobile accordion). Same markup, stacked.
+	// ---------------------------------------------------------------------------
+	&--drawer {
+		display: flex;
+		flex-direction: column;
+
+		> li {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			align-items: center;
+			border-block-end: var(--bgcf-border-width) solid var(--bgcf-color-border-subtle);
+		}
+
+		> li > a {
+			display: flex;
+			align-items: center;
+			min-block-size: #{t.rem(52)};
+			font-family: var(--bgcf-font-heading);
+			font-size: var(--bgcf-font-size-lg);
+			font-weight: var(--bgcf-font-weight-medium);
+			color: var(--bgcf-color-ink);
+		}
+
+		.bgcf-nav__toggle {
+			@include t.target-size(true);
+		}
+
+		.bgcf-nav__submenu {
+			// Spans both grid columns so an open submenu sits under the whole row
+			// rather than beside the chevron.
+			grid-column: 1 / -1;
+			padding: 0 0 var(--bgcf-space-3) var(--bgcf-space-4);
+			margin: 0;
+			list-style: none;
+			border-inline-start: var(--bgcf-border-width-thick) solid var(--bgcf-color-secondary);
+
+			a {
+				display: flex;
+				align-items: center;
+				min-block-size: var(--bgcf-target-size-comfortable);
+				font-size: var(--bgcf-font-size-base);
+				color: var(--bgcf-color-text-muted);
+			}
+		}
+	}
+
+	// ---------------------------------------------------------------------------
+	// Footer columns.
+	// ---------------------------------------------------------------------------
+	&--footer {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bgcf-space-2);
+
+		a {
+			color: var(--bgcf-color-primary-100);
+
+			@include t.transition(color, 'fast');
+
+			@include t.hover {
+				&:hover {
+					color: var(--bgcf-color-accent);
+				}
+			}
+		}
+	}
+
+	// ---------------------------------------------------------------------------
+	// Legal (bottom bar).
+	// ---------------------------------------------------------------------------
+	&--legal {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-2) var(--bgcf-space-4);
+		font-size: var(--bgcf-font-size-sm);
+
+		a {
+			color: var(--bgcf-color-primary-100);
+
+			@include t.hover {
+				&:hover {
+					color: var(--bgcf-color-accent);
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	// ---------------------------------------------------------------------------
+	// Social. The icon carries the meaning; the text label stays in the DOM and
+	// is hidden visually, so the accessible name is the network name.
+	// ---------------------------------------------------------------------------
+	&--social {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-2);
+
+		a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--bgcf-color-primary-100);
+			border-radius: var(--bgcf-radius-circle);
+
+			@include t.target-size(true);
+			@include t.transition((color, background-color), 'fast');
+
+			@include t.hover {
+				&:hover {
+					color: var(--bgcf-color-accent);
+					background-color: rgb(var(--bgcf-rgb-base) / 10%);
+				}
+			}
+		}
+
+		// Hidden only where an icon was actually rendered. A network we have no
+		// icon for keeps its visible text, so the link is never blank.
+		.bgcf-nav__icon + .bgcf-nav__label {
+			@include t.visually-hidden;
+		}
+	}
+
+	&__label {
+		font-size: var(--bgcf-font-size-sm);
+	}
+}
+
+// Language switcher.
+.bgcf-lang {
+	display: flex;
+	gap: var(--bgcf-space-1);
+	align-items: center;
+
+	&__icon {
+		color: var(--bgcf-color-text-muted);
+	}
+
+	&__list {
+		display: flex;
+		gap: var(--bgcf-space-1);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		a {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding-inline: var(--bgcf-space-2);
+			font-size: var(--bgcf-font-size-sm);
+			font-weight: var(--bgcf-font-weight-medium);
+			color: var(--bgcf-color-text-muted);
+			text-decoration: none;
+			text-transform: uppercase;
+			border-radius: var(--bgcf-radius-sm);
+
+			@include t.target-size;
+			@include t.focusable;
+
+			@include t.hover {
+				&:hover {
+					color: var(--bgcf-color-primary);
+				}
+			}
+		}
+
+		.current-lang a {
+			color: var(--bgcf-color-primary);
+			background-color: var(--bgcf-color-bg-subtle);
+		}
+	}
+
+	&--drawer {
+		.bgcf-lang__list a {
+			font-size: var(--bgcf-font-size-base);
+		}
+	}
+}

@@ -1,0 +1,131 @@
+// =============================================================================
+// COMPONENTS / DONATION HUB MASTHEAD
+// -----------------------------------------------------------------------------
+// The giving page's opening band: the ask on the left, the form on the right, a
+// photograph behind both. Markup from `templates/page-donate.php`.
+//
+// THE FORM IS A LIGHT CARD, and `bgcf-u-on-light` on the markup is what makes
+// that work — see the template's header for why an inverted form is the wrong
+// answer. This file only owns the layout and the card's shape.
+//
+// STACKING ORDER MATTERS HERE MORE THAN ANYWHERE ELSE. Below `lg` the two
+// columns stack and the FORM GOES FIRST, which is the opposite of the split
+// section's rule. A visitor who reached the donate page has already decided; on
+// a phone, putting four paragraphs of reassurance above the amount buttons means
+// scrolling past the decision they already made. The copy still follows, for
+// anyone who wants it.
+//
+// Unlike the split section this reordering is done with `order`, because the DOM
+// order (copy first) is the right reading order for a screen reader: the heading
+// should introduce the form, not follow it. So the visual order is overridden on
+// small screens only, and the tab order stays copy-then-form — which is also the
+// order a keyboard user wants, since they arrive at the heading first either way.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-donate-hero {
+	&__inner {
+		display: grid;
+		gap: var(--bgcf-space-10);
+		align-items: start;
+
+		@include t.mq(lg) {
+			// The form column is fixed-ish and the copy takes the rest: a form
+			// that grows with the viewport ends up with 600px-wide inputs.
+			grid-template-columns: minmax(0, 1fr) minmax(#{t.rem(380)}, #{t.rem(460)});
+			gap: var(--bgcf-space-16);
+		}
+	}
+
+	// See the file header: form first while stacked, copy first once side by
+	// side. `order` is reset explicitly rather than left to the cascade so the
+	// desktop arrangement does not depend on the mobile rule being overridden.
+	&__form {
+		order: -1;
+
+		@include t.mq(lg) {
+			order: 0;
+		}
+	}
+
+	&__copy {
+		@include t.stack(var(--bgcf-space-5), flex-start);
+
+		min-inline-size: 0;
+	}
+
+	&__eyebrow {
+		@include t.eyebrow;
+
+		margin: 0;
+	}
+
+	&__title {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-4xl);
+		font-weight: var(--bgcf-font-weight-bold);
+		line-height: var(--bgcf-line-height-tight);
+		color: var(--bgcf-color-base);
+		letter-spacing: var(--bgcf-tracking-tighter);
+		text-wrap: balance;
+	}
+
+	&__lead {
+		max-inline-size: var(--bgcf-measure);
+		font-size: var(--bgcf-font-size-lg);
+		line-height: var(--bgcf-line-height-relaxed);
+		color: var(--bgcf-color-primary-100);
+
+		> :last-child {
+			margin-block-end: 0;
+		}
+	}
+
+	// ------------------------------------------------------------------------
+	// The impact lines: "UGX 50,000 keeps one child in school for a term."
+	// A list, because that is what it is, and the tick is decorative.
+	// ------------------------------------------------------------------------
+	&__impact {
+		@include t.stack(var(--bgcf-space-3), stretch);
+
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	&__impact-item {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: var(--bgcf-space-3);
+		align-items: start;
+		font-size: var(--bgcf-font-size-base);
+		color: var(--bgcf-color-base);
+
+		.bgcf-icon {
+			// Accent yellow clears 7:1 against this band's scrim, so the tick is
+			// legible rather than merely present.
+			margin-block-start: #{t.rem(3)};
+			color: var(--bgcf-color-accent);
+		}
+	}
+
+	.bgcf-breadcrumbs {
+		margin: 0;
+		font-size: var(--bgcf-font-size-sm);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// The card the form sits in.
+// -----------------------------------------------------------------------------
+.bgcf-donate-card {
+	@include t.surface(var(--bgcf-radius-xl), '2xl');
+
+	padding: var(--bgcf-space-6);
+
+	@include t.mq(md) {
+		padding: var(--bgcf-space-8);
+	}
+}

@@ -1,0 +1,82 @@
+// =============================================================================
+// SETTINGS / SPACING
+// -----------------------------------------------------------------------------
+// A 4px base grid expressed in rem. The numeric keys are multiples of 4px, so
+// `space(6)` is 24px — the arithmetic is checkable at a glance in review.
+//
+// "Generous white space" is a brand requirement (CLAUDE.md), so the section
+// rhythm at the bottom of this file is deliberately large and fluid.
+// =============================================================================
+
+@use 'sass:map';
+@use '../tools/functions' as fn;
+
+/// Core scale. Key = px / 4.
+$space: (
+	0: 0,
+	1: fn.rem(4),
+	2: fn.rem(8),
+	3: fn.rem(12),
+	4: fn.rem(16),
+	5: fn.rem(20),
+	6: fn.rem(24),
+	7: fn.rem(28),
+	8: fn.rem(32),
+	10: fn.rem(40),
+	12: fn.rem(48),
+	14: fn.rem(56),
+	16: fn.rem(64),
+	20: fn.rem(80),
+	24: fn.rem(96),
+	28: fn.rem(112),
+	32: fn.rem(128),
+	40: fn.rem(160),
+);
+
+/// Named aliases for the sizes components reach for most.
+$space-3xs: map.get($space, 1); // 4
+$space-2xs: map.get($space, 2); // 8
+$space-xs: map.get($space, 3); // 12
+$space-sm: map.get($space, 4); // 16
+$space-md: map.get($space, 6); // 24
+$space-lg: map.get($space, 8); // 32
+$space-xl: map.get($space, 12); // 48
+$space-2xl: map.get($space, 16); // 64
+$space-3xl: map.get($space, 20); // 80
+$space-4xl: map.get($space, 24); // 96
+
+$space-aliases: (
+	'3xs': $space-3xs,
+	'2xs': $space-2xs,
+	'xs': $space-xs,
+	'sm': $space-sm,
+	'md': $space-md,
+	'lg': $space-lg,
+	'xl': $space-xl,
+	'2xl': $space-2xl,
+	'3xl': $space-3xl,
+	'4xl': $space-4xl,
+);
+
+// -----------------------------------------------------------------------------
+// Vertical rhythm for `bgcf_section_open()`'s `--space-{none|sm|md|lg}`.
+// Fluid so a 96px desktop band does not swallow a 375px phone screen.
+// -----------------------------------------------------------------------------
+
+$section-space-none: 0;
+$section-space-sm: fn.fluid(32, 56);
+$section-space-md: fn.fluid(56, 96);
+$section-space-lg: fn.fluid(80, 144);
+
+$section-spaces: (
+	'none': $section-space-none,
+	'sm': $section-space-sm,
+	'md': $section-space-md,
+	'lg': $section-space-lg,
+);
+
+/// Default gap between stacked flow content (the "prose rhythm").
+$flow-space: $space-md;
+
+/// Gap between cards in a grid.
+$grid-gap: fn.fluid(20, 32);

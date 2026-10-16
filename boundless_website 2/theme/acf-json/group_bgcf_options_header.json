@@ -1,0 +1,74 @@
+{
+    "key": "group_bgcf_options_header",
+    "title": "Options — Header",
+    "fields": [
+        {
+            "key": "field_bgcf_options_header_header_primary_cta",
+            "label": "Donate button",
+            "name": "header_primary_cta",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "The main action in the header. Usually “Donate”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_options_header_header_secondary_cta",
+            "label": "Secondary button",
+            "name": "header_secondary_cta",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "Optional, e.g. “Volunteer”. Hidden on the narrowest phones.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_options_header_header_show_search",
+            "label": "Show the search button",
+            "name": "header_show_search",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "bgcf-header"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

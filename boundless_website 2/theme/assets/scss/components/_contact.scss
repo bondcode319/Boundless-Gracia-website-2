@@ -1,0 +1,113 @@
+// =============================================================================
+// COMPONENTS / CONTACT PAGE + MAP
+// -----------------------------------------------------------------------------
+// Markup: templates/page-contact.php. Behaviour: assets/js/src/map.js.
+//
+// The form comes FIRST in the DOM and the details second, because the form is
+// what the page is for. On wide screens grid swaps them visually — details on
+// the right as a sidebar — without changing the reading or tab order.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-contact {
+	&__intro {
+		margin-block-end: var(--bgcf-space-8);
+	}
+
+	&__layout {
+		display: grid;
+		gap: var(--bgcf-space-10);
+
+		@include t.mq(lg) {
+			grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+			align-items: start;
+		}
+	}
+
+	&__details {
+		padding: var(--bgcf-space-6);
+		background-color: var(--bgcf-color-bg-subtle);
+		border-radius: var(--bgcf-radius-lg);
+
+		h2 {
+			margin-block-start: 0;
+			font-size: var(--bgcf-font-size-xl);
+		}
+	}
+
+	&__list {
+		padding: 0;
+		margin: 0 0 var(--bgcf-space-6);
+		list-style: none;
+
+		li {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			gap: var(--bgcf-space-3);
+			align-items: start;
+		}
+
+		li + li {
+			margin-block-start: var(--bgcf-space-4);
+		}
+
+		.bgcf-icon {
+			margin-block-start: #{t.rem(2)};
+			color: var(--bgcf-color-secondary);
+		}
+
+		address {
+			margin: 0;
+			font-style: normal;
+
+			> p {
+				margin: 0;
+			}
+		}
+
+		a {
+			color: var(--bgcf-color-link);
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Click-to-load map.
+//
+// `aspect-ratio` on the container, not the iframe: the placeholder and the
+// loaded map then occupy identical space, so pressing the button causes no
+// layout shift. A map that jolts the page on load is a CLS failure that shows
+// up directly in Core Web Vitals.
+// -----------------------------------------------------------------------------
+.bgcf-map {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bgcf-space-3);
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 4 / 3;
+	padding: var(--bgcf-space-5);
+	overflow: hidden;
+	text-align: center;
+	background-color: var(--bgcf-color-bg-muted);
+	border-radius: var(--bgcf-radius-lg);
+
+	&__notice {
+		margin: 0;
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	&__frame {
+		inline-size: 100%;
+		block-size: 100%;
+		border: 0;
+
+		@include t.focusable;
+	}
+
+	&[data-bgcf-map-loaded] {
+		padding: 0;
+	}
+}

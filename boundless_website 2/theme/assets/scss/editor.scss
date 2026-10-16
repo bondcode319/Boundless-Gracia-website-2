@@ -1,0 +1,63 @@
+// =============================================================================
+// EDITOR — block editor entry
+// -----------------------------------------------------------------------------
+// Compiles to assets/css/editor.css. Loaded TWO ways (by design):
+//
+//   1. add_editor_style() in inc/setup.php — Gutenberg scopes every selector
+//      under `.editor-styles-wrapper`, so bgcf/* blocks preview like the front
+//      end inside the canvas.
+//   2. enqueue_block_editor_assets in inc/enqueue.php — loaded UNSCOPED for the
+//      editor chrome (the block inspector, colour swatches, ACF previews).
+//
+// HARD CONTRACT (ARCHITECTURE §11): the `--bgcf-color-*` and `--bgcf-font-size-*`
+// custom properties MUST resolve here, or the locked palette swatches render
+// transparent. They are emitted on `:root` (for the chrome) AND
+// `.editor-styles-wrapper` (for the canvas) so the contract holds no matter how
+// the sheet is loaded.
+//
+// This entry deliberately does NOT pull in the bare-element layer: those rules
+// target `body`/`h1`/`p`, and the unscoped chrome copy would leak them into
+// wp-admin. Only token declarations and `.bgcf-*` component classes are emitted,
+// both of which are safe unscoped.
+// =============================================================================
+
+@use 'settings' as s;
+@use 'tools' as t;
+
+// Bootstrap grid is occasionally used inside block markup; enable in lock-step
+// with main.scss (see vendor/_bootstrap.scss).
+// @use 'vendor/bootstrap';
+
+// Block + base components so bgcf/* previews are accurate in the canvas.
+@use 'components';
+
+// Tokens for the editor chrome (colour/font-size pickers read these by name).
+:root {
+	@include s.custom-properties;
+}
+
+// Tokens for the canvas. Gutenberg maps `:root`/`body` selectors from an
+// add_editor_style sheet onto `.editor-styles-wrapper`; declaring them here
+// explicitly guarantees the canvas has them even when this sheet is enqueued the
+// unscoped way.
+.editor-styles-wrapper {
+	@include s.custom-properties;
+
+	// Canvas typography baseline (scoped, so it never reaches wp-admin chrome).
+	font-family: var(--bgcf-font-body);
+	font-size: var(--bgcf-font-size-base);
+	line-height: var(--bgcf-line-height-relaxed);
+	color: var(--bgcf-color-text);
+}
+
+// -----------------------------------------------------------------------------
+// Editor-only affordances. `.bgcf-empty-state` is styled in components already;
+// here we give block previews a little breathing room so an unconfigured block
+// is obviously a placeholder, not broken output.
+// -----------------------------------------------------------------------------
+
+.wp-block[data-type^='bgcf/'] {
+	// Blocks manage their own spacing on the front end; in the editor a minimum
+	// height keeps an empty block clickable.
+	min-block-size: var(--bgcf-space-8);
+}

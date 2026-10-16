@@ -1,0 +1,57 @@
+// =============================================================================
+// ELEMENTS / LINKS
+// -----------------------------------------------------------------------------
+// Bare `<a>`. Deliberately conservative, because links are where accessibility
+// regressions hide.
+//
+// WHY LINKS ARE UNDERLINED BY DEFAULT
+// -----------------------------------
+// WCAG 1.4.1 (Use of Colour) requires that a link inside a block of text is
+// distinguishable by something other than colour — unless the link/text contrast
+// is at least 3:1. Our link blue (#123B63) against our body ink (#1A2430) is
+// 1.32:1. So colour alone is not enough, and the underline stays.
+//
+// Navigation, buttons and cards are NOT "links within a block of text"; those
+// components remove the underline in their own files and rely on position,
+// weight and hover/focus states instead.
+// =============================================================================
+
+@use '../tools' as t;
+
+a {
+	color: var(--bgcf-color-link);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+
+	@include t.transition((color, text-decoration-color, text-decoration-thickness), 'fast');
+	@include t.focusable;
+
+	&:hover {
+		color: var(--bgcf-color-link-hover);
+		text-decoration-thickness: 2px;
+	}
+
+	&:active {
+		color: var(--bgcf-color-link-hover);
+	}
+
+	// Long URLs pasted into prose must not blow out the container.
+	@include t.wrap-anywhere;
+}
+
+// Links whose accessible name comes from an image or icon should not show an
+// underline running under the graphic.
+a:has(> img:only-child),
+a:has(> svg:only-child) {
+	text-decoration: none;
+}
+
+@include t.print {
+	// Print the destination of external links; internal ones would be noise.
+	a[href^='http']::after {
+		font-size: 0.85em;
+		content: ' (' attr(href) ')';
+		word-break: break-all;
+	}
+}

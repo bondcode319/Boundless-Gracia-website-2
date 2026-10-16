@@ -1,0 +1,85 @@
+// =============================================================================
+// TOOLS / TYPOGRAPHY
+// -----------------------------------------------------------------------------
+// Helpers that read the type tokens. Components should prefer these over
+// hand-setting four properties each time a heading appears.
+// =============================================================================
+
+@use 'sass:map';
+@use '../settings/typography' as type;
+
+/// Heading lock-up (family, size, weight, line-height, tracking) from the
+/// `$headings` map. `heading('h2')` gives an element h2 styling without needing
+/// to BE an h2 — which is how we keep the document outline honest.
+@mixin heading($level: 'h2') {
+	$config: map.get(type.$headings, $level);
+
+	@if not $config {
+		@error 'Unknown heading level `#{$level}`. Available: #{map.keys(type.$headings)}.';
+	}
+
+	font-family: var(--bgcf-font-heading);
+	font-size: map.get($config, 'size');
+	font-weight: map.get($config, 'weight');
+	line-height: map.get($config, 'line-height');
+	letter-spacing: map.get($config, 'tracking');
+	text-wrap: balance;
+}
+
+/// Body copy defaults.
+@mixin body-text($size: 'base', $leading: 'relaxed') {
+	font-family: var(--bgcf-font-body);
+	font-size: var(--bgcf-font-size-#{$size});
+	font-weight: var(--bgcf-font-weight-regular);
+	line-height: var(--bgcf-line-height-#{$leading});
+}
+
+/// Small uppercase label — the "eyebrow" above section titles.
+@mixin eyebrow {
+	font-family: var(--bgcf-font-heading);
+	font-size: var(--bgcf-font-size-sm);
+	font-weight: var(--bgcf-font-weight-semibold);
+	line-height: var(--bgcf-line-height-normal);
+	color: var(--bgcf-color-eyebrow);
+	text-transform: uppercase;
+	letter-spacing: var(--bgcf-tracking-wider);
+}
+
+/// Cap the line length. Never applied to a container that also holds media.
+@mixin measure($width: var(--bgcf-measure)) {
+	max-width: $width;
+}
+
+/// Single-line truncation with an ellipsis.
+@mixin truncate {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/// Multi-line clamp. Content is still fully present in the DOM, so screen
+/// readers get the whole string — visual truncation only.
+@mixin line-clamp($lines: 3) {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: $lines;
+	line-clamp: $lines;
+	-webkit-box-orient: vertical;
+}
+
+/// Long unbroken strings (URLs in comments, long German compounds) must wrap
+/// rather than blow out the layout.
+@mixin wrap-anywhere {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+	hyphens: auto;
+}
+
+/// Reset a list to unstyled. Adds `role="list"` guidance: Safari removes list
+/// semantics when `list-style: none` is applied, so any list that uses this and
+/// carries meaning must also carry `role="list"` in the markup.
+@mixin unstyled-list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}

@@ -1,0 +1,30 @@
+// =============================================================================
+// SETTINGS / BORDER RADIUS
+// -----------------------------------------------------------------------------
+// "Rounded cards, soft shadows" (CLAUDE.md). The scale is generous but not
+// novelty-round: 16px on cards, 12px on controls, pill on badges and chips.
+// =============================================================================
+
+@use '../tools/functions' as fn;
+
+$radius-none: 0;
+$radius-xs: fn.rem(4);
+$radius-sm: fn.rem(8);
+$radius-md: fn.rem(12); // form controls, buttons
+$radius-lg: fn.rem(16); // cards
+$radius-xl: fn.rem(24); // media panels, hero cards
+$radius-2xl: fn.rem(32); // full-bleed feature panels
+$radius-pill: 999rem;
+$radius-circle: 50%;
+
+$radii: (
+	'none': $radius-none,
+	'xs': $radius-xs,
+	'sm': $radius-sm,
+	'md': $radius-md,
+	'lg': $radius-lg,
+	'xl': $radius-xl,
+	'2xl': $radius-2xl,
+	'pill': $radius-pill,
+	'circle': $radius-circle,
+);

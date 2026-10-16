@@ -1,0 +1,131 @@
+// =============================================================================
+// COMPONENTS / DRAWER NAVIGATION
+// -----------------------------------------------------------------------------
+// The accordion form of the primary menu, inside the off-canvas drawer. Markup
+// from `bgcf_mega_menu_drawer()`; behaviour from `assets/js/src/accordion.js`.
+//
+// Same `hidden`-attribute discipline as the mega panel: a collapsed group is
+// `hidden`, so its links are out of the tab order. A drawer whose collapsed
+// groups are merely `max-height: 0` hands a keyboard user eighteen invisible
+// stops, which is the single worst thing an accordion menu can do.
+//
+// EVERY TARGET IS 48px TALL. This menu is operated by a thumb, on a phone, and
+// WCAG 2.2 SC 2.5.8's 24px floor is a floor, not a target. The toggles and links
+// are sized from `--bgcf-target-size-comfortable` (44px) plus padding.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-drawer-nav {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	// NOTE: there is deliberately no desktop treatment in this file. Above `lg`
+	// the mega bar takes over and `_drawer.scss` removes the whole drawer, so a
+	// breakpoint here would be dead CSS that looks load-bearing.
+
+	&__item {
+		margin: 0;
+		border-block-end: var(--bgcf-border-width) solid var(--bgcf-color-border-subtle);
+
+		&:last-child {
+			border-block-end: 0;
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// A plain top-level link, and a group's toggle button. Both are full-width
+	// rows; the toggle adds the chevron.
+	// -------------------------------------------------------------------------
+	&__link,
+	&__toggle {
+		@include t.focusable(calc(var(--bgcf-focus-ring-offset) * -1));
+		@include t.transition((color, background-color), 'fast');
+
+		display: flex;
+		gap: var(--bgcf-space-3);
+		align-items: center;
+		justify-content: space-between;
+		inline-size: 100%;
+		min-block-size: var(--bgcf-target-size-comfortable);
+		padding: var(--bgcf-space-3) var(--bgcf-space-1);
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-lg);
+		font-weight: var(--bgcf-font-weight-medium);
+		color: var(--bgcf-color-heading);
+		text-align: start;
+		text-decoration: none;
+		cursor: pointer;
+		background: none;
+		border: 0;
+
+		&:hover {
+			color: var(--bgcf-color-link-hover);
+		}
+
+		&.is-current {
+			font-weight: var(--bgcf-font-weight-semibold);
+			color: var(--bgcf-color-link-hover);
+		}
+	}
+
+	&__chevron {
+		@include t.transition(transform, 'fast');
+
+		flex: none;
+		inline-size: t.rem(20);
+		block-size: t.rem(20);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	&__toggle[aria-expanded='true'] .bgcf-drawer-nav__chevron {
+		transform: rotate(180deg);
+	}
+
+	// -------------------------------------------------------------------------
+	// Sub-list.
+	// -------------------------------------------------------------------------
+	&__sub {
+		padding: 0 0 var(--bgcf-space-3);
+		margin: 0;
+		list-style: none;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&__sub-item {
+		margin: 0;
+	}
+
+	&__sub-link {
+		@include t.focusable(calc(var(--bgcf-focus-ring-offset) * -1));
+		@include t.transition((color, border-color), 'fast');
+
+		display: flex;
+		align-items: center;
+		min-block-size: var(--bgcf-target-size-comfortable);
+
+		// The indent is drawn as a border rather than as padding so the hit area
+		// still starts at the drawer's edge: an indented row whose first 16px
+		// are dead space is a row a thumb misses.
+		padding: var(--bgcf-space-2) var(--bgcf-space-3);
+		font-size: var(--bgcf-font-size-base);
+		color: var(--bgcf-color-text-muted);
+		text-decoration: none;
+		border-inline-start: 2px solid var(--bgcf-color-border);
+
+		&:hover {
+			color: var(--bgcf-color-link-hover);
+			border-inline-start-color: var(--bgcf-color-cta);
+		}
+
+		&.is-current {
+			font-weight: var(--bgcf-font-weight-semibold);
+			color: var(--bgcf-color-heading);
+			border-inline-start-color: var(--bgcf-color-cta);
+		}
+	}
+}

@@ -1,0 +1,176 @@
+// =============================================================================
+// COMPONENTS / ARCHIVE & SEARCH
+// -----------------------------------------------------------------------------
+// The list scaffolding for archive.php, search.php and the shared empty state.
+// Cards themselves are styled in components/_card.scss; this file lays them out
+// and dresses the page header, the search result rows and the "nothing found"
+// message.
+// =============================================================================
+
+@use '../tools' as t;
+
+// -----------------------------------------------------------------------------
+// Archive.
+// -----------------------------------------------------------------------------
+
+.bgcf-archive {
+	&__header {
+		max-inline-size: var(--bgcf-measure-wide);
+		margin-block-end: var(--bgcf-space-xl);
+	}
+
+	&__title {
+		@include t.heading('h1');
+
+		margin: 0;
+		color: var(--bgcf-color-heading);
+	}
+
+	&__description {
+		margin-block-start: var(--bgcf-space-4);
+		font-size: var(--bgcf-font-size-lg);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	&__list {
+		display: grid;
+		gap: var(--bgcf-grid-gap);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		@include t.mq(md) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include t.mq(lg) {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Search results.
+// -----------------------------------------------------------------------------
+
+.bgcf-search {
+	&__header {
+		margin-block-end: var(--bgcf-space-xl);
+	}
+
+	&__title {
+		@include t.heading('h1');
+
+		margin: 0;
+		color: var(--bgcf-color-heading);
+	}
+
+	&__form {
+		max-inline-size: var(--bgcf-measure-narrow);
+		margin-block-start: var(--bgcf-space-6);
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bgcf-space-5);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+}
+
+.bgcf-result {
+	padding-block-end: var(--bgcf-space-5);
+	border-block-end: var(--bgcf-border-width) solid var(--bgcf-color-border);
+
+	&__title {
+		@include t.heading('h4');
+
+		margin: 0;
+	}
+
+	&__link {
+		color: var(--bgcf-color-heading);
+		text-decoration: none;
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-link-hover);
+				text-decoration: underline;
+			}
+		}
+	}
+
+	&__meta {
+		margin-block-start: var(--bgcf-space-2);
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-subtle);
+	}
+
+	&__excerpt {
+		margin-block-start: var(--bgcf-space-3);
+		color: var(--bgcf-color-text-muted);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Empty state (no posts / no results). NOTE: this is the PUBLIC "nothing here"
+// message. `.bgcf-empty-state` (components/_empty-state.scss) is the different,
+// editor-only block scaffolding note.
+// -----------------------------------------------------------------------------
+
+.bgcf-empty {
+	max-inline-size: var(--bgcf-measure);
+	padding-block: var(--bgcf-space-2xl);
+	text-align: center;
+
+	&__title {
+		@include t.heading('h3');
+
+		margin: 0;
+	}
+
+	&__text {
+		margin-block-start: var(--bgcf-space-4);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	&__search {
+		max-inline-size: var(--bgcf-measure-narrow);
+		margin-block-start: var(--bgcf-space-6);
+		margin-inline: auto;
+		text-align: start;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Grouped archives (events: upcoming / recently held). Added in 1.2.0.
+// -----------------------------------------------------------------------------
+.bgcf-archive__group {
+	& + & {
+		margin-block-start: var(--bgcf-space-16);
+	}
+
+	&-title {
+		margin-block: 0 var(--bgcf-space-6);
+		font-size: var(--bgcf-font-size-2xl);
+	}
+
+	// Past events are present but visually de-emphasised: still findable, never
+	// competing with what a visitor can still attend.
+	&--past {
+		.bgcf-card {
+			opacity: 0.82;
+		}
+	}
+}
+
+.bgcf-archive__empty {
+	padding: var(--bgcf-space-6);
+	margin: 0;
+	color: var(--bgcf-color-text-muted);
+	text-align: center;
+	background-color: var(--bgcf-color-bg-subtle);
+	border-radius: var(--bgcf-radius-lg);
+}

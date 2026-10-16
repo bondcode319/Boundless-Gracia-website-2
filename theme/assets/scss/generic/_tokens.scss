@@ -1,0 +1,18 @@
+// =============================================================================
+// GENERIC / TOKEN EMISSION
+// -----------------------------------------------------------------------------
+// The one place the design-token custom properties are written to `:root`.
+// Every entry sheet that loads `generic` gets the full token set at the very top
+// of its output, so components can reference `var(--bgcf-*)` freely.
+//
+// The `editor.scss` and `login.scss` entries emit these separately (they do not
+// load the full generic layer), which is how the HARD CONTRACT with
+// inc/setup.php — the palette + font-size properties existing in main.css AND
+// editor.css — is kept. See settings/_custom-properties.scss.
+// =============================================================================
+
+@use '../settings' as s;
+
+:root {
+	@include s.custom-properties;
+}

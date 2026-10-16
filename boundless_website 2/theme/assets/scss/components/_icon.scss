@@ -1,0 +1,33 @@
+// =============================================================================
+// COMPONENTS / ICON
+// -----------------------------------------------------------------------------
+// `.bgcf-icon` — the class `bgcf_get_svg_icon()` puts on every inlined SVG. Icons
+// inherit `currentColor` and scale to `1em`, so they take their size and colour
+// from whatever text they sit beside. Components that need a bigger icon set a
+// font-size or width on the icon's own wrapper, never inside the SVG file.
+// =============================================================================
+
+.bgcf-icon {
+	display: inline-block;
+	inline-size: 1em;
+	block-size: 1em;
+	// Nudge the optical centre onto the text baseline.
+	vertical-align: -0.125em;
+	fill: currentcolor;
+	// Icons are decorative by default and must never intercept a pointer meant
+	// for the control they label.
+	pointer-events: none;
+
+	// Any stroke-based icon inherits the text colour too.
+	path,
+	circle,
+	rect,
+	line,
+	polyline,
+	polygon,
+	ellipse {
+		&[stroke] {
+			stroke: currentcolor;
+		}
+	}
+}

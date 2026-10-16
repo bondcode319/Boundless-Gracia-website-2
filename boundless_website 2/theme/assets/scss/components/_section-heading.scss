@@ -1,0 +1,55 @@
+// =============================================================================
+// COMPONENTS / SECTION HEADING
+// -----------------------------------------------------------------------------
+// The eyebrow / title / lead lock-up emitted by `bgcf_section_heading()`. Used
+// at the top of most blocks and template sections. The heading LEVEL is set in
+// PHP (so the document outline stays honest); this file only controls
+// appearance, which is why the title is styled by class, not by tag.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-section-heading {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bgcf-space-3);
+	max-width: var(--bgcf-measure-wide);
+	margin-block-end: var(--bgcf-space-xl);
+
+	&__eyebrow {
+		@include t.eyebrow;
+
+		margin: 0;
+	}
+
+	&__title {
+		@include t.heading('h2');
+
+		margin: 0;
+		color: var(--bgcf-color-heading);
+	}
+
+	&__lead {
+		font-size: var(--bgcf-font-size-lg);
+		line-height: var(--bgcf-line-height-relaxed);
+		color: var(--bgcf-color-text-muted);
+
+		> :first-child {
+			margin-block-start: 0;
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Alignment.
+	// -------------------------------------------------------------------------
+	&--start {
+		align-items: flex-start;
+		text-align: start;
+	}
+
+	&--center {
+		align-items: center;
+		margin-inline: auto;
+		text-align: center;
+	}
+}

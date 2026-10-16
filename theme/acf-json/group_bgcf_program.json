@@ -1,0 +1,191 @@
+{
+    "key": "group_bgcf_program",
+    "title": "Programme details",
+    "fields": [
+        {
+            "key": "field_bgcf_program_icon",
+            "label": "Icon",
+            "name": "icon",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "": "— none —",
+                "heart": "Heart",
+                "users": "People",
+                "graduation": "Education",
+                "health": "Health",
+                "water": "Water",
+                "home": "Shelter",
+                "book": "Books",
+                "shield": "Protection",
+                "handshake": "Partnership",
+                "target": "Goal",
+                "globe": "Global",
+                "check-circle": "Tick"
+            },
+            "return_format": "value"
+        },
+        {
+            "key": "field_bgcf_program_summary",
+            "label": "One-line summary",
+            "name": "summary",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Used on cards and in search results.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_program_location",
+            "label": "Where it runs",
+            "name": "location",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_program_outcomes",
+            "label": "Outcomes",
+            "name": "outcomes",
+            "aria_label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "max": 4,
+            "sub_fields": [
+                {
+                    "key": "field_bgcf_program_outcomes_value",
+                    "label": "Figure",
+                    "name": "value",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_program_outcomes_label",
+                    "label": "What it measures",
+                    "name": "label",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ]
+        },
+        {
+            "key": "field_bgcf_program_approach",
+            "label": "How it works",
+            "name": "approach",
+            "aria_label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+        },
+        {
+            "key": "field_bgcf_program_campaign",
+            "label": "Linked campaign",
+            "name": "campaign",
+            "aria_label": "",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "bgcf_campaign"
+            ],
+            "return_format": "id",
+            "ui": 1,
+            "allow_null": 1
+        },
+        {
+            "key": "field_bgcf_program_cta",
+            "label": "Call to action",
+            "name": "cta",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "bgcf_program"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

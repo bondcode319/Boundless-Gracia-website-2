@@ -1,0 +1,196 @@
+{
+    "key": "group_bgcf_testimonials",
+    "title": "Block — Testimonials",
+    "fields": [
+        {
+            "key": "field_bgcf_testimonials_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_testimonials_lead",
+            "label": "Supporting text",
+            "name": "lead",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_testimonials_source",
+            "label": "Which quotes?",
+            "name": "source",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "latest": "Most recent",
+                "manual": "Ones I choose"
+            },
+            "return_format": "value",
+            "default_value": "latest"
+        },
+        {
+            "key": "field_bgcf_testimonials_testimonials",
+            "label": "Quotes",
+            "name": "testimonials",
+            "aria_label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_bgcf_testimonials_source",
+                        "operator": "==",
+                        "value": "manual"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "bgcf_testimonial"
+            ],
+            "filters": [
+                "search"
+            ],
+            "return_format": "id"
+        },
+        {
+            "key": "field_bgcf_testimonials_limit",
+            "label": "How many to show",
+            "name": "limit",
+            "aria_label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 6,
+            "min": 1,
+            "max": 24
+        },
+        {
+            "key": "field_bgcf_testimonials_layout",
+            "label": "Layout",
+            "name": "layout",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "carousel": "Carousel",
+                "grid": "Grid"
+            },
+            "return_format": "value",
+            "default_value": "carousel"
+        },
+        {
+            "key": "field_bgcf_testimonials_show_rating",
+            "label": "Show star ratings",
+            "name": "show_rating",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_bgcf_testimonials_autoplay",
+            "label": "Advance slides automatically",
+            "name": "autoplay",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "Adds a pause button, and never moves for visitors who have asked for reduced motion.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_bgcf_testimonials_layout",
+                        "operator": "==",
+                        "value": "carousel"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/testimonials"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/testimonials"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

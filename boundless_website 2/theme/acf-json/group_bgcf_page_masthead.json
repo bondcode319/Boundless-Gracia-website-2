@@ -1,0 +1,75 @@
+{
+    "key": "group_bgcf_page_masthead",
+    "title": "Page masthead",
+    "fields": [
+        {
+            "key": "field_bgcf_page_masthead_page_eyebrow",
+            "label": "Label above the title",
+            "name": "page_eyebrow",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Optional. Two or three words, e.g. “Our work” or “Get involved”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_page_masthead_page_lead",
+            "label": "Sentence below the title",
+            "name": "page_lead",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "Optional. One or two sentences. This is also what search engines and social networks show if no SEO description is set.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_page_masthead_masthead_note",
+            "label": "The photograph",
+            "name": "masthead_note",
+            "aria_label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Set the page’s Featured image to put a photograph behind the title. Without one the band is flat deep blue, which is a supported look rather than a fallback. Landscape, at least 1920px across.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "The band at the top of the page. The title and the photograph come from the page itself — these two fields are the label above the title and the sentence below it.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

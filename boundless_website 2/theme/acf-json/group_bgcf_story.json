@@ -1,0 +1,143 @@
+{
+    "key": "group_bgcf_story",
+    "title": "Story details",
+    "fields": [
+        {
+            "key": "field_bgcf_story_story_notice",
+            "label": "Safeguarding",
+            "name": "story_notice",
+            "aria_label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Do not publish a child’s full name, school, village or an identifiable photograph without documented guardian consent. Use a first name or a pseudonym, and record the consent reference below.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_bgcf_story_person_name",
+            "label": "Name used in the story",
+            "name": "person_name",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "A first name or pseudonym.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_story_is_pseudonym",
+            "label": "This is a pseudonym",
+            "name": "is_pseudonym",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_bgcf_story_consent_reference",
+            "label": "Consent record reference",
+            "name": "consent_reference",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Where the signed guardian consent is filed.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_story_age_range",
+            "label": "Age range",
+            "name": "age_range",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "A range rather than an exact age, e.g. “9–11”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_story_program",
+            "label": "Related programme",
+            "name": "program",
+            "aria_label": "",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "bgcf_program"
+            ],
+            "return_format": "id",
+            "ui": 1,
+            "allow_null": 1
+        },
+        {
+            "key": "field_bgcf_story_pull_quote",
+            "label": "Pull quote",
+            "name": "pull_quote",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "bgcf_story"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Success stories. Never publish an identifiable child without documented guardian consent.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

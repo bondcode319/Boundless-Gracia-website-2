@@ -1,0 +1,138 @@
+// =============================================================================
+// ELEMENTS / FORM CONTROLS
+// -----------------------------------------------------------------------------
+// Bare inputs, selects, textareas and their support elements. This is the
+// APPEARANCE baseline every control shares — Contact Form 7, GiveWP, comment
+// forms and our own `.bgcf-field` components all inherit from here, so they look
+// like one system without each re-declaring the box.
+//
+// The focus ring comes from `tools/focusable`; the reset already made controls
+// inherit the font. WCAG 1.4.11 (3:1 for UI components) is why the resting
+// border is `--bgcf-color-border-strong`, not the faint hairline border.
+// =============================================================================
+
+@use '../tools' as t;
+
+$bgcf-control-radius: var(--bgcf-radius-md);
+$bgcf-control-padding-y: var(--bgcf-space-3);
+$bgcf-control-padding-x: var(--bgcf-space-4);
+
+%bgcf-control {
+	display: block;
+	width: 100%;
+	min-height: var(--bgcf-target-size-comfortable);
+	padding: $bgcf-control-padding-y $bgcf-control-padding-x;
+	font-family: var(--bgcf-font-body);
+	font-size: var(--bgcf-font-size-base);
+	line-height: var(--bgcf-line-height-normal);
+	color: var(--bgcf-color-text);
+	background-color: var(--bgcf-color-base);
+	border: var(--bgcf-border-width) solid var(--bgcf-color-border-strong);
+	border-radius: $bgcf-control-radius;
+	appearance: none;
+
+	@include t.transition((border-color, box-shadow), 'fast');
+	@include t.focusable;
+
+	&::placeholder {
+		color: var(--bgcf-color-text-subtle);
+		opacity: 1; // Firefox dims placeholders otherwise.
+	}
+
+	&:hover:not(:disabled):not([readonly]) {
+		border-color: var(--bgcf-color-primary-400);
+	}
+
+	// A soft inner ring on focus reinforces the outline for low-vision users.
+	&:focus {
+		border-color: var(--bgcf-color-primary);
+	}
+
+	&:disabled,
+	&[readonly] {
+		color: var(--bgcf-color-text-subtle);
+		background-color: var(--bgcf-color-bg-subtle);
+		cursor: not-allowed;
+	}
+
+	// Native invalid state — only after the user has interacted, never on load.
+	&[aria-invalid='true'],
+	&:user-invalid {
+		border-color: var(--bgcf-color-danger-border);
+	}
+}
+
+input:not([type='submit']):not([type='button']):not([type='reset']):not([type='checkbox']):not([type='radio']):not([type='range']):not([type='color']):not([type='file']),
+textarea,
+select {
+	@extend %bgcf-control;
+}
+
+textarea {
+	min-height: calc(var(--bgcf-target-size-comfortable) * 2.5);
+	resize: vertical;
+}
+
+// Custom select chevron built from the brand ink, inlined so it needs no asset.
+select {
+	padding-inline-end: var(--bgcf-space-10);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%231A2430' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right var(--bgcf-space-4) center;
+	background-size: 1rem;
+
+	// The chevron sits on the right; RTL flips the padding automatically via
+	// logical properties, and this keeps the icon on the correct side.
+	&:dir(rtl) {
+		background-position: left var(--bgcf-space-4) center;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Checkboxes and radios. Kept native for reliability, resized to a comfortable
+// target, and tinted to the brand with `accent-color` (one line, fully
+// accessible, no custom pseudo-elements to maintain).
+// -----------------------------------------------------------------------------
+
+input[type='checkbox'],
+input[type='radio'] {
+	width: 1.25rem;
+	height: 1.25rem;
+	accent-color: var(--bgcf-color-cta);
+	cursor: pointer;
+
+	@include t.focusable;
+}
+
+// -----------------------------------------------------------------------------
+// Labels, fieldsets, help text. Labels are block by default because stacked
+// forms are the norm; inline layouts opt out in their component file.
+// -----------------------------------------------------------------------------
+
+label {
+	display: inline-block;
+	font-size: var(--bgcf-font-size-sm);
+	font-weight: var(--bgcf-font-weight-medium);
+	color: var(--bgcf-color-heading);
+}
+
+fieldset {
+	min-inline-size: 0; // Stops fieldsets forcing their content wider than the viewport.
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+legend {
+	padding: 0;
+	font-family: var(--bgcf-font-heading);
+	font-size: var(--bgcf-font-size-lg);
+	font-weight: var(--bgcf-font-weight-semibold);
+	color: var(--bgcf-color-heading);
+}
+
+// A required marker that reads for screen readers too (the `*` alone does not).
+.bgcf-required-mark {
+	margin-inline-start: var(--bgcf-space-1);
+	color: var(--bgcf-color-danger);
+}

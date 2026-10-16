@@ -1,0 +1,26 @@
+// =============================================================================
+// SETTINGS — index
+// -----------------------------------------------------------------------------
+// Single entry point for the token layer. Consumers write:
+//
+//   @use '../settings' as s;
+//   color: s.$color-text;
+//
+// Members keep their file-level names (no prefixing) because they are already
+// domain-scoped: `$color-*`, `$font-size-*`, `$space-*`, `$radius-*`, `$z-*`.
+//
+// `_custom-properties.scss` is forwarded too — that is where the `:root` emitter
+// lives, and the three entry files (main / editor / login) each include it.
+// =============================================================================
+
+@forward './colors';
+@forward './typography';
+@forward './spacing';
+@forward './breakpoints';
+@forward './layout';
+@forward './radius';
+@forward './shadow';
+@forward './motion';
+@forward './z-index';
+@forward './brandmark';
+@forward './custom-properties';

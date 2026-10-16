@@ -1,0 +1,258 @@
+// =============================================================================
+// COMPONENTS / GALLERY + LIGHTBOX
+// -----------------------------------------------------------------------------
+// Markup: partials/blocks/block-gallery.php, partials/global/gallery-item.php.
+// Behaviour: assets/js/src/gallery.js.
+//
+// Every item is a real link to the full-size file. The lightbox intercepts the
+// click, so with no JavaScript the link opens the image and nothing is lost —
+// which is why there is no `cursor: zoom-in` on a div anywhere in here.
+//
+// The lightbox is built by JS and appended to `<body>`, so its styles cannot
+// rely on any wrapper from the block.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-gallery {
+	&__filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-2);
+		justify-content: center;
+		margin-block-end: var(--bgcf-space-8);
+	}
+
+	&__grid {
+		display: grid;
+		gap: var(--bgcf-grid-gap);
+		grid-template-columns: repeat(auto-fit, minmax(min(#{t.rem(240)}, 100%), 1fr));
+	}
+
+	&__item {
+		margin: 0;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&__link {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		border-radius: var(--bgcf-radius-lg);
+
+		@include t.focusable;
+		@include t.lift(var(--bgcf-shadow-xs), var(--bgcf-shadow-lg));
+	}
+
+	&__image {
+		display: block;
+		inline-size: 100%;
+		block-size: 100%;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+
+		@include t.transition(transform, 'slow', 'emphasized');
+
+		@include t.motion-ok {
+			.bgcf-gallery__link:hover & {
+				transform: scale(1.04);
+			}
+		}
+	}
+
+	&__play {
+		position: absolute;
+		inset-block-start: 50%;
+		inset-inline-start: 50%;
+		inline-size: #{t.rem(56)};
+		block-size: #{t.rem(56)};
+		color: var(--bgcf-color-base);
+		transform: translate(-50%, -50%);
+		filter: drop-shadow(0 2px 6px rgb(var(--bgcf-rgb-ink) / 55%));
+	}
+
+	&__caption {
+		margin-block-start: var(--bgcf-space-2);
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	&__more {
+		display: flex;
+		justify-content: center;
+		margin-block-start: var(--bgcf-space-8);
+	}
+}
+
+// Filter chips. Also used by any archive filter bar.
+.bgcf-chip {
+	display: inline-flex;
+	align-items: center;
+	min-block-size: var(--bgcf-target-size-comfortable);
+	padding-inline: var(--bgcf-space-4);
+	font-family: var(--bgcf-font-heading);
+	font-size: var(--bgcf-font-size-sm);
+	font-weight: var(--bgcf-font-weight-medium);
+	color: var(--bgcf-color-text);
+	background-color: var(--bgcf-color-bg-subtle);
+	border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	border-radius: var(--bgcf-radius-pill);
+	cursor: pointer;
+
+	@include t.focusable;
+	@include t.transition((color, background-color, border-color), 'fast');
+
+	@include t.hover {
+		&:hover {
+			border-color: var(--bgcf-color-primary);
+		}
+	}
+
+	// `aria-pressed` is the state, so it is also the selector. A separate
+	// `.is-active` class could drift from what is announced.
+	&[aria-pressed='true'] {
+		color: var(--bgcf-color-text-inverse);
+		background-color: var(--bgcf-color-primary);
+		border-color: var(--bgcf-color-primary);
+
+		@include t.forced-colors {
+			color: HighlightText;
+			background-color: Highlight;
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Lightbox.
+// -----------------------------------------------------------------------------
+.bgcf-lightbox {
+	position: fixed;
+	z-index: var(--bgcf-z-modal);
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--bgcf-space-4);
+
+	--bgcf-color-focus: var(--bgcf-color-focus-inverse);
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__backdrop {
+		position: absolute;
+		inset: 0;
+		background-color: rgb(var(--bgcf-rgb-ink) / 88%);
+		border: 0;
+	}
+
+	&__panel {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-inline-size: min(#{t.rem(1100)}, 100%);
+		max-block-size: 100%;
+	}
+
+	&__figure {
+		margin: 0;
+		overflow: auto;
+	}
+
+	&__image {
+		display: block;
+		max-inline-size: 100%;
+		// Leave room for the caption and the counter below the image.
+		max-block-size: 76svh;
+		block-size: auto;
+		border-radius: var(--bgcf-radius-md);
+	}
+
+	&__caption {
+		margin-block-start: var(--bgcf-space-3);
+		color: rgb(var(--bgcf-rgb-base) / 90%);
+		text-align: center;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&__count {
+		margin-block-start: var(--bgcf-space-2);
+		font-size: var(--bgcf-font-size-sm);
+		color: rgb(var(--bgcf-rgb-base) / 70%);
+		font-variant-numeric: tabular-nums;
+	}
+
+	&__close,
+	&__nav {
+		position: absolute;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: var(--bgcf-font-size-xl);
+		line-height: 1;
+		color: var(--bgcf-color-base);
+		background-color: rgb(var(--bgcf-rgb-ink) / 60%);
+		border: var(--bgcf-border-width) solid rgb(var(--bgcf-rgb-base) / 35%);
+		border-radius: var(--bgcf-radius-circle);
+		cursor: pointer;
+
+		@include t.target-size(true);
+		@include t.focusable;
+		@include t.transition(background-color, 'fast');
+
+		@include t.hover {
+			&:hover {
+				background-color: var(--bgcf-color-cta);
+			}
+		}
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&__close {
+		inset-block-start: calc(var(--bgcf-space-4) * -1);
+		inset-inline-end: 0;
+	}
+
+	&__nav--prev {
+		inset-block-start: 50%;
+		inset-inline-start: calc(var(--bgcf-space-4) * -1);
+		transform: translateY(-50%);
+	}
+
+	&__nav--next {
+		inset-block-start: 50%;
+		inset-inline-end: calc(var(--bgcf-space-4) * -1);
+		transform: translateY(-50%);
+	}
+
+	// On a phone there is no room beside the image, so the controls move into
+	// the corners of the viewport instead of outside the panel.
+	@include t.mq-down(md) {
+		&__close {
+			position: fixed;
+			inset-block-start: var(--bgcf-space-3);
+			inset-inline-end: var(--bgcf-space-3);
+		}
+
+		&__nav--prev {
+			position: fixed;
+			inset-inline-start: var(--bgcf-space-3);
+		}
+
+		&__nav--next {
+			position: fixed;
+			inset-inline-end: var(--bgcf-space-3);
+		}
+	}
+}

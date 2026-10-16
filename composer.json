@@ -1,0 +1,25 @@
+{
+	"name": "bgcf/website",
+	"description": "PHP tooling for the Boundless Gracia Children Foundation WordPress theme.",
+	"type": "project",
+	"license": "proprietary",
+	"require": {
+		"php": ">=8.0"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.9",
+		"wp-coding-standards/wpcs": "^3.1",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+	},
+	"scripts": {
+		"lint": "phpcs",
+		"lint:fix": "phpcbf",
+		"lint:syntax": "find theme -name '*.php' -print0 | xargs -0 -n1 php -l"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}

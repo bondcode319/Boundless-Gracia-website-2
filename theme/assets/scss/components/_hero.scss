@@ -1,0 +1,213 @@
+// =============================================================================
+// COMPONENTS / HERO
+// -----------------------------------------------------------------------------
+// The full-bleed opening section. Markup: partials/blocks/block-hero.php.
+//
+// THE OVERLAY IS A SEPARATE LAYER, not an opacity on the image: darkening the
+// image itself would darken nothing when no image is set, and the section would
+// render white text on white. The layer sits over the photo and under the copy,
+// and its strength comes from `--bgcf-hero-overlay`, which the block sets from
+// an editor-facing range field that is clamped server-side to values that still
+// pass contrast.
+//
+// `min-block-size` uses `svh`, not `vh`: on mobile Safari `100vh` is the
+// viewport *without* the browser chrome, so a `100vh` hero is always taller
+// than the screen and the CTA sits below the fold on first paint.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-hero {
+	--bgcf-hero-overlay: 0.55;
+
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-block-size: min(#{t.rem(620)}, 86svh);
+	padding-block: var(--bgcf-section-space-lg);
+	overflow: hidden;
+	color: var(--bgcf-color-text-inverse);
+	background-color: var(--bgcf-color-primary);
+
+	// Landscape phones: a tall hero leaves no room for anything else.
+	@include t.short-viewport {
+		min-block-size: auto;
+		padding-block: var(--bgcf-space-10);
+	}
+
+	// Dark surface, so the focus ring switches to the inverse token.
+	--bgcf-color-focus: var(--bgcf-color-focus-inverse);
+
+	&__media {
+		position: absolute;
+		inset: 0;
+
+		&::after {
+			position: absolute;
+			inset: 0;
+			content: '';
+			// A gradient rather than a flat wash: the copy sits on the left, so
+			// the left side needs more cover than the right, and the photo stays
+			// visible where nothing overlaps it.
+			background-image: linear-gradient(
+				100deg,
+				rgb(var(--bgcf-rgb-primary) / calc(var(--bgcf-hero-overlay) * 100%)) 0%,
+				rgb(var(--bgcf-rgb-primary) / calc(var(--bgcf-hero-overlay) * 72%)) 55%,
+				rgb(var(--bgcf-rgb-ink) / calc(var(--bgcf-hero-overlay) * 45%)) 100%
+			);
+		}
+	}
+
+	&__image {
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+		// Favour the upper third: faces are usually there, and a centred crop on
+		// a wide hero cuts them off on phones.
+		object-position: center 30%;
+	}
+
+	&__inner {
+		position: relative;
+		display: grid;
+		gap: var(--bgcf-space-10);
+		align-items: center;
+
+		@include t.mq(lg) {
+			grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+		}
+	}
+
+	&__copy {
+		max-inline-size: var(--bgcf-measure-wide);
+	}
+
+	&__eyebrow {
+		margin-block: 0 var(--bgcf-space-3);
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-accent);
+		text-transform: uppercase;
+		letter-spacing: var(--bgcf-tracking-wider);
+	}
+
+	&__heading {
+		margin-block: 0 var(--bgcf-space-4);
+		font-size: #{t.fluid(34, 60)};
+		line-height: var(--bgcf-line-height-tight);
+		color: inherit;
+		text-wrap: balance;
+	}
+
+	&__lead {
+		max-inline-size: var(--bgcf-measure);
+		margin-block: 0 var(--bgcf-space-6);
+		font-size: var(--bgcf-font-size-lg);
+		color: rgb(var(--bgcf-rgb-base) / 88%);
+
+		> p:last-child {
+			margin-block-end: 0;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-3);
+	}
+
+	// Ghost buttons on a dark surface need an inverse treatment, or they are
+	// invisible outline-on-navy.
+	&__actions .bgcf-btn--ghost {
+		color: var(--bgcf-color-text-inverse);
+		border-color: rgb(var(--bgcf-rgb-base) / 55%);
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-primary);
+				background-color: var(--bgcf-color-base);
+				border-color: var(--bgcf-color-base);
+			}
+		}
+	}
+
+	// ---------------------------------------------------------------------------
+	// Headline figures.
+	// ---------------------------------------------------------------------------
+	&__stats {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-6);
+		margin-block: var(--bgcf-space-8) 0;
+	}
+
+	&__stat {
+		// Reversed visually (figure above label) while the DOM keeps the label
+		// first, so a screen reader hears "children reached: 12,400" rather than
+		// a number with no context.
+		display: flex;
+		flex-direction: column-reverse;
+		gap: var(--bgcf-space-1);
+	}
+
+	&__stat-value {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-2xl);
+		font-weight: var(--bgcf-font-weight-bold);
+		line-height: var(--bgcf-line-height-none);
+		color: var(--bgcf-color-accent);
+	}
+
+	&__stat-label {
+		font-size: var(--bgcf-font-size-sm);
+		color: rgb(var(--bgcf-rgb-base) / 80%);
+	}
+
+	// ---------------------------------------------------------------------------
+	// Highlight cards.
+	// ---------------------------------------------------------------------------
+	&__cards {
+		display: grid;
+		gap: var(--bgcf-space-4);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		@include t.mq-down(lg) {
+			grid-template-columns: repeat(auto-fit, minmax(#{t.rem(200)}, 1fr));
+		}
+	}
+
+	&__card {
+		padding: var(--bgcf-space-5);
+		color: var(--bgcf-color-text);
+		background-color: rgb(var(--bgcf-rgb-base) / 94%);
+		border-radius: var(--bgcf-radius-xl);
+		box-shadow: var(--bgcf-shadow-lg);
+
+		// Restore the light-surface focus colour inside the card.
+		--bgcf-color-focus: var(--bgcf-color-primary);
+
+		@include t.reveal-from('y');
+	}
+
+	&__card-icon {
+		color: var(--bgcf-color-secondary);
+	}
+
+	&__card-title {
+		margin-block: var(--bgcf-space-2) var(--bgcf-space-1);
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-lg);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-heading);
+	}
+
+	&__card-text {
+		margin: 0;
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+	}
+}

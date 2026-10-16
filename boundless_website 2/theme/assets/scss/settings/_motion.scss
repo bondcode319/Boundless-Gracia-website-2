@@ -1,0 +1,50 @@
+// =============================================================================
+// SETTINGS / MOTION
+// -----------------------------------------------------------------------------
+// Durations and easings for CSS transitions AND for GSAP (Phase 3 reads the same
+// custom properties through getComputedStyle, so the two never drift).
+//
+// EVERY transition that uses these tokens must go through
+// `tools/motion`'s `motion-safe()` mixin or the global reduced-motion guard in
+// `generic/_motion.scss`. Motion is optional here, not decorative-by-default.
+// =============================================================================
+
+$duration-instant: 0ms;
+$duration-fast: 120ms; // hover/focus colour changes
+$duration-base: 220ms; // most UI transitions
+$duration-slow: 380ms; // drawers, accordions
+$duration-slower: 620ms; // scroll reveals
+$duration-slowest: 900ms; // hero entrances
+
+$durations: (
+	'instant': $duration-instant,
+	'fast': $duration-fast,
+	'base': $duration-base,
+	'slow': $duration-slow,
+	'slower': $duration-slower,
+	'slowest': $duration-slowest,
+);
+
+// Easing. `standard` is a fast-out/slow-in curve that feels responsive without
+// overshoot; `emphasized` adds a small anticipation for entrances.
+$ease-linear: linear;
+$ease-standard: cubic-bezier(0.2, 0, 0, 1);
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+$eases: (
+	'linear': $ease-linear,
+	'standard': $ease-standard,
+	'in': $ease-in,
+	'out': $ease-out,
+	'in-out': $ease-in-out,
+	'emphasized': $ease-emphasized,
+	'spring': $ease-spring,
+);
+
+/// Distance a card lifts on hover, and how far scroll-reveal elements travel.
+$lift-distance: -4px;
+$reveal-distance: 24px;

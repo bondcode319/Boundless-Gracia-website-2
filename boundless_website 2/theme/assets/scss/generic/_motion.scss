@@ -1,0 +1,85 @@
+// =============================================================================
+// GENERIC / MOTION GUARD
+// -----------------------------------------------------------------------------
+// The site-wide reduced-motion contract, in one place.
+//
+// Two layers of defence:
+//
+//   1. `--bgcf-motion-scale: 0` collapses every duration token to 0ms. Any
+//      transition built from `var(--bgcf-duration-*)` — which is all of ours —
+//      becomes instant without needing its own media query.
+//   2. A blanket `!important` override catches anything a plugin, GiveWP form or
+//      third-party embed brings with it. `0.01ms` rather than `0s` so that
+//      `transitionend` / `animationend` listeners still fire; setting it to zero
+//      breaks scripts that wait for those events.
+//
+// Scrolling is handled here too: `scroll-behavior: smooth` is only enabled when
+// the user has expressed no preference. Applying it unconditionally makes
+// in-page navigation nauseating for people with vestibular disorders, and it is
+// a genuine WCAG 2.3.3 problem, not a nicety.
+// =============================================================================
+
+@use '../settings' as s;
+
+@media #{s.$motion-ok-query} {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+@media #{s.$reduced-motion-query} {
+	:root {
+		--bgcf-motion-scale: 0;
+		--bgcf-lift-distance: 0;
+		--bgcf-reveal-distance: 0;
+	}
+
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0.01ms !important;
+		transition-delay: 0ms !important;
+		animation-duration: 0.01ms !important;
+		animation-delay: 0ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+
+	// Parallax and marquee translations are removed outright rather than sped up.
+	[data-bgcf-parallax],
+	[data-bgcf-marquee] {
+		transform: none !important;
+	}
+}
+
+// Shared keyframes. Declared once, used by components and by the loading states
+// in `components/_button.scss`.
+@keyframes bgcf-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes bgcf-shimmer {
+	from {
+		background-position: 200% 0;
+	}
+
+	to {
+		background-position: -200% 0;
+	}
+}
+
+@keyframes bgcf-fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,145 @@
+// =============================================================================
+// SETTINGS / TYPOGRAPHY
+// -----------------------------------------------------------------------------
+// Poppins for headings, Inter for body (CLAUDE.md). Both are self-hosted from
+// `assets/fonts/` — see elements/_fonts.scss for the @font-face block and
+// assets/fonts/README.md for the file manifest.
+//
+// The scale is fluid: every step is a clamp() that interpolates between 480px
+// and 1280px viewports. Bounds are expressed in rem so browser zoom and a user's
+// own font-size preference still work (WCAG 1.4.4 Resize Text).
+//
+// The five sizes marked EDITOR are wired into the Gutenberg font-size picker by
+// `inc/setup.php` — their custom-property names are a hard contract.
+// =============================================================================
+
+@use '../tools/functions' as fn;
+
+// -----------------------------------------------------------------------------
+// Families
+// -----------------------------------------------------------------------------
+
+// Stored as pre-formed CSS strings, not Sass lists: interpolating a Sass list
+// silently strips the quotes off multi-word family names, which is fine today
+// and a subtle bug the first time someone adds a family that needs them.
+$font-family-heading: '"Poppins", "Poppins Fallback", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif';
+$font-family-body: '"Inter", "Inter Fallback", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif';
+$font-family-mono: 'ui-monospace, SFMono-Regular, "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace';
+
+// -----------------------------------------------------------------------------
+// Weights
+// Inter ships as a variable font (400-700). Poppins ships static 500/600/700 —
+// requesting 400 Poppins would synthesise, so headings never go below 500.
+// -----------------------------------------------------------------------------
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// -----------------------------------------------------------------------------
+// Fluid type scale (~1.25 major third on desktop, compressed on mobile)
+// -----------------------------------------------------------------------------
+
+$font-size-xs: fn.fluid(12, 13); // 12 -> 13  captions, badges
+$font-size-sm: fn.fluid(14, 15); // 14 -> 15  EDITOR "small"
+$font-size-base: fn.fluid(16, 17); // 16 -> 17  EDITOR "body"
+$font-size-lg: fn.fluid(18, 20); // 18 -> 20  EDITOR "lead"
+$font-size-xl: fn.fluid(24, 32); // 24 -> 32  EDITOR "heading"  (h3/h2)
+$font-size-2xl: fn.fluid(30, 44); // 30 -> 44  EDITOR "display" (h2/h1)
+$font-size-3xl: fn.fluid(34, 56); // 34 -> 56  page h1
+$font-size-4xl: fn.fluid(38, 68); // 38 -> 68  hero h1
+$font-size-5xl: fn.fluid(44, 84); // 44 -> 84  statistic counters
+
+$font-sizes: (
+	'xs': $font-size-xs,
+	'sm': $font-size-sm,
+	'base': $font-size-base,
+	'lg': $font-size-lg,
+	'xl': $font-size-xl,
+	'2xl': $font-size-2xl,
+	'3xl': $font-size-3xl,
+	'4xl': $font-size-4xl,
+	'5xl': $font-size-5xl,
+);
+
+// -----------------------------------------------------------------------------
+// Line heights. Unitless so they inherit proportionally.
+// -----------------------------------------------------------------------------
+
+$line-height-none: 1;
+$line-height-tight: 1.12; // display headings
+$line-height-snug: 1.25; // headings
+$line-height-normal: 1.5; // UI text
+$line-height-relaxed: 1.65; // body copy (WCAG 1.4.12 asks for >= 1.5)
+$line-height-loose: 1.85; // long-form prose on narrow measures
+
+$line-heights: (
+	'none': $line-height-none,
+	'tight': $line-height-tight,
+	'snug': $line-height-snug,
+	'normal': $line-height-normal,
+	'relaxed': $line-height-relaxed,
+	'loose': $line-height-loose,
+);
+
+// -----------------------------------------------------------------------------
+// Letter spacing. Poppins tightens well at display sizes; Inter does not need it.
+// -----------------------------------------------------------------------------
+
+$letter-spacing-tighter: -0.03em;
+$letter-spacing-tight: -0.015em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.02em;
+$letter-spacing-wider: 0.08em; // eyebrows, small caps
+
+// -----------------------------------------------------------------------------
+// Measure (line length). 60-75ch is the readable band.
+// -----------------------------------------------------------------------------
+
+$measure-narrow: 48ch;
+$measure-base: 68ch;
+$measure-wide: 80ch;
+
+// -----------------------------------------------------------------------------
+// Heading scale map. `elements/_headings.scss` consumes this; blocks may too.
+// -----------------------------------------------------------------------------
+
+$headings: (
+	'h1': (
+		'size': $font-size-3xl,
+		'line-height': $line-height-tight,
+		'weight': $font-weight-bold,
+		'tracking': $letter-spacing-tighter,
+	),
+	'h2': (
+		'size': $font-size-2xl,
+		'line-height': $line-height-tight,
+		'weight': $font-weight-semibold,
+		'tracking': $letter-spacing-tight,
+	),
+	'h3': (
+		'size': $font-size-xl,
+		'line-height': $line-height-snug,
+		'weight': $font-weight-semibold,
+		'tracking': $letter-spacing-tight,
+	),
+	'h4': (
+		'size': $font-size-lg,
+		'line-height': $line-height-snug,
+		'weight': $font-weight-semibold,
+		'tracking': $letter-spacing-normal,
+	),
+	'h5': (
+		'size': $font-size-base,
+		'line-height': $line-height-normal,
+		'weight': $font-weight-semibold,
+		'tracking': $letter-spacing-normal,
+	),
+	'h6': (
+		'size': $font-size-sm,
+		'line-height': $line-height-normal,
+		'weight': $font-weight-semibold,
+		'tracking': $letter-spacing-wider,
+	),
+);

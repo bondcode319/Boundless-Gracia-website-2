@@ -1,0 +1,113 @@
+// =============================================================================
+// COMPONENTS / PAGINATION & POST NAVIGATION
+// -----------------------------------------------------------------------------
+// `.bgcf-pagination` wraps `the_posts_pagination()` output (WordPress emits
+// `.page-numbers` children). `.bgcf-page-links` is the in-post <!--nextpage-->
+// splitter, `.bgcf-post-nav` is the prev/next single-post navigation.
+// =============================================================================
+
+@use '../tools' as t;
+
+// -----------------------------------------------------------------------------
+// Archive pagination. WordPress owns the inner markup, so we target its classes
+// from inside our wrapper.
+// -----------------------------------------------------------------------------
+
+.bgcf-pagination {
+	margin-block-start: var(--bgcf-space-2xl);
+
+	.nav-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-2);
+		align-items: center;
+		justify-content: center;
+	}
+
+	.page-numbers {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: var(--bgcf-target-size-comfortable);
+		min-height: var(--bgcf-target-size-comfortable);
+		padding: var(--bgcf-space-2) var(--bgcf-space-3);
+		font-family: var(--bgcf-font-heading);
+		font-weight: var(--bgcf-font-weight-medium);
+		color: var(--bgcf-color-link);
+		text-decoration: none;
+		background-color: var(--bgcf-color-base);
+		border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+		border-radius: var(--bgcf-radius-md);
+
+		@include t.transition((background-color, border-color, color), 'fast');
+		@include t.focusable;
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-base);
+				background-color: var(--bgcf-color-primary);
+				border-color: var(--bgcf-color-primary);
+			}
+		}
+
+		&.current {
+			color: var(--bgcf-color-base);
+			background-color: var(--bgcf-color-primary);
+			border-color: var(--bgcf-color-primary);
+		}
+
+		&.dots {
+			border-color: transparent;
+
+			&:hover {
+				color: var(--bgcf-color-link);
+				background: none;
+			}
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// In-post page links (paginated posts).
+// -----------------------------------------------------------------------------
+
+.bgcf-page-links {
+	@include t.cluster(var(--bgcf-space-2));
+
+	margin-block-start: var(--bgcf-space-xl);
+	font-weight: var(--bgcf-font-weight-medium);
+
+	&__item {
+		display: inline-flex;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Prev / next single-post navigation.
+// -----------------------------------------------------------------------------
+
+.bgcf-post-nav {
+	display: grid;
+	gap: var(--bgcf-space-4);
+	margin-block-start: var(--bgcf-space-2xl);
+
+	@include t.mq(sm) {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	&__direction {
+		display: block;
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-eyebrow);
+		text-transform: uppercase;
+		letter-spacing: var(--bgcf-tracking-wide);
+	}
+
+	&__title {
+		display: block;
+		margin-block-start: var(--bgcf-space-1);
+		font-family: var(--bgcf-font-heading);
+		color: var(--bgcf-color-heading);
+	}
+}

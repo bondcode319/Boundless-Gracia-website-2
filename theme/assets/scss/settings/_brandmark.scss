@@ -1,0 +1,30 @@
+// =============================================================================
+// SETTINGS / BRAND MARK
+// -----------------------------------------------------------------------------
+// An original, abstract placeholder mark, built from the brand tokens and
+// inlined as a data URI. It exists for exactly one reason:
+//
+//   `inc/admin.php` sets `--bgcf-login-logo` inline ONLY when a Customizer logo
+//   or the `login_logo` ACF option is configured. If that property is undefined,
+//   `background-image: var(--bgcf-login-logo)` is invalid at computed-value time
+//   and resolves to `none` — which would leave the login screen with a blank
+//   84px gap where WordPress's own mark used to be.
+//
+//   Supplying it as the var() fallback means the login screen always shows
+//   something intentional, and the real logo takes over the moment it is set.
+//
+// It is deliberately geometric and carries no lettering, so it can never be
+// mistaken for the finished identity. Design supplies the real mark before
+// launch; nothing else in the theme references this.
+// =============================================================================
+
+@use './colors' as c;
+@use '../tools/functions' as fn;
+
+$brandmark-svg: '%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 120 120\' role=\'img\'%3E' +
+	'%3Crect width=\'120\' height=\'120\' rx=\'28\' fill=\'#{fn.encode-color(c.$brand-primary)}\'/%3E' +
+	'%3Cpath d=\'M32 82a28 28 0 0 1 56 0\' fill=\'none\' stroke=\'#{fn.encode-color(c.$brand-base)}\' stroke-width=\'9\' stroke-linecap=\'round\'/%3E' +
+	'%3Ccircle cx=\'60\' cy=\'40\' r=\'13\' fill=\'#{fn.encode-color(c.$brand-cta)}\'/%3E' +
+	'%3C/svg%3E';
+
+$brandmark: url('data:image/svg+xml,#{$brandmark-svg}');

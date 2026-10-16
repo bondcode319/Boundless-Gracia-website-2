@@ -1,0 +1,145 @@
+// =============================================================================
+// COMPONENTS / SECTION
+// -----------------------------------------------------------------------------
+// The landmark + background + vertical-rhythm wrapper every block and template
+// section opens with `bgcf_section_open()`. Two modifier axes:
+//
+//   --bg-{role}             background treatment, from a closed set
+//   --space-{none|sm|md|lg} vertical padding
+//
+// THE BAND RHYTHM
+// ---------------
+// Horizon pages are built from a run of coloured bands, and the one structural
+// rule is that no two adjacent bands share a background. That is what gives a
+// long page its sense of pace without a single divider line. The rule is only
+// enforceable because the background set is closed: nine roles, declared in
+// `settings/_colors.scss`, mapped one-to-one to a modifier below. A section that
+// needs a tenth tint is a section that should be reusing one of these nine.
+//
+// `bgcf_section_open()` validates the modifier name against the same list, so a
+// typo renders the default band rather than an unstyled one.
+//
+// The dark roles (`ink`, `ink-deep`, `primary`, `secondary`) and the photo roles
+// pull in the `on-dark` token flip: headings, links, muted text, borders and the
+// focus ring all invert together. That is the ONLY sanctioned way to invert a
+// region (tools/elevation `on-dark`), which is why it lives here rather than
+// being re-derived by each component that can sit on a dark band.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-section {
+	position: relative;
+
+	// -------------------------------------------------------------------------
+	// Vertical rhythm.
+	// -------------------------------------------------------------------------
+	&--space-none {
+		padding-block: var(--bgcf-section-space-none);
+	}
+
+	&--space-sm {
+		padding-block: var(--bgcf-section-space-sm);
+	}
+
+	&--space-md {
+		padding-block: var(--bgcf-section-space-md);
+	}
+
+	&--space-lg {
+		padding-block: var(--bgcf-section-space-lg);
+	}
+
+	// -------------------------------------------------------------------------
+	// Light bands.
+	// `none` inherits whatever is behind it — used when two blocks need to share
+	// one continuous background, which is the only legitimate way to break the
+	// no-two-adjacent rule.
+	// -------------------------------------------------------------------------
+	&--bg-base,
+	&--bg-page {
+		background-color: var(--bgcf-surface-page);
+	}
+
+	&--bg-surface,
+	&--bg-soft {
+		background-color: var(--bgcf-surface-soft);
+	}
+
+	&--bg-sand {
+		background-color: var(--bgcf-surface-sand);
+
+		// On the warm band the emerald eyebrow goes muddy; the deep blue reads
+		// as deliberate and clears 10.5:1 against the yellow tint.
+		--bgcf-color-eyebrow: var(--bgcf-color-primary);
+	}
+
+	&--bg-bloom {
+		background-color: var(--bgcf-surface-bloom);
+
+		--bgcf-color-eyebrow: var(--bgcf-color-cta-700);
+	}
+
+	&--bg-leaf {
+		background-color: var(--bgcf-surface-leaf);
+	}
+
+	// -------------------------------------------------------------------------
+	// Dark bands.
+	// -------------------------------------------------------------------------
+	&--bg-primary,
+	&--bg-ink {
+		@include t.on-dark(var(--bgcf-surface-ink));
+	}
+
+	&--bg-ink-deep {
+		@include t.on-dark(var(--bgcf-surface-ink-deep));
+	}
+
+	// Emerald band resolves to the 700 shade (in the token) so white text on it
+	// reaches 6.69:1 — the raw brand emerald would only make 4.34:1.
+	&--bg-secondary {
+		@include t.on-dark(var(--bgcf-color-secondary-700));
+
+		--bgcf-color-eyebrow: var(--bgcf-color-accent);
+		--bgcf-color-text-muted: var(--bgcf-color-secondary-100);
+	}
+
+	// -------------------------------------------------------------------------
+	// Photographic band.
+	// The image itself is set from PHP as an inline `background-image` custom
+	// property, because the URL is content and cannot be known at build time.
+	// `--bgcf-section-scrim` lets a single band dial the scrim up where the
+	// photograph is busy; the mixin enforces the 55% floor.
+	// -------------------------------------------------------------------------
+	&--bg-photo {
+		@include t.photo-scrim(62%);
+
+		background-image: var(--bgcf-section-image, none);
+	}
+
+	// -------------------------------------------------------------------------
+	// Full-bleed bands lose the container gutter so the colour reaches the
+	// screen edge while the content inside stays aligned to the grid.
+	// -------------------------------------------------------------------------
+	&--bleed {
+		padding-inline: 0;
+	}
+}
+
+// Two adjacent sections sharing the same background should not double their
+// padding at the seam. The editor rarely stacks these deliberately, but a block
+// pattern does, and the seam is where a doubled 96px gap is most visible.
+.bgcf-section + .bgcf-section {
+	&--bg-base.bgcf-section--bg-base,
+	&--bg-page.bgcf-section--bg-page,
+	&--bg-surface.bgcf-section--bg-surface,
+	&--bg-soft.bgcf-section--bg-soft,
+	&--bg-sand.bgcf-section--bg-sand,
+	&--bg-bloom.bgcf-section--bg-bloom,
+	&--bg-leaf.bgcf-section--bg-leaf,
+	&--bg-ink.bgcf-section--bg-ink,
+	&--bg-primary.bgcf-section--bg-primary {
+		padding-block-start: 0;
+	}
+}

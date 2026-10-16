@@ -1,0 +1,109 @@
+{
+    "key": "group_bgcf_campaign",
+    "title": "Campaign details",
+    "fields": [
+        {
+            "key": "field_bgcf_campaign_campaign_notice",
+            "label": "About the total raised",
+            "name": "campaign_notice",
+            "aria_label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "The progress bar is calculated from completed donations attributed to this campaign. It updates itself — there is no field to type a total into, because a typed total goes stale and overstates what has actually been received.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_bgcf_campaign_goal",
+            "label": "Fundraising goal",
+            "name": "goal",
+            "aria_label": "",
+            "type": "number",
+            "instructions": "Whole shillings, no separators. Leave empty to hide the progress bar.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_campaign_deadline",
+            "label": "Deadline",
+            "name": "deadline",
+            "aria_label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "j F Y",
+            "return_format": "Y-m-d",
+            "first_day": 1
+        },
+        {
+            "key": "field_bgcf_campaign_summary",
+            "label": "One-line summary",
+            "name": "summary",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_campaign_impact",
+            "label": "What the money does",
+            "name": "impact",
+            "aria_label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "bgcf_campaign"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "The amount raised is calculated from real donations. There is deliberately no field for it.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

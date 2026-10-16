@@ -1,0 +1,67 @@
+// =============================================================================
+// COMPONENTS / TEAM GROUP
+// -----------------------------------------------------------------------------
+// One department's heading plus its grid of person cards, inside the team grid
+// block. Markup from `partials/blocks/block-team-grid.php`.
+//
+// THE DIVIDER IS A RULE ABOVE THE HEADING, not a border below the previous
+// group: a border-bottom on the last group leaves a line under the final row
+// with nothing after it. Drawn on the second group onward, so the first group
+// does not get a rule directly beneath the section's own heading.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-team-group {
+	& + & {
+		padding-block-start: var(--bgcf-space-12);
+		margin-block-start: var(--bgcf-space-12);
+		border-block-start: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	}
+
+	&__title {
+		@include t.heading('h3');
+
+		display: flex;
+		gap: var(--bgcf-space-4);
+		align-items: center;
+		margin-block: 0 var(--bgcf-space-2);
+		color: var(--bgcf-color-heading);
+
+		// A short brand rule after the title, filling the remaining width. It is
+		// decorative, so it is a pseudo-element rather than an `<hr>` that a
+		// screen reader would announce as a separator between a heading and the
+		// cards it introduces.
+		&::after {
+			flex: 1 1 auto;
+			block-size: 2px;
+			background-color: var(--bgcf-color-border);
+			border-radius: var(--bgcf-radius-pill);
+			content: '';
+		}
+	}
+
+	&__text {
+		max-inline-size: var(--bgcf-measure);
+		margin-block: 0 var(--bgcf-space-8);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	// The grid directly under a group title needs the gap the description would
+	// otherwise have provided.
+	&__title + .bgcf-grid {
+		margin-block-start: var(--bgcf-space-8);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// The statistics grid.
+//
+// Four figures in `div` mode (see block-statistics.php for why they are not a
+// list). The only thing it needs beyond the shared grid is a narrower column
+// floor: a stat card is a figure and a short label, so it fits comfortably in
+// 200px where a project card would not.
+// -----------------------------------------------------------------------------
+.bgcf-stats-grid {
+	--bgcf-grid-min: #{t.rem(200)};
+}

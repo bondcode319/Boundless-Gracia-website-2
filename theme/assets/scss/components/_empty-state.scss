@@ -1,0 +1,23 @@
+// =============================================================================
+// COMPONENTS / EMPTY STATE (EDITOR-ONLY)
+// -----------------------------------------------------------------------------
+// `.bgcf-empty-state` is the instruction `bgcf_empty_state()` renders inside an
+// unconfigured block — visible to editors, never to the public. It reads as a
+// dashed placeholder so it is obviously scaffolding, not content.
+//
+// Not to be confused with `.bgcf-empty` (components/_archive.scss), which is the
+// public "no results" message.
+// =============================================================================
+
+.bgcf-empty-state {
+	display: block;
+	padding: var(--bgcf-space-6);
+	margin: 0;
+	font-family: var(--bgcf-font-body);
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-text-muted);
+	text-align: center;
+	background-color: var(--bgcf-color-bg-subtle);
+	border: var(--bgcf-border-width-thick) dashed var(--bgcf-color-border-strong);
+	border-radius: var(--bgcf-radius-md);
+}

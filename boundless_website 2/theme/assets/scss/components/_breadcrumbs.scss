@@ -1,0 +1,53 @@
+// =============================================================================
+// COMPONENTS / BREADCRUMBS
+// -----------------------------------------------------------------------------
+// The trail emitted by `bgcf_breadcrumbs()`. Separators are drawn with a
+// pseudo-element so they are never read aloud (they are punctuation, not
+// content). The current page is a non-link span with `aria-current="page"`.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-breadcrumbs {
+	margin-block-end: var(--bgcf-space-lg);
+	font-size: var(--bgcf-font-size-sm);
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	&__item {
+		display: inline-flex;
+		align-items: center;
+		color: var(--bgcf-color-text-muted);
+
+		// Chevron separator before every item except the first. `/` would be read
+		// by some screen readers; the pseudo-element content is ignored.
+		& + &::before {
+			margin-inline: var(--bgcf-space-2);
+			color: var(--bgcf-color-text-subtle);
+			content: '/';
+		}
+	}
+
+	&__link {
+		color: var(--bgcf-color-link);
+		text-decoration: none;
+
+		@include t.hover {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	&__current {
+		font-weight: var(--bgcf-font-weight-medium);
+		color: var(--bgcf-color-text);
+	}
+}

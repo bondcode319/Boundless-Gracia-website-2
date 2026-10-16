@@ -1,0 +1,69 @@
+// =============================================================================
+// COMPONENTS / GRID
+// -----------------------------------------------------------------------------
+// The card grid every listing block uses: program cards, gallery, team,
+// reports, stories.
+//
+// `auto-fit` + `minmax` rather than fixed column counts, so the column count
+// the editor chooses is an UPPER BOUND, not a promise. A three-column grid at
+// 500px becomes one column without a media query, and a two-column grid never
+// stretches a card to 900px. The explicit `--cols` only caps the maximum.
+//
+// Bootstrap's grid is available (vendor/_bootstrap) but is deliberately not
+// used here: this is six lines of CSS Grid versus a row/col wrapper pair in
+// every partial, and it degrades better.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-grid {
+	--bgcf-grid-min: #{t.rem(272)};
+	--bgcf-grid-cols: 3;
+
+	display: grid;
+	gap: var(--bgcf-grid-gap);
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(min(var(--bgcf-grid-min), 100%), 1fr)
+	);
+
+	// Cap the column count once the tracks would otherwise get narrower than
+	// the content wants. `min()` keeps it responsive without a breakpoint.
+	@supports (width: min(1px, 1px)) {
+		max-inline-size: 100%;
+	}
+
+	&--cols-2 {
+		--bgcf-grid-cols: 2;
+		--bgcf-grid-min: #{t.rem(320)};
+	}
+
+	&--cols-3 {
+		--bgcf-grid-cols: 3;
+	}
+
+	&--cols-4 {
+		--bgcf-grid-cols: 4;
+		--bgcf-grid-min: #{t.rem(220)};
+	}
+
+	// At wide sizes, honour the chosen count exactly so a four-column grid does
+	// not become five on an ultrawide monitor.
+	@include t.mq(lg) {
+		grid-template-columns: repeat(var(--bgcf-grid-cols), minmax(0, 1fr));
+	}
+
+	// A grid used as the inner track of a carousel must not also be a grid.
+	&__inner {
+		display: contents;
+	}
+}
+
+// Section-level footer, for the "see all" link under a grid.
+.bgcf-section__footer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bgcf-space-3);
+	justify-content: center;
+	margin-block-start: var(--bgcf-space-8);
+}

@@ -1,0 +1,128 @@
+// =============================================================================
+// ELEMENTS / FONTS
+// -----------------------------------------------------------------------------
+// Self-hosted Poppins (headings) and Inter (body) — no third-party request, no
+// GDPR exposure from Google Fonts, and no render-blocking CSS import.
+//
+// Strategy
+// --------
+// * `font-display: swap` — text paints immediately in the fallback and swaps
+//   when the webfont arrives. Never `block`: on a slow connection that is a
+//   blank page.
+// * `local()` first — if the visitor already has the family installed we skip
+//   the download entirely.
+// * `unicode-range` subsets — Latin loads for everyone; Latin-Extended only
+//   downloads when the page actually contains those code points. That matters
+//   for Polylang: a French or Polish translation pulls the second file, an
+//   English page never does.
+// * `size-adjust` fallback faces — "Poppins Fallback" and "Inter Fallback" are
+//   metric-matched local system faces. They are what the browser paints during
+//   the swap, and matching the metrics is what keeps CLS at zero.
+//
+// Files live in `assets/fonts/` (see the README there for the manifest and the
+// licence). Paths are relative to the COMPILED sheet at `assets/css/main.css`,
+// which is why they start `../fonts/`.
+//
+// Phase 7 (performance-engineer) owns preloading and further subsetting.
+// =============================================================================
+
+$font-path: '../fonts';
+
+// -----------------------------------------------------------------------------
+// Inter — variable weight axis 400-700. One file covers regular, medium,
+// semibold and bold, which is smaller than four static cuts.
+// -----------------------------------------------------------------------------
+
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400 700;
+	font-display: swap;
+	src:
+		local('Inter'),
+		url('#{$font-path}/inter-var-latin.woff2') format('woff2');
+	unicode-range:
+		u+0000-00ff, u+0131, u+0152-0153, u+02bb-02bc, u+02c6, u+02da, u+02dc,
+		u+0304, u+0308, u+0329, u+2000-206f, u+20ac, u+2122, u+2191, u+2193,
+		u+2212, u+2215, u+feff, u+fffd;
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400 700;
+	font-display: swap;
+	src: url('#{$font-path}/inter-var-latin-ext.woff2') format('woff2');
+	unicode-range:
+		u+0100-02ba, u+02bd-02c5, u+02c7-02cc, u+02ce-02d7, u+02dd-02ff, u+0304,
+		u+0308, u+0329, u+1d00-1dbf, u+1e00-1e9f, u+1ef2-1eff, u+2020,
+		u+20a0-20ab, u+20ad-20c0, u+2113, u+2c60-2c7f, u+a720-a7ff;
+}
+
+// -----------------------------------------------------------------------------
+// Poppins — static 500 / 600 / 700. Headings never use 400: Poppins Regular is
+// too light against Inter at body size, and requesting a weight we do not ship
+// makes the browser synthesise one.
+// -----------------------------------------------------------------------------
+
+@each $weight in (500, 600, 700) {
+	@font-face {
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: $weight;
+		font-display: swap;
+		src:
+			local('Poppins'),
+			url('#{$font-path}/poppins-#{$weight}-latin.woff2') format('woff2');
+		unicode-range:
+			u+0000-00ff, u+0131, u+0152-0153, u+02bb-02bc, u+02c6, u+02da, u+02dc,
+			u+0304, u+0308, u+0329, u+2000-206f, u+20ac, u+2122, u+2191, u+2193,
+			u+2212, u+2215, u+feff, u+fffd;
+	}
+
+	@font-face {
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: $weight;
+		font-display: swap;
+		src: url('#{$font-path}/poppins-#{$weight}-latin-ext.woff2') format('woff2');
+		unicode-range:
+			u+0100-02ba, u+02bd-02c5, u+02c7-02cc, u+02ce-02d7, u+02dd-02ff,
+			u+0304, u+0308, u+0329, u+1d00-1dbf, u+1e00-1e9f, u+1ef2-1eff,
+			u+2020, u+20a0-20ab, u+20ad-20c0, u+2113, u+2c60-2c7f, u+a720-a7ff;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Metric-matched fallbacks.
+//
+// These are NOT downloads — they re-declare a font the OS already has, scaled so
+// its glyphs occupy the same box as the webfont. The result is that the swap
+// from fallback to webfont does not reflow the page (Cumulative Layout Shift).
+//
+// The adjustment values were derived by comparing the two families' unitsPerEm,
+// ascent, descent and average character width; they are tuned for the Arial /
+// Helvetica metrics that every target platform provides.
+// -----------------------------------------------------------------------------
+
+@font-face {
+	font-family: 'Inter Fallback';
+	font-style: normal;
+	font-weight: 400 700;
+	src: local('Arial');
+	ascent-override: 90%;
+	descent-override: 22.43%;
+	line-gap-override: 0%;
+	size-adjust: 107.64%;
+}
+
+@font-face {
+	font-family: 'Poppins Fallback';
+	font-style: normal;
+	font-weight: 500 700;
+	src: local('Arial');
+	ascent-override: 92%;
+	descent-override: 30.67%;
+	line-gap-override: 8.84%;
+	size-adjust: 112.16%;
+}

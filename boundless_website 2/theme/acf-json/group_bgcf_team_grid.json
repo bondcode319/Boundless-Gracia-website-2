@@ -1,0 +1,186 @@
+{
+    "key": "group_bgcf_team_grid",
+    "title": "Block — Team Grid",
+    "fields": [
+        {
+            "key": "field_bgcf_team_grid_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_team_grid_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_team_grid_lead",
+            "label": "Intro paragraph",
+            "name": "lead",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_team_grid_background",
+            "label": "Band colour",
+            "name": "background",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "page": "White — the quiet band",
+                "soft": "Light grey — the default band",
+                "sand": "Warm yellow — the impact band",
+                "bloom": "Warm orange — the news band",
+                "leaf": "Pale emerald — the programmes band",
+                "ink": "Deep blue — a dark band",
+                "secondary": "Emerald — a dark band"
+            },
+            "return_format": "value",
+            "default_value": "page"
+        },
+        {
+            "key": "field_bgcf_team_grid_grouped",
+            "label": "Group by department",
+            "name": "grouped",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "Off shows one flat directory. If no departments have been set up yet, this falls back to a flat directory automatically.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 1
+        },
+        {
+            "key": "field_bgcf_team_grid_columns",
+            "label": "Cards per row",
+            "name": "columns",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "3": "Three",
+                "4": "Four"
+            },
+            "return_format": "value",
+            "default_value": 4
+        },
+        {
+            "key": "field_bgcf_team_grid_limit",
+            "label": "How many (flat mode)",
+            "name": "limit",
+            "aria_label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_bgcf_team_grid_grouped",
+                        "operator": "!=",
+                        "value": 1
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 24,
+            "min": 1,
+            "max": 60
+        },
+        {
+            "key": "field_bgcf_team_grid_show_bio",
+            "label": "Show the one-line bio",
+            "name": "show_bio",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/team-grid"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/team-grid"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "People from the Team section, as portrait cards. Grouping uses the Department taxonomy and follows the order you arranged the terms in.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

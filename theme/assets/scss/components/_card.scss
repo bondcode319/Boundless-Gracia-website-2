@@ -1,0 +1,211 @@
+// =============================================================================
+// COMPONENTS / CARD
+// -----------------------------------------------------------------------------
+// The base card shell. Program, campaign, story and post cards (Phase 3/4) all
+// extend this so their radius, shadow, media ratio and hover lift stay in step.
+// Emitted markup (ARCHITECTURE §3):
+//
+//   .bgcf-card [--archive|--related|--search]
+//     .bgcf-card__media > .bgcf-card__image
+//     .bgcf-card__body
+//       .bgcf-card__meta  .bgcf-card__title > .bgcf-card__link  .bgcf-card__excerpt
+//
+// The whole card is made clickable via the "stretched link" pattern on
+// `.bgcf-card__link`: the title holds the real anchor, and a pseudo-element
+// covers the card. That keeps ONE focus stop and a real, readable link text
+// (never a `div` with a click handler — ARCHITECTURE §10).
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	block-size: 100%;
+	overflow: hidden;
+
+	@include t.surface(var(--bgcf-radius-lg), 'sm');
+	@include t.surface-interactive('sm', 'lg');
+
+	// -------------------------------------------------------------------------
+	// Media.
+	// -------------------------------------------------------------------------
+	&__media {
+		position: relative;
+		overflow: hidden;
+
+		@include t.ratio(4, 3);
+	}
+
+	&__image {
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+
+		@include t.transition(transform, 'slow', 'emphasized');
+	}
+
+	// Subtle zoom on hover — the shadow lift already carries the affordance when
+	// motion is off, so this is pure enhancement.
+	@include t.hover {
+		&:hover &__image {
+			@include t.motion-ok {
+				transform: scale(1.04);
+			}
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Body.
+	// -------------------------------------------------------------------------
+	&__body {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		gap: var(--bgcf-space-3);
+		padding: var(--bgcf-space-6);
+	}
+
+	&__meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-2) var(--bgcf-space-4);
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	&__title {
+		@include t.heading('h4');
+
+		margin: 0;
+		color: var(--bgcf-color-heading);
+	}
+
+	// The stretched link. `::after` covers the card; the link text stays real.
+	&__link {
+		color: inherit;
+		text-decoration: none;
+
+		&::after {
+			position: absolute;
+			inset: 0;
+			z-index: var(--bgcf-z-raised);
+			content: '';
+		}
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-link-hover);
+			}
+		}
+
+		// The stretched pseudo-element removes the anchor's own focus outline
+		// context, so the ring is drawn on the card instead.
+		&:focus-visible::after {
+			@include t.focus-ring;
+		}
+
+		&:focus:not(:focus-visible)::after {
+			outline: none;
+		}
+	}
+
+	&__excerpt {
+		margin: 0;
+		color: var(--bgcf-color-text-muted);
+
+		@include t.line-clamp(3);
+	}
+
+	// Any real interactive control inside the card (a tag link, a secondary
+	// button) must sit ABOVE the stretched pseudo-element to stay clickable.
+	:where(a, button):not(.bgcf-card__link) {
+		position: relative;
+		z-index: var(--bgcf-z-raised);
+	}
+
+	// -------------------------------------------------------------------------
+	// Context modifiers. Base shell is identical; these tune density/ratio for
+	// where the card appears.
+	// -------------------------------------------------------------------------
+	&--related &__body,
+	&--search &__body {
+		padding: var(--bgcf-space-5);
+	}
+
+	&--search {
+		flex-direction: row;
+		align-items: stretch;
+	}
+
+	&--search &__media {
+		flex: 0 0 32%;
+		max-inline-size: 12rem;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Event and block card additions (1.2.0).
+// -----------------------------------------------------------------------------
+.bgcf-card__date,
+.bgcf-card__meta {
+	display: flex;
+	gap: var(--bgcf-space-2);
+	align-items: center;
+	margin-block: 0 var(--bgcf-space-2);
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-text-muted);
+
+	.bgcf-icon {
+		flex: 0 0 auto;
+		color: var(--bgcf-color-secondary);
+	}
+}
+
+.bgcf-card__date time {
+	font-weight: var(--bgcf-font-weight-medium);
+	color: var(--bgcf-color-heading);
+}
+
+.bgcf-card__badge {
+	display: inline-flex;
+	align-items: center;
+	padding: var(--bgcf-space-1) var(--bgcf-space-3);
+	margin-block: var(--bgcf-space-3) 0;
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-text-muted);
+	background-color: var(--bgcf-color-bg-muted);
+	border-radius: var(--bgcf-radius-pill);
+}
+
+.bgcf-card__cta {
+	margin-block: auto 0;
+	padding-block-start: var(--bgcf-space-4);
+
+	a {
+		display: inline-flex;
+		gap: var(--bgcf-space-2);
+		align-items: center;
+		font-family: var(--bgcf-font-heading);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-link);
+		text-decoration: none;
+
+		@include t.focusable;
+
+		.bgcf-icon {
+			@include t.transition(transform, 'fast');
+		}
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-cta);
+
+				.bgcf-icon {
+					transform: translateX(#{t.rem(3)});
+				}
+			}
+		}
+	}
+}

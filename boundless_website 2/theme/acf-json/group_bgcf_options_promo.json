@@ -1,0 +1,165 @@
+{
+    "key": "group_bgcf_options_promo",
+    "title": "Options — Announcement",
+    "fields": [
+        {
+            "key": "field_bgcf_options_promo_promo_note",
+            "label": "How this works",
+            "name": "promo_note",
+            "aria_label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "A small dialog that appears a few seconds after the page loads — for an appeal, a campaign launch or an event. It shows once per visit and is dismissed for the rest of that visit. Clear the heading, or switch it off, and nothing is shown at all.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_bgcf_options_promo_promo_enabled",
+            "label": "Show the announcement",
+            "name": "promo_enabled",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_bgcf_options_promo_promo_title",
+            "label": "Heading",
+            "name": "promo_title",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Required — with no heading, nothing is shown.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_promo_promo_text",
+            "label": "Text",
+            "name": "promo_text",
+            "aria_label": "",
+            "type": "wysiwyg",
+            "instructions": "Two or three sentences at most.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+        },
+        {
+            "key": "field_bgcf_options_promo_promo_image",
+            "label": "Image",
+            "name": "promo_image",
+            "aria_label": "",
+            "type": "image",
+            "instructions": "Optional. 16:9 landscape, at least 1200×675.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_bgcf_options_promo_promo_link",
+            "label": "Button",
+            "name": "promo_link",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_options_promo_promo_delay",
+            "label": "Wait before showing",
+            "name": "promo_delay",
+            "aria_label": "",
+            "type": "range",
+            "instructions": "A few seconds lets a visitor read the page first. Showing it instantly interrupts screen-reader users mid-sentence.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 0,
+            "max": 20,
+            "step": 1,
+            "default_value": 4,
+            "append": " seconds"
+        },
+        {
+            "key": "field_bgcf_options_promo_promo_until",
+            "label": "Stop showing after",
+            "name": "promo_until",
+            "aria_label": "",
+            "type": "date_picker",
+            "instructions": "Optional. The announcement disappears on its own after this date, so an appeal that has closed does not keep announcing itself.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "j F Y",
+            "return_format": "Y-m-d",
+            "first_day": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "bgcf-promo"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

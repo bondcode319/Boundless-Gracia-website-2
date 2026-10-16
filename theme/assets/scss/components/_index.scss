@@ -1,0 +1,50 @@
+// =============================================================================
+// COMPONENTS — index
+// -----------------------------------------------------------------------------
+// Reusable UI pieces, each mapped to the structural classes PHP emits
+// (ARCHITECTURE §3). Order is low-coupling first (skip link, layout wrappers)
+// then content components; nothing here depends on another component's output.
+//
+// Two groups, and the split matters when adding a file:
+//   - Chrome and primitives: used everywhere, and safe to depend on.
+//   - Block components: one file per `bgcf/*` block. These may reference the
+//     section modifiers (`.bgcf-section--bg-primary`) because a block's palette
+//     legitimately depends on the surface it was placed on.
+// =============================================================================
+
+// --- Chrome and primitives --------------------------------------------------
+@forward './skip-link';
+@forward './container';
+@forward './section';
+@forward './section-heading';
+@forward './grid';
+@forward './button';
+@forward './icon';
+@forward './card';
+@forward './entry';
+@forward './archive';
+@forward './breadcrumbs';
+@forward './pagination';
+@forward './prose';
+@forward './forms';
+@forward './form';
+@forward './empty-state';
+@forward './donation';
+@forward './progress';
+@forward './site-header';
+@forward './site-footer';
+@forward './nav';
+@forward './drawer';
+@forward './dashboard';
+@forward './styleguide';
+
+// --- Block components -------------------------------------------------------
+@forward './hero';
+@forward './stats';
+@forward './cta';
+@forward './timeline';
+@forward './carousel';
+@forward './partners';
+@forward './faq';
+@forward './gallery';
+@forward './contact';

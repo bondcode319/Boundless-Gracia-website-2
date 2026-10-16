@@ -1,0 +1,267 @@
+// =============================================================================
+// COMPONENTS / SITE FOOTER
+// -----------------------------------------------------------------------------
+// The Horizon footer: a deep band carrying the brand block, two menu columns, a
+// contact column and the subscribe card, then the accreditation badges, a rule
+// and the bottom bar.
+//
+// `ink-deep` rather than `ink`, so the footer reads as a distinct surface even
+// when a dark section sits directly above it — which happens on every page that
+// ends with a dark call to action, i.e. most of them.
+//
+// FIVE TRACKS AT DESKTOP, and the subscribe card takes two of them. The card
+// holds a form, and a form in a one-fifth column is a column of 160px inputs.
+// Below `lg` the card drops to its own full-width row, which is also where the
+// form stops being cramped.
+//
+// The dark surface uses the `on-dark` token flip so every child — headings,
+// links, borders, focus rings — inverts as one. The subscribe card then flips
+// BACK with `bgcf-u-on-light`, which is why its inputs are dark-on-light while
+// everything around it is light-on-dark.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-site-footer {
+	@include t.on-dark(var(--bgcf-surface-ink-deep));
+
+	margin-block-start: auto; // Pin to the bottom of the flex site shell.
+
+	&__top {
+		display: grid;
+		gap: var(--bgcf-space-xl);
+		padding-block: var(--bgcf-section-space-md);
+
+		@include t.mq(md) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include t.mq(lg) {
+			// brand(1.6) · quick(1) · programmes(1) · contact(1.2) · subscribe(1.8)
+			grid-template-columns:
+				minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr)
+				minmax(0, 1.2fr) minmax(0, 1.8fr);
+		}
+	}
+
+	// The subscribe card spans the full width until there are enough tracks for
+	// it to have two of its own.
+	&__subscribe {
+		@include t.mq(md) {
+			grid-column: 1 / -1;
+		}
+
+		@include t.mq(lg) {
+			grid-column: auto;
+		}
+	}
+
+	&__brand {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bgcf-space-4);
+	}
+
+	&__title {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-xl);
+		font-weight: var(--bgcf-font-weight-bold);
+	}
+
+	&__home {
+		color: var(--bgcf-color-base);
+		text-decoration: none;
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-accent);
+			}
+		}
+	}
+
+	&__intro {
+		max-inline-size: 40ch;
+		color: var(--bgcf-color-primary-100);
+	}
+
+	&__column {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bgcf-space-4);
+	}
+
+	&__heading {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-base);
+		font-weight: var(--bgcf-font-weight-semibold);
+		text-transform: uppercase;
+		letter-spacing: var(--bgcf-tracking-wide);
+		color: var(--bgcf-color-base);
+	}
+
+	// -------------------------------------------------------------------------
+	// Accreditation badges.
+	//
+	// Third-party marks: never recoloured, never cropped. Each sits in a fixed
+	// 40px-tall box and keeps its own aspect ratio, which is the only way a row
+	// of logos from five different organisations looks deliberate.
+	//
+	// They are NOT greyscaled. A monochrome treatment is the fashionable choice
+	// for a partner row, but an accreditation badge is a trust signal and most
+	// accrediting bodies' brand guidelines prohibit recolouring theirs.
+	// -------------------------------------------------------------------------
+	&__badges {
+		@include t.cluster(var(--bgcf-space-8), center, flex-start);
+
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	&__badge {
+		margin: 0;
+	}
+
+	&__badge-image {
+		inline-size: auto;
+		block-size: #{t.rem(40)};
+
+		// A badge supplied as a dark-on-transparent PNG disappears on this band.
+		// A white plate behind it is the only treatment that works for every
+		// supplied file without editing the files themselves.
+		padding: var(--bgcf-space-2);
+		background-color: var(--bgcf-color-base);
+		border-radius: var(--bgcf-radius-sm);
+	}
+
+	&__rule {
+		block-size: 3px;
+		margin-block: var(--bgcf-space-10) 0;
+		background-color: var(--bgcf-color-secondary);
+		border: 0;
+		border-radius: var(--bgcf-radius-pill);
+	}
+
+	// -------------------------------------------------------------------------
+	// Bottom bar.
+	// -------------------------------------------------------------------------
+	&__bar-inner {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-2) var(--bgcf-space-6);
+		align-items: center;
+		justify-content: space-between;
+		padding-block: var(--bgcf-space-6);
+	}
+
+	&__copyright,
+	&__registration {
+		margin: 0;
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-primary-100);
+	}
+
+	&__legal {
+		flex: 0 0 auto;
+	}
+
+	// -------------------------------------------------------------------------
+	// Social row. Icon buttons, in the brand block rather than the bottom bar —
+	// a visitor looking for the organisation's channels looks next to its name.
+	// -------------------------------------------------------------------------
+	&__social .bgcf-nav--social {
+		@include t.cluster(var(--bgcf-space-2), center, flex-start);
+
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	&__social .bgcf-nav--social a {
+		@include t.focusable;
+		@include t.target-size(true);
+		@include t.transition((color, background-color), 'fast');
+
+		display: grid;
+		place-items: center;
+		color: var(--bgcf-color-base);
+		background-color: rgb(var(--bgcf-rgb-base) / 10%);
+		border-radius: var(--bgcf-radius-circle);
+
+		&:hover {
+			color: var(--bgcf-color-primary);
+			background-color: var(--bgcf-color-accent);
+		}
+	}
+
+	// The link text is the network's name, rendered for assistive technology
+	// only — the icon carries it visually, and a row of nine labelled links
+	// would be a paragraph rather than a row.
+	&__social .bgcf-nav__label {
+		@include t.visually-hidden;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Contact column (partials/global/footer-contact.php).
+//
+// Added in 1.2.0, when the `bgcf_footer_contact` hook stopped being an empty
+// promise. Grid rather than flex on each row so a multi-line address stays
+// aligned to its icon instead of centring against it.
+// -----------------------------------------------------------------------------
+.bgcf-site-footer__contact {
+	padding: 0;
+	margin: 0 0 var(--bgcf-space-6);
+	list-style: none;
+}
+
+.bgcf-site-footer__contact-item {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: var(--bgcf-space-3);
+	align-items: start;
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-primary-100);
+
+	& + & {
+		margin-block-start: var(--bgcf-space-3);
+	}
+
+	.bgcf-icon {
+		margin-block-start: #{t.rem(2)};
+		color: var(--bgcf-color-accent);
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-accent);
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.bgcf-site-footer__address {
+	margin: 0;
+	font-style: normal;
+
+	> p {
+		margin: 0;
+	}
+
+	> p + p {
+		margin-block-start: var(--bgcf-space-1);
+	}
+}
+
+.bgcf-site-footer__newsletter-text {
+	margin-block: 0 var(--bgcf-space-4);
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-primary-100);
+}

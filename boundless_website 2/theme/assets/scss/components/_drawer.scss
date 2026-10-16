@@ -1,0 +1,185 @@
+// =============================================================================
+// COMPONENTS / MOBILE DRAWER
+// -----------------------------------------------------------------------------
+// The off-canvas navigation panel. Markup: partials/global/header-drawer.php.
+// Behaviour: assets/js/src/navigation.js.
+//
+// THE CLOSED STATE IS `hidden`, NOT `translate`. A panel that is merely
+// translated off-screen keeps every link in the tab order, so a keyboard user
+// tabbing the header falls into an invisible menu — the single most common
+// mobile-nav accessibility bug. `hidden` removes it from the tree entirely, and
+// JS removes the attribute before animating in.
+//
+// Which means the entry transition needs a frame between `hidden = false` and
+// the open attribute; navigation.js does that with requestAnimationFrame.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-drawer {
+	position: fixed;
+	z-index: var(--bgcf-z-drawer);
+	inset-block: 0;
+	inset-inline-end: 0;
+	display: flex;
+	flex-direction: column;
+	inline-size: min(#{t.rem(400)}, 92vw);
+	background-color: var(--bgcf-color-base);
+	box-shadow: var(--bgcf-shadow-xl);
+
+	// Keep the panel's own scroll from chaining to the page behind it, which is
+	// what makes an open drawer feel like it is scrolling the wrong thing.
+	overscroll-behavior: contain;
+
+	@include t.transition(transform, 'base', 'emphasized');
+
+	@include t.motion-ok {
+		transform: translateX(100%);
+
+		&[data-bgcf-open] {
+			transform: translateX(0);
+		}
+	}
+
+	// The drawer is navigation on small screens only. Above the breakpoint the
+	// header bar carries the menu, and `[hidden]` keeps this out of the way —
+	// but the rule below is a safety net for a viewport resized while open.
+	@include t.mq(lg) {
+		display: none;
+	}
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__head {
+		display: flex;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: space-between;
+		padding: var(--bgcf-space-4) var(--bgcf-space-5);
+		border-block-end: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	}
+
+	&__title {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-text-muted);
+		text-transform: uppercase;
+		letter-spacing: var(--bgcf-tracking-wider);
+	}
+
+	&__close {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		color: var(--bgcf-color-primary);
+		background: none;
+		border: 0;
+		border-radius: var(--bgcf-radius-md);
+		cursor: pointer;
+
+		@include t.target-size(true);
+		@include t.focusable;
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-cta);
+			}
+		}
+	}
+
+	&__body {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		gap: var(--bgcf-space-6);
+		padding: var(--bgcf-space-5);
+		overflow-y: auto;
+	}
+
+	&__actions {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bgcf-space-3);
+	}
+
+	&__contact {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		li + li {
+			margin-block-start: var(--bgcf-space-2);
+		}
+
+		a {
+			display: flex;
+			gap: var(--bgcf-space-2);
+			align-items: center;
+			min-block-size: var(--bgcf-target-size-comfortable);
+			font-size: var(--bgcf-font-size-sm);
+			color: var(--bgcf-color-text);
+			text-decoration: none;
+
+			@include t.focusable;
+
+			@include t.hover {
+				&:hover {
+					color: var(--bgcf-color-cta);
+				}
+			}
+		}
+
+		.bgcf-icon {
+			flex: 0 0 auto;
+			color: var(--bgcf-color-secondary);
+		}
+	}
+
+	&__social .bgcf-nav--social a {
+		color: var(--bgcf-color-primary);
+	}
+}
+
+// The scrim. Clickable, but never the only way out — ESC and the close button
+// both work, which is what the APG dialog pattern requires.
+.bgcf-drawer-backdrop {
+	position: fixed;
+	z-index: var(--bgcf-z-overlay);
+	inset: 0;
+	background-color: rgb(var(--bgcf-rgb-ink) / 55%);
+	border: 0;
+
+	@include t.transition(opacity, 'base');
+
+	@include t.motion-ok {
+		opacity: 0;
+
+		&[data-bgcf-open] {
+			opacity: 1;
+		}
+	}
+
+	@include t.mq(lg) {
+		display: none;
+	}
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+// Scroll lock. Set on <html> by navigation.js.
+//
+// `overflow: hidden` rather than `position: fixed` on the body: the fixed-body
+// technique loses the scroll position on iOS, which returns the visitor to the
+// top of the page every time they close the menu.
+.bgcf-has-drawer,
+.bgcf-has-lightbox,
+.bgcf-has-modal {
+	overflow: hidden;
+}

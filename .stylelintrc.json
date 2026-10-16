@@ -1,0 +1,78 @@
+{
+	"extends": "stylelint-config-standard-scss",
+	"rules": {
+		"color-no-hex": [
+			true,
+			{
+				"message": "Use a design token (CLAUDE.md): $color-* from settings, or var(--bgcf-color-*)."
+			}
+		],
+		"custom-property-pattern": [
+			"^bgcf-[a-z0-9]+(-[a-z0-9]+)*$",
+			{
+				"message": "Custom properties are namespaced: --bgcf-thing-name (ARCHITECTURE §3)."
+			}
+		],
+		"selector-class-pattern": [
+			"^(bgcf-[a-z0-9]+(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?|is-[a-z0-9-]+|has-[a-z0-9-]+|no-js|js|screen-reader-text|skip-link|sticky|alignwide|alignfull|alignnone|aligncenter|alignleft|alignright|wp-[a-z0-9-]+(__[a-z0-9-]+)?|editor-styles-wrapper|block-editor-[a-z0-9-]+|components-[a-z0-9-]+|login|input|button-primary|admin-bar|custom-logo(-link)?|current(-[a-z0-9-]+)*|menu-item(-[a-z0-9-]+)*|sub-menu|children|page-numbers|dots|prev|next|nav-links|comment[a-z0-9-]*|says|bypostauthor|gallery[a-z0-9-]*|swiper[a-z0-9-]*|give[a-z0-9-]*|wpcf7[a-z0-9-]*|row|col(-[a-z0-9]+)*|g-[0-9]+)$",
+			{
+				"message": "Theme classes are BEM under the bgcf- namespace: .bgcf-block__element--modifier (ARCHITECTURE §3). Classes owned by WordPress core or a plugin must be added to this allowlist."
+			}
+		],
+		"scss/dollar-variable-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+		"scss/at-mixin-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+		"scss/at-function-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+		"scss/percent-placeholder-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+		"scss/no-global-function-names": true,
+		"declaration-property-value-no-unknown": true,
+		"media-feature-name-no-vendor-prefix": true,
+
+		"font-family-name-quotes": "always-unless-keyword",
+
+		"number-max-precision": 5,
+
+		"media-feature-name-no-unknown": [
+			true,
+			{
+				"ignoreMediaFeatureNames": ["screen-spanning", "horizontal-viewport-segments", "vertical-viewport-segments"]
+			}
+		],
+
+		"no-descending-specificity": null,
+
+		"selector-not-notation": null,
+
+		"scss/operator-no-newline-after": null,
+
+		"scss/dollar-variable-empty-line-before": null,
+		"custom-property-empty-line-before": null,
+		"comment-empty-line-before": null,
+		"scss/comment-no-empty": null,
+		"scss/double-slash-comment-empty-line-before": null
+	},
+	"overrides": [
+		{
+			"files": ["theme/assets/scss/settings/**/*.scss"],
+			"rules": {
+				"color-no-hex": null,
+				"color-hex-length": null,
+				"custom-property-pattern": null,
+				"scss/operator-no-newline-after": null
+			}
+		},
+		{
+			"files": ["theme/assets/scss/vendor/**/*.scss"],
+			"rules": {
+				"color-no-hex": null,
+				"scss/dollar-variable-pattern": null,
+				"scss/at-import-partial-extension": null,
+				"scss/load-no-partial-leading-underscore": null,
+				"scss/no-global-function-names": null
+			}
+		}
+	],
+	"ignoreFiles": [
+		"theme/assets/css/**",
+		"node_modules/**"
+	]
+}

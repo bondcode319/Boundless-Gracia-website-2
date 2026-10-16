@@ -1,0 +1,113 @@
+// =============================================================================
+// COMPONENTS / CALL TO ACTION
+// -----------------------------------------------------------------------------
+// The conversion band. Markup: partials/blocks/block-cta.php.
+//
+// Two layouts from one component: centred (copy only) and split (image beside
+// copy). The split variant puts the image FIRST in the DOM and reorders it with
+// grid on wide screens, so on a phone the picture introduces the ask rather
+// than interrupting it.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-cta {
+	display: grid;
+	gap: var(--bgcf-space-8);
+	align-items: center;
+
+	@include t.reveal-from('y');
+
+	&__copy {
+		max-inline-size: var(--bgcf-measure);
+	}
+
+	&__eyebrow {
+		margin-block: 0 var(--bgcf-space-2);
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-semibold);
+		text-transform: uppercase;
+		letter-spacing: var(--bgcf-tracking-wider);
+		opacity: 0.85;
+	}
+
+	&__heading {
+		margin-block: 0 var(--bgcf-space-3);
+		font-size: #{t.fluid(26, 40)};
+		color: inherit;
+		text-wrap: balance;
+	}
+
+	&__text {
+		margin-block-end: var(--bgcf-space-6);
+
+		> p:last-child {
+			margin-block-end: 0;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-3);
+	}
+
+	&__media {
+		border-radius: var(--bgcf-radius-xl);
+		overflow: hidden;
+		box-shadow: var(--bgcf-shadow-lg);
+	}
+
+	&__image {
+		inline-size: 100%;
+		block-size: 100%;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+}
+
+// Centred variant.
+.bgcf-block-cta--centered .bgcf-cta {
+	justify-items: center;
+	text-align: center;
+
+	.bgcf-cta__copy {
+		margin-inline: auto;
+	}
+
+	.bgcf-cta__actions {
+		justify-content: center;
+	}
+}
+
+// Split variant: image left, copy right, above the breakpoint.
+.bgcf-block-cta--split .bgcf-cta {
+	@include t.mq(md) {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+	}
+}
+
+// On the dark and emerald backgrounds the inherited text colour is inverse, so
+// the ghost button needs the inverse border too.
+.bgcf-section--bg-primary,
+.bgcf-section--bg-secondary {
+	.bgcf-cta {
+		--bgcf-color-focus: var(--bgcf-color-focus-inverse);
+
+		color: var(--bgcf-color-text-inverse);
+
+		.bgcf-btn--ghost {
+			color: var(--bgcf-color-text-inverse);
+			border-color: rgb(var(--bgcf-rgb-base) / 55%);
+
+			@include t.hover {
+				&:hover {
+					color: var(--bgcf-color-primary);
+					background-color: var(--bgcf-color-base);
+					border-color: var(--bgcf-color-base);
+				}
+			}
+		}
+	}
+}

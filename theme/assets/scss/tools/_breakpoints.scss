@@ -1,0 +1,122 @@
+// =============================================================================
+// TOOLS / BREAKPOINTS
+// -----------------------------------------------------------------------------
+// Mobile-first media query helpers. Always reach for `mq()` — never write a raw
+// `@media (min-width: 768px)`, or the breakpoint map stops being the source of
+// truth.
+//
+//   @include mq(md)            { … }  // >= 768px
+//   @include mq-down(md)       { … }  // <= 767.98px
+//   @include mq-between(sm, lg){ … }  // 480px – 1023.98px
+//   @include foldable          { … }  // <= 400px, e.g. folded cover screens
+//   @include dual-screen       { … }  // hinged / two-segment viewports
+//   @include hover             { … }  // real pointers only
+//   @include motion-ok         { … }  // see tools/_motion.scss
+// =============================================================================
+
+@use 'sass:map';
+@use 'sass:math';
+@use '../settings/breakpoints' as bp;
+
+/// Resolve a breakpoint name (or pass a raw length straight through).
+@function value($name) {
+	@if map.has-key(bp.$breakpoints, $name) {
+		@return map.get(bp.$breakpoints, $name);
+	}
+
+	@if math.is-unitless($name) == false {
+		@return $name;
+	}
+
+	@error 'Unknown breakpoint `#{$name}`. Available: #{map.keys(bp.$breakpoints)}.';
+}
+
+/// Upper bound for a max-width query. 0.02px avoids the overlap that whole-pixel
+/// subtraction causes on fractional-DPI displays.
+@function upper($name) {
+	@return value($name) - 0.02px;
+}
+
+/// Min-width query. `xs` (0) emits no media query at all — that is the
+/// mobile-first base, and wrapping it would only bloat the sheet.
+@mixin mq($name) {
+	$min: value($name);
+
+	@if $min == 0 {
+		@content;
+	} @else {
+		@media (min-width: $min) {
+			@content;
+		}
+	}
+}
+
+/// Max-width query. Use sparingly: it fights the mobile-first cascade.
+@mixin mq-down($name) {
+	@media (max-width: upper($name)) {
+		@content;
+	}
+}
+
+/// Bounded range.
+@mixin mq-between($from, $to) {
+	@media (min-width: value($from)) and (max-width: upper($to)) {
+		@content;
+	}
+}
+
+/// Foldables and very narrow phones (Galaxy Fold cover screen reports 280px).
+/// Layouts must not break below this; the mixin is for the tightening pass.
+@mixin foldable {
+	@media (max-width: bp.$foldable-max) {
+		@content;
+	}
+}
+
+/// Hinged / dual-screen devices. `horizontal-viewport-segments` is the shipping
+/// name; `screen-spanning` is the older Edge/Duo syntax kept for coverage.
+@mixin dual-screen {
+	@media (horizontal-viewport-segments = 2) {
+		@content;
+	}
+
+	@media (screen-spanning: single-fold-vertical) {
+		@content;
+	}
+}
+
+/// Short viewports — landscape phones, where a full-height hero is unusable.
+@mixin short-viewport {
+	@media (height <= 34rem) and (orientation: landscape) {
+		@content;
+	}
+}
+
+/// True hover capability. Guards hover-only affordances so touch users are not
+/// left with a state they can never reach.
+@mixin hover {
+	@media #{bp.$hover-query} {
+		@content;
+	}
+}
+
+/// Touch / coarse pointers.
+@mixin touch {
+	@media #{bp.$touch-query} {
+		@content;
+	}
+}
+
+/// Windows High Contrast Mode and other forced-colour modes.
+@mixin forced-colors {
+	@media #{bp.$forced-colors-query} {
+		@content;
+	}
+}
+
+/// Print.
+@mixin print {
+	@media print {
+		@content;
+	}
+}

@@ -1,0 +1,65 @@
+// =============================================================================
+// ELEMENTS / PAGE
+// -----------------------------------------------------------------------------
+// html and body. The document's typographic and colour baseline; everything
+// else inherits from here.
+// =============================================================================
+
+@use '../tools' as t;
+
+html {
+	// The root font size is NEVER overridden. A user who has set 20px in their
+	// browser preferences must get 20px; every token is a rem multiple of it.
+	font-family: var(--bgcf-font-body);
+	color-scheme: light;
+	-webkit-tap-highlight-color: rgb(var(--bgcf-rgb-primary) / 12%);
+}
+
+body {
+	font-family: var(--bgcf-font-body);
+	font-size: var(--bgcf-font-size-base);
+	font-weight: var(--bgcf-font-weight-regular);
+	line-height: var(--bgcf-line-height-relaxed);
+	color: var(--bgcf-color-text);
+	background-color: var(--bgcf-color-base);
+	// Grayscale antialiasing makes Inter noticeably lighter on macOS; the
+	// combination below is the closest match to how the type was designed.
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	// Enable Inter's contextual alternates and tabular figures where they help
+	// (statistics counters opt into `tnum` explicitly in their own component).
+	font-feature-settings: 'cv11', 'ss01';
+	font-variant-ligatures: contextual;
+}
+
+// The site shell. `min-height` on a flex column keeps a short page's footer at
+// the bottom of the viewport instead of floating mid-screen.
+.bgcf-site {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-height: 100svh;
+	overflow-x: clip;
+}
+
+// The single <main> landmark, opened by header.php and closed by footer.php.
+// `tabindex="-1"` makes it a valid skip-link target; the focus ring is
+// suppressed because the landmark is not an interactive control and a full-page
+// outline is disorienting. Focus still MOVES there, which is what matters.
+.bgcf-main {
+	display: block;
+	flex: 1 0 auto;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+@include t.print {
+	body {
+		font-size: 12pt;
+		line-height: 1.4;
+		color: var(--bgcf-color-ink);
+		background: var(--bgcf-color-base);
+	}
+}

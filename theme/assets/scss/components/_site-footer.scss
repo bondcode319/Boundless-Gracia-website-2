@@ -1,0 +1,165 @@
+// =============================================================================
+// COMPONENTS / SITE FOOTER  (PHASE 1 BASELINE)
+// -----------------------------------------------------------------------------
+// Baseline for the footer markup in footer.php: a dark brand band with the
+// brand block, menu columns, a contact column and a bottom bar (copyright, legal
+// and social). Phase 2 wires the real contact details, newsletter and socials
+// from the Footer options page. The dark surface uses the `on-dark` token flip
+// so every child — headings, links, borders, focus rings — inverts as one.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-site-footer {
+	@include t.on-dark(var(--bgcf-color-primary));
+
+	margin-block-start: auto; // Pin to the bottom of the flex site shell.
+
+	&__inner {
+		display: grid;
+		gap: var(--bgcf-space-xl);
+		padding-block: var(--bgcf-section-space-md);
+
+		@include t.mq(md) {
+			grid-template-columns: 1.5fr 1fr 1fr;
+		}
+
+		@include t.mq(lg) {
+			grid-template-columns: 2fr 1fr 1fr 1.5fr;
+		}
+	}
+
+	&__brand {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bgcf-space-4);
+	}
+
+	&__title {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-xl);
+		font-weight: var(--bgcf-font-weight-bold);
+	}
+
+	&__home {
+		color: var(--bgcf-color-base);
+		text-decoration: none;
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-accent);
+			}
+		}
+	}
+
+	&__intro {
+		max-inline-size: 40ch;
+		color: var(--bgcf-color-primary-100);
+	}
+
+	&__column {
+		display: flex;
+		flex-direction: column;
+		gap: var(--bgcf-space-4);
+	}
+
+	&__heading {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-base);
+		font-weight: var(--bgcf-font-weight-semibold);
+		text-transform: uppercase;
+		letter-spacing: var(--bgcf-tracking-wide);
+		color: var(--bgcf-color-base);
+	}
+
+	// -------------------------------------------------------------------------
+	// Bottom bar.
+	// -------------------------------------------------------------------------
+	&__bar {
+		border-block-start: var(--bgcf-border-width) solid var(--bgcf-color-primary-600);
+	}
+
+	&__bar-inner {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-4);
+		align-items: center;
+		justify-content: space-between;
+		padding-block: var(--bgcf-space-5);
+	}
+
+	&__copyright {
+		margin: 0;
+		font-size: var(--bgcf-font-size-sm);
+		color: var(--bgcf-color-primary-100);
+	}
+
+	&__legal,
+	&__social {
+		flex: 0 0 auto;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Contact column (partials/global/footer-contact.php).
+//
+// Added in 1.2.0, when the `bgcf_footer_contact` hook stopped being an empty
+// promise. Grid rather than flex on each row so a multi-line address stays
+// aligned to its icon instead of centring against it.
+// -----------------------------------------------------------------------------
+.bgcf-site-footer__contact {
+	padding: 0;
+	margin: 0 0 var(--bgcf-space-6);
+	list-style: none;
+}
+
+.bgcf-site-footer__contact-item {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: var(--bgcf-space-3);
+	align-items: start;
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-primary-100);
+
+	& + & {
+		margin-block-start: var(--bgcf-space-3);
+	}
+
+	.bgcf-icon {
+		margin-block-start: #{t.rem(2)};
+		color: var(--bgcf-color-accent);
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-accent);
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.bgcf-site-footer__address {
+	margin: 0;
+	font-style: normal;
+
+	> p {
+		margin: 0;
+	}
+
+	> p + p {
+		margin-block-start: var(--bgcf-space-1);
+	}
+}
+
+.bgcf-site-footer__newsletter-text {
+	margin-block: 0 var(--bgcf-space-4);
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-primary-100);
+}

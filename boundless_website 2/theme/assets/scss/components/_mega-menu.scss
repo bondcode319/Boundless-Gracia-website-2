@@ -1,0 +1,286 @@
+// =============================================================================
+// COMPONENTS / MEGA MENU
+// -----------------------------------------------------------------------------
+// The desktop navigation bar and its full-width dropdown panels. Markup comes
+// from `inc/mega-menu.php`; behaviour from `assets/js/src/mega-menu.js`.
+//
+// WHY THE PANEL IS NOT `display: none`
+// ------------------------------------
+// The panel carries the `hidden` attribute while closed. That is what keeps its
+// links out of the tab order and out of the accessibility tree — the two things
+// a `visibility: hidden` / `opacity: 0` panel gets wrong, and the reason
+// "invisible menu steals the Tab key" is such a common bug. The script toggles
+// the attribute; this file only styles the two resulting states.
+//
+// `hidden` implies `display: none`, which cannot be transitioned. To animate the
+// open anyway, the script removes `hidden` FIRST and adds `.is-open` on the next
+// frame; the closed-but-not-hidden moment in between is the state the transition
+// starts from. On close the `hidden` attribute goes back only after the
+// transition ends. None of that timing is expressed here — this file only needs
+// both states to be describable, which is why the closed state is `opacity: 0`
+// on an element that is `display: block` the moment it stops being `hidden`.
+//
+// THE BAR IS NOT RENDERED BELOW `lg`. The drawer takes over there (see
+// `_drawer-nav.scss`), and the bar is `display: none` rather than merely
+// invisible, so a screen reader at phone width meets one menu rather than two.
+// =============================================================================
+
+@use '../tools' as t;
+
+// A panel trigger (a `<button>`) and a plain top-level item (an `<a>`) must be
+// indistinguishable to look at. A mixin rather than two copies of the same
+// twenty declarations, so a padding change cannot drift between them — and a
+// mixin rather than `@extend`, because `@extend` from inside a nested block
+// hoists the selector out of its parent in ways that are hard to predict.
+@mixin bgcf-mega-top-control {
+	@include t.focusable;
+	@include t.transition((color, background-color), 'fast');
+
+	position: relative;
+	display: inline-flex;
+	gap: var(--bgcf-space-1);
+	align-items: center;
+	padding: var(--bgcf-space-2) var(--bgcf-space-3);
+	font-family: var(--bgcf-font-body);
+	font-size: var(--bgcf-font-size-base);
+	font-weight: var(--bgcf-font-weight-medium);
+	line-height: var(--bgcf-line-height-normal);
+	color: var(--bgcf-color-text);
+	text-decoration: none;
+	cursor: pointer;
+	background: none;
+	border: 0;
+	border-radius: var(--bgcf-radius-md);
+
+	&:hover {
+		color: var(--bgcf-color-link-hover);
+		background-color: var(--bgcf-color-bg-subtle);
+	}
+
+	// The current branch is marked with weight AND a rule, never with colour
+	// alone — WCAG 1.4.1.
+	&.is-current {
+		font-weight: var(--bgcf-font-weight-semibold);
+
+		&::after {
+			position: absolute;
+			inset-inline: var(--bgcf-space-3);
+			inset-block-end: 2px;
+			block-size: 2px;
+			background-color: var(--bgcf-color-cta);
+			border-radius: var(--bgcf-radius-pill);
+			content: '';
+		}
+	}
+}
+
+.bgcf-mega {
+	display: none;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	// The bar only exists at laptop width and up.
+	@include t.mq(lg) {
+		@include t.cluster(var(--bgcf-space-1), center, center);
+	}
+
+	// -------------------------------------------------------------------------
+	// Top level.
+	// -------------------------------------------------------------------------
+	&__item {
+		position: relative;
+	}
+
+	&__trigger {
+		@include bgcf-mega-top-control;
+	}
+
+	&__top-link {
+		@include bgcf-mega-top-control;
+	}
+
+	&__chevron {
+		@include t.transition(transform, 'fast');
+
+		flex: none;
+		inline-size: 1em;
+		block-size: 1em;
+	}
+
+	// The chevron points down when closed and up when open. That is the only
+	// state this component conveys with a glyph; `aria-expanded` on the button
+	// carries the same information for assistive technology.
+	&__trigger[aria-expanded='true'] .bgcf-mega__chevron {
+		transform: rotate(180deg);
+	}
+
+	// -------------------------------------------------------------------------
+	// Panel.
+	// Positioned against the HEADER, not against the item, so it spans the full
+	// window width and its left edge does not chase the trigger along the bar.
+	// `_site-header.scss` supplies the `position: relative` it resolves against.
+	// -------------------------------------------------------------------------
+	&__panel {
+		@include t.transition((opacity, transform), 'fast', 'standard');
+
+		position: absolute;
+		z-index: var(--bgcf-z-dropdown);
+		inset-inline: 0;
+		inset-block-start: 100%;
+
+		// A panel wider than the viewport would scroll the page sideways. With
+		// `inset-inline: 0` that needs a transformed ancestor to happen — and
+		// the header IS transformed while it hides on scroll — so the guard is
+		// cheap insurance.
+		max-inline-size: 100vw;
+		padding-block: var(--bgcf-space-8);
+		overflow: hidden;
+
+		// The closed-but-rendered state the open transition starts from. See the
+		// file header for why this is not `display: none`.
+		opacity: 0;
+		background-color: var(--bgcf-color-base);
+		border-block-start: var(--bgcf-border-width) solid var(--bgcf-color-border-subtle);
+		box-shadow: var(--bgcf-shadow-lg);
+		transform: translateY(calc(var(--bgcf-space-2) * -1));
+
+		// `hidden` wins over everything: a panel the script has not opened must
+		// be gone from the layout and the a11y tree, whatever else this file says.
+		&[hidden] {
+			display: none;
+		}
+
+		&.is-open {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	&__panel-inner {
+		// The panel is positioned against the header, so it needs its own
+		// container to line its contents up with the rest of the page.
+		margin-inline: auto;
+	}
+
+	&__grid {
+		display: grid;
+
+		// Four columns is the design. Two on a narrow laptop, where four 240px
+		// cells would be cramped.
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--bgcf-space-2) var(--bgcf-space-6);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		@include t.mq(xl) {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	&__cell {
+		margin: 0;
+	}
+
+	// -------------------------------------------------------------------------
+	// Cell. The whole cell is the link — see partials/global/mega-cell.php for
+	// why that is right here and wrong on a card.
+	// -------------------------------------------------------------------------
+	&__link {
+		@include t.focusable;
+		@include t.transition(background-color, 'fast');
+
+		display: flex;
+		gap: var(--bgcf-space-3);
+		align-items: flex-start;
+		padding: var(--bgcf-space-3);
+		text-decoration: none;
+		border-radius: var(--bgcf-radius-md);
+
+		&:hover {
+			background-color: var(--bgcf-color-bg-subtle);
+		}
+
+		&.is-current {
+			background-color: var(--bgcf-color-primary-50);
+		}
+	}
+
+	&__icon {
+		@include t.transition((background-color, color), 'fast');
+
+		display: grid;
+		flex: none;
+		place-items: center;
+		inline-size: t.rem(40);
+		block-size: t.rem(40);
+		color: var(--bgcf-color-primary);
+		background-color: var(--bgcf-color-primary-50);
+		border-radius: var(--bgcf-radius-circle);
+
+		> svg {
+			inline-size: t.rem(20);
+			block-size: t.rem(20);
+		}
+
+		.bgcf-mega__link:hover & {
+			color: var(--bgcf-color-base);
+			background-color: var(--bgcf-color-primary);
+		}
+	}
+
+	&__body {
+		display: block;
+		min-inline-size: 0;
+	}
+
+	&__title {
+		display: block;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-base);
+		font-weight: var(--bgcf-font-weight-semibold);
+		line-height: var(--bgcf-line-height-snug);
+		color: var(--bgcf-color-heading);
+	}
+
+	&__desc {
+		// One line is the design, but a translation runs longer and truncating
+		// at one line would hide information. Two lines, then ellipsis.
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		margin-block-start: var(--bgcf-space-1);
+		overflow: hidden;
+		font-size: var(--bgcf-font-size-sm);
+		line-height: var(--bgcf-line-height-normal);
+		color: var(--bgcf-color-text-muted);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// On the overlay header the bar sits on a photograph, so its text is white and
+// its hover fill is a translucent white rather than the light-grey token (which
+// would be invisible against the scrim).
+//
+// Scoped to the header's own modifier AND to the state before it turns solid:
+// once `.is-stuck` is set the bar is back on a white band and the default
+// treatment is correct again.
+// -----------------------------------------------------------------------------
+.bgcf-site-header--overlay:not(.is-stuck) {
+	.bgcf-mega__trigger,
+	.bgcf-mega__top-link {
+		color: var(--bgcf-color-base);
+
+		&:hover {
+			color: var(--bgcf-color-accent);
+			background-color: rgb(var(--bgcf-rgb-base) / 14%);
+		}
+	}
+
+	// The panel itself is always a white sheet, so everything inside it keeps
+	// the light-surface treatment even while the bar above it is inverted.
+	.bgcf-mega__panel {
+		@include t.on-light;
+	}
+}

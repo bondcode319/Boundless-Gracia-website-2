@@ -1,0 +1,69 @@
+// =============================================================================
+// ELEMENTS / MEDIA
+// -----------------------------------------------------------------------------
+// Images, figures and embeds. The reset already set `max-width: 100%` and
+// `display: block`; this file handles the editorial wrappers (figure/figcaption)
+// and keeps responsive embeds from causing layout shift.
+//
+// `.bgcf-image` is the class the thumbnail helper emits; it is styled minimally
+// here and shaped by whichever card/hero component contains it.
+// =============================================================================
+
+// The rounded, cover-fit image the theme's helper produces. Object-fit needs an
+// explicit sizing context, which the containing component provides; on its own
+// the image just fills its box.
+.bgcf-image {
+	max-width: 100%;
+	height: auto;
+	border-radius: inherit; // Adopt the container's corner (card, media frame).
+}
+
+// The optional permalink wrapper the thumbnail helper adds. It is aria-hidden
+// and tabindex="-1" (the card title carries the real link), so it must not add a
+// second focusable stop or an underline.
+.bgcf-image-link {
+	display: block;
+	text-decoration: none;
+	border-radius: inherit;
+}
+
+// -----------------------------------------------------------------------------
+// Figures and captions in prose.
+// -----------------------------------------------------------------------------
+
+figure:not([class]) {
+	margin-block: var(--bgcf-space-lg);
+	margin-inline: 0;
+
+	img {
+		border-radius: var(--bgcf-radius-lg);
+	}
+}
+
+figcaption {
+	margin-block-start: var(--bgcf-space-3);
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-text-muted);
+	text-align: start;
+}
+
+// -----------------------------------------------------------------------------
+// Responsive embeds (WordPress wraps oEmbeds in `.wp-block-embed__wrapper`).
+// An intrinsic-ratio box keeps CLS at zero regardless of the provider.
+// -----------------------------------------------------------------------------
+
+.wp-block-embed__wrapper {
+	iframe,
+	object,
+	embed,
+	video {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+	}
+}
+
+// SVGs used inline as decoration inherit the text colour and never overflow.
+svg {
+	fill: currentcolor;
+}

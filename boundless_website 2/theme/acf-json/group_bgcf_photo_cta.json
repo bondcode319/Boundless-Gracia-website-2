@@ -1,0 +1,149 @@
+{
+    "key": "group_bgcf_photo_cta",
+    "title": "Block — Photo CTA",
+    "fields": [
+        {
+            "key": "field_bgcf_photo_cta_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_photo_cta_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_photo_cta_text",
+            "label": "One supporting sentence",
+            "name": "text",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_photo_cta_image",
+            "label": "Background photograph",
+            "name": "image",
+            "aria_label": "",
+            "type": "image",
+            "instructions": "Landscape, at least 1920px across. It is cropped to a short band, so keep the subject near the centre.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_bgcf_photo_cta_link",
+            "label": "Button",
+            "name": "link",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_photo_cta_link_alt",
+            "label": "Second button",
+            "name": "link_alt",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "Optional, lower emphasis.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_photo_cta_scrim",
+            "label": "How dark the wash is",
+            "name": "scrim",
+            "aria_label": "",
+            "type": "range",
+            "instructions": "Raise it for a busy or pale photograph. It cannot go below 55% — that is the point where white text stops being readable.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 55,
+            "max": 85,
+            "step": 5,
+            "default_value": 62,
+            "append": "%"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/photo-cta"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/photo-cta"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "A photograph behind a deep-blue wash, with a centred heading and a button. The wash is what keeps the white text readable, so any well-composed photo works.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

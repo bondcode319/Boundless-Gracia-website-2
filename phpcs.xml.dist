@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<ruleset name="BGCF">
+	<description>WordPress Coding Standards for the Boundless Gracia Children Foundation theme.</description>
+
+	<!-- What to scan. -->
+	<file>theme</file>
+
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/languages/*</exclude-pattern>
+	<!-- Build artefacts, not authored code (ARCHITECTURE §1). -->
+	<exclude-pattern>theme/assets/css/*</exclude-pattern>
+	<exclude-pattern>theme/assets/js/vendor/*</exclude-pattern>
+	<exclude-pattern>theme/assets/js/main.js</exclude-pattern>
+
+	<!-- Only PHP; JS and CSS are covered by eslint and stylelint. -->
+	<arg name="extensions" value="php"/>
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg name="parallel" value="8"/>
+	<arg value="sp"/>
+
+	<!-- The standard. -->
+	<rule ref="WordPress">
+		<!--
+			The theme is a modern PHP 8 codebase: short array syntax and strict
+			file naming are not helpful constraints here, and template files are
+			deliberately not class files.
+		-->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+	</rule>
+
+	<!-- CLAUDE.md: everything is prefixed bgcf_ / BGCF_. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="bgcf"/>
+				<element value="BGCF"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- CLAUDE.md: text domain is `bgcf`, always literal. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="bgcf"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Minimum supported WordPress version for deprecation/compat checks. -->
+	<config name="minimum_wp_version" value="6.5"/>
+
+	<!-- PHP 8.0+ per CLAUDE.md. Requires PHPCompatibilityWP. -->
+	<config name="testVersion" value="8.0-"/>
+	<rule ref="PHPCompatibilityWP"/>
+</ruleset>

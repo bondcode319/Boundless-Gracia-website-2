@@ -1,0 +1,229 @@
+{
+    "key": "group_bgcf_action_grid",
+    "title": "Block — Action Grid",
+    "fields": [
+        {
+            "key": "field_bgcf_action_grid_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_action_grid_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_action_grid_lead",
+            "label": "Intro paragraph",
+            "name": "lead",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_action_grid_background",
+            "label": "Band colour",
+            "name": "background",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "page": "White — the quiet band",
+                "soft": "Light grey — the default band",
+                "sand": "Warm yellow — the impact band",
+                "bloom": "Warm orange — the news band",
+                "leaf": "Pale emerald — the programmes band",
+                "ink": "Deep blue — a dark band",
+                "secondary": "Emerald — a dark band"
+            },
+            "return_format": "value",
+            "default_value": "soft"
+        },
+        {
+            "key": "field_bgcf_action_grid_columns",
+            "label": "Cards per row",
+            "name": "columns",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "Two",
+                "3": "Three",
+                "4": "Four"
+            },
+            "return_format": "value",
+            "default_value": 3
+        },
+        {
+            "key": "field_bgcf_action_grid_items",
+            "label": "Ways to help",
+            "name": "items",
+            "aria_label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add a way to help",
+            "min": 1,
+            "max": 12,
+            "sub_fields": [
+                {
+                    "key": "field_bgcf_action_grid_items_image",
+                    "label": "Image",
+                    "name": "image",
+                    "aria_label": "",
+                    "type": "image",
+                    "instructions": "4:3 landscape, at least 1200×900.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all"
+                },
+                {
+                    "key": "field_bgcf_action_grid_items_eyebrow",
+                    "label": "Small label",
+                    "name": "eyebrow",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_action_grid_items_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_action_grid_items_text",
+                    "label": "One or two sentences",
+                    "name": "text",
+                    "aria_label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_bgcf_action_grid_items_link",
+                    "label": "Button",
+                    "name": "link",
+                    "aria_label": "",
+                    "type": "link",
+                    "instructions": "The link text you type becomes the button label.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/action-grid"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/action-grid"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Ways to get involved, each with its own button. This is the one block where every card is a primary action — that is what the Take Action page is for.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

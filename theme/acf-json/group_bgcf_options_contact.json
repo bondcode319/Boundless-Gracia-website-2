@@ -1,0 +1,149 @@
+{
+    "key": "group_bgcf_options_contact",
+    "title": "Options — Contact details",
+    "fields": [
+        {
+            "key": "field_bgcf_options_contact_contact_address",
+            "label": "Postal address",
+            "name": "contact_address",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_options_contact_contact_phone",
+            "label": "Phone number",
+            "name": "contact_phone",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Shown as a tap-to-call link on phones.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_contact_contact_email",
+            "label": "Email address",
+            "name": "contact_email",
+            "aria_label": "",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_contact_contact_hours",
+            "label": "Opening hours",
+            "name": "contact_hours",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_contact_contact_map_embed",
+            "label": "Google Maps place query",
+            "name": "contact_map_embed",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "The place name or coordinates to centre the map on, e.g. “Boundless Gracia, Kampala”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_contact_error_404_cta",
+            "label": "“Page not found” button",
+            "name": "error_404_cta",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "A second route back for visitors who hit a dead link.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_options_contact_privacy_link",
+            "label": "Privacy policy",
+            "name": "privacy_link",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_options_contact_notify_email",
+            "label": "Send form notifications to",
+            "name": "notify_email",
+            "aria_label": "",
+            "type": "email",
+            "instructions": "Volunteer applications and contact messages are emailed here. Defaults to the site admin address.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "bgcf-global-ctas"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

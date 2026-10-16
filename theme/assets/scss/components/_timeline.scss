@@ -1,0 +1,139 @@
+// =============================================================================
+// COMPONENTS / TIMELINE
+// -----------------------------------------------------------------------------
+// Chronological milestones. Markup: partials/blocks/block-timeline.php (an
+// ordered list, because the order is the meaning).
+//
+// The connecting line and the markers are drawn with pseudo-elements. Nothing
+// in the markup exists only to be decorated, so a screen reader hears "1 of 7,
+// 2014, Our first classroom" and never the word "line" or "dot".
+//
+// Both are `forced-colors` aware: in Windows High Contrast Mode a
+// `background-color` line disappears, so the line becomes a border there.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-timeline {
+	--bgcf-timeline-marker: #{t.rem(14)};
+	--bgcf-timeline-gutter: #{t.rem(32)};
+
+	position: relative;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	&__item {
+		position: relative;
+		padding-inline-start: var(--bgcf-timeline-gutter);
+		padding-block-end: var(--bgcf-space-8);
+
+		@include t.reveal-from('x');
+
+		// The line. Stops at the last item rather than trailing into nothing.
+		&::before {
+			position: absolute;
+			inset-block: calc(var(--bgcf-timeline-marker) * 1.4) 0;
+			inset-inline-start: calc(var(--bgcf-timeline-marker) / 2 - 1px);
+			inline-size: 2px;
+			content: '';
+			background-color: var(--bgcf-color-border-strong);
+
+			@include t.forced-colors {
+				background-color: CanvasText;
+			}
+		}
+
+		&:last-child {
+			padding-block-end: 0;
+
+			&::before {
+				content: none;
+			}
+		}
+
+		// The marker.
+		&::after {
+			position: absolute;
+			inset-block-start: calc(var(--bgcf-timeline-marker) / 2);
+			inset-inline-start: 0;
+			inline-size: var(--bgcf-timeline-marker);
+			block-size: var(--bgcf-timeline-marker);
+			content: '';
+			background-color: var(--bgcf-color-secondary);
+			border: 2px solid var(--bgcf-color-base);
+			border-radius: var(--bgcf-radius-circle);
+			box-shadow: 0 0 0 2px var(--bgcf-color-secondary);
+
+			@include t.forced-colors {
+				background-color: Highlight;
+			}
+		}
+	}
+
+	&__year {
+		margin-block: 0 var(--bgcf-space-1);
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-bold);
+		color: var(--bgcf-color-secondary);
+		letter-spacing: var(--bgcf-tracking-wide);
+	}
+
+	&__title {
+		margin-block: 0 var(--bgcf-space-2);
+		font-size: var(--bgcf-font-size-xl);
+	}
+
+	&__text > p:last-child {
+		margin-block-end: 0;
+	}
+
+	&__media {
+		margin-block-start: var(--bgcf-space-4);
+		overflow: hidden;
+		border-radius: var(--bgcf-radius-lg);
+	}
+
+	&__image {
+		inline-size: 100%;
+		block-size: auto;
+	}
+}
+
+// Horizontal variant. A scroll-snap row rather than a carousel: no JavaScript,
+// keyboard-scrollable, and it degrades to the vertical list on narrow screens
+// where a horizontal timeline is unusable anyway.
+.bgcf-block-timeline--horizontal .bgcf-timeline {
+	@include t.mq(md) {
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: minmax(#{t.rem(260)}, 1fr);
+		gap: var(--bgcf-space-6);
+		padding-block-end: var(--bgcf-space-4);
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+
+		.bgcf-timeline__item {
+			padding-block: var(--bgcf-space-8) 0;
+			padding-inline-start: 0;
+			scroll-snap-align: start;
+
+			// Rotate the line and marker a quarter turn for the row layout.
+			&::before {
+				inset-block: calc(var(--bgcf-timeline-marker) / 2 - 1px) auto;
+				inset-inline: 0;
+				inline-size: 100%;
+				block-size: 2px;
+			}
+
+			&:last-child::before {
+				content: '';
+			}
+
+			&::after {
+				inset-block-start: 0;
+			}
+		}
+	}
+}

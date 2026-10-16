@@ -1,0 +1,224 @@
+// =============================================================================
+// COMPONENTS / BUTTON
+// -----------------------------------------------------------------------------
+// `.bgcf-btn` — the only CTA in the system, emitted by `bgcf_get_button()`.
+// Renders on either an <a> or a <button>; the styling is identical so semantics
+// can always match behaviour.
+//
+// Variant → brand mapping (ARCHITECTURE §3, owned here):
+//   --primary    Action Orange fill, INK label. The donate/volunteer CTA.
+//   --secondary  Deep Blue fill, white label.
+//   --ghost      Outline, primary-blue label, tinted hover.
+//   --link       Text-only, underlined — a button that behaves like a link.
+//
+// Colour choices are contrast-driven. The orange fill carries INK text (5.12:1),
+// never white (2.8:1 — fails). See settings/_colors.scss for the full audit.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-btn {
+	// Layout ---------------------------------------------------------------
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--bgcf-space-2);
+	min-height: var(--bgcf-target-size-comfortable); // WCAG 2.5.8 target size.
+	padding: var(--bgcf-space-3) var(--bgcf-space-6);
+
+	// Type -----------------------------------------------------------------
+	font-family: var(--bgcf-font-heading);
+	font-size: var(--bgcf-font-size-base);
+	font-weight: var(--bgcf-font-weight-semibold); // Buttons semi-bold (CLAUDE.md).
+	line-height: var(--bgcf-line-height-none);
+	color: inherit;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+
+	// Box ------------------------------------------------------------------
+	cursor: pointer;
+	background-color: transparent;
+	border: var(--bgcf-border-width-thick) solid transparent;
+	border-radius: var(--bgcf-radius-md);
+
+	@include t.transition((background-color, border-color, color, box-shadow, transform), 'fast');
+	@include t.focusable;
+
+	// A tiny press displacement reads as tactile; removed under reduced motion
+	// by the global scale on the transition duration.
+	&:active {
+		transform: translateY(1px);
+	}
+
+	&:disabled,
+	&[aria-disabled='true'] {
+		cursor: not-allowed;
+		opacity: 0.55;
+		box-shadow: none;
+		transform: none;
+	}
+
+	&__label {
+		display: inline-block;
+	}
+
+	&__icon {
+		flex: none;
+		width: 1.25em;
+		height: 1.25em;
+	}
+
+	// -------------------------------------------------------------------------
+	// Variant: primary — Action Orange, ink label, warm coloured lift.
+	// -------------------------------------------------------------------------
+	&--primary {
+		color: var(--bgcf-color-ink);
+		background-color: var(--bgcf-color-cta);
+		border-color: var(--bgcf-color-cta);
+		box-shadow: var(--bgcf-shadow-cta);
+
+		@include t.hover {
+			&:hover {
+				// cta-400 lifts contrast to 6.78:1 and reads as "brighter".
+				background-color: var(--bgcf-color-cta-400);
+				border-color: var(--bgcf-color-cta-400);
+				box-shadow: var(--bgcf-shadow-cta-hover);
+			}
+		}
+
+		&:active {
+			background-color: var(--bgcf-color-cta);
+			box-shadow: var(--bgcf-shadow-cta);
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Variant: secondary — Deep Blue, white label.
+	// -------------------------------------------------------------------------
+	&--secondary {
+		color: var(--bgcf-color-base);
+		background-color: var(--bgcf-color-primary);
+		border-color: var(--bgcf-color-primary);
+		box-shadow: var(--bgcf-shadow-sm);
+
+		@include t.hover {
+			&:hover {
+				background-color: var(--bgcf-color-primary-600);
+				border-color: var(--bgcf-color-primary-600);
+				box-shadow: var(--bgcf-shadow-md);
+			}
+		}
+
+		&:active {
+			background-color: var(--bgcf-color-primary-700);
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Variant: ghost — outline; inherits the surface's focus colour so it works
+	// on both light and dark sections (the `on-dark` flip handles the tokens).
+	// -------------------------------------------------------------------------
+	&--ghost {
+		color: var(--bgcf-color-link);
+		background-color: transparent;
+		border-color: var(--bgcf-color-border-strong);
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-primary-700);
+				background-color: var(--bgcf-color-bg-subtle);
+				border-color: var(--bgcf-color-primary);
+			}
+		}
+
+		&:active {
+			background-color: var(--bgcf-color-bg-muted);
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Variant: link — text-only, underlined so it is distinguishable without
+	// colour (WCAG 1.4.1), no box.
+	// -------------------------------------------------------------------------
+	&--link {
+		min-height: 0;
+		padding-inline: 0;
+		color: var(--bgcf-color-link);
+		text-decoration: underline;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 0.18em;
+		border-radius: var(--bgcf-radius-xs);
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-link-hover);
+			}
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Sizes.
+	// -------------------------------------------------------------------------
+	&--sm {
+		min-height: var(--bgcf-target-size-min);
+		padding: var(--bgcf-space-2) var(--bgcf-space-4);
+		font-size: var(--bgcf-font-size-sm);
+	}
+
+	&--lg {
+		padding: var(--bgcf-space-4) var(--bgcf-space-8);
+		font-size: var(--bgcf-font-size-lg);
+	}
+
+	// `--link` never carries box padding regardless of size.
+	&--link#{&}--sm,
+	&--link#{&}--lg {
+		padding-inline: 0;
+	}
+
+	// -------------------------------------------------------------------------
+	// Modifiers.
+	// -------------------------------------------------------------------------
+	&--block {
+		display: flex;
+		width: 100%;
+	}
+
+	// `--icon` is set when an icon is present; nothing extra is needed beyond the
+	// gap, but the hook exists for icon-only buttons to key off in later phases.
+	&--icon {
+		// Icon buttons that have a visible label keep the default gap; icon-only
+		// buttons (Phase 2 nav toggles) will pass an aria-label and square up.
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Loading state. Set `data-bgcf-loading` on the button (forms toggle it in JS);
+// the label dims and a spinner replaces the icon slot. Content stays in the DOM
+// so screen readers keep the accessible name.
+// -----------------------------------------------------------------------------
+
+.bgcf-btn[data-bgcf-loading='true'] {
+	color: transparent;
+	pointer-events: none;
+
+	&::after {
+		position: absolute;
+		width: 1.25em;
+		height: 1.25em;
+		content: '';
+		border: 2px solid currentcolor;
+		border-block-start-color: transparent;
+		border-radius: var(--bgcf-radius-circle);
+		// Spinner text colour is restored so it is visible against the fill.
+		color: var(--bgcf-color-ink);
+
+		@include t.motion-ok {
+			animation: bgcf-spin var(--bgcf-duration-slower) linear infinite;
+		}
+	}
+
+	// The absolutely-positioned spinner needs a positioned context.
+	position: relative;
+}

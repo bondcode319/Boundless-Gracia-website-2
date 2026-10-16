@@ -1,0 +1,217 @@
+{
+    "key": "group_bgcf_statistics",
+    "title": "Block — Statistics",
+    "fields": [
+        {
+            "key": "field_bgcf_statistics_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_statistics_lead",
+            "label": "Supporting text",
+            "name": "lead",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_statistics_background",
+            "label": "Background",
+            "name": "background",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "base": "White",
+                "surface": "Light grey",
+                "primary": "Deep blue",
+                "secondary": "Emerald green"
+            },
+            "return_format": "value",
+            "default_value": "primary"
+        },
+        {
+            "key": "field_bgcf_statistics_stats",
+            "label": "Figures",
+            "name": "stats",
+            "aria_label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 2,
+            "max": 6,
+            "sub_fields": [
+                {
+                    "key": "field_bgcf_statistics_stats_value",
+                    "label": "Number",
+                    "name": "value",
+                    "aria_label": "",
+                    "type": "number",
+                    "instructions": "Digits only. Use the prefix and suffix fields for anything else.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_statistics_stats_decimals",
+                    "label": "Decimal places",
+                    "name": "decimals",
+                    "aria_label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 0,
+                    "min": 0,
+                    "max": 2
+                },
+                {
+                    "key": "field_bgcf_statistics_stats_prefix",
+                    "label": "Prefix",
+                    "name": "prefix",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "e.g. “UGX” or “+”.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_statistics_stats_suffix",
+                    "label": "Suffix",
+                    "name": "suffix",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "e.g. “%”, “k” or “+”.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_statistics_stats_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_statistics_stats_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria_label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "": "— none —",
+                        "heart": "Heart",
+                        "users": "People",
+                        "graduation": "Education",
+                        "health": "Health",
+                        "water": "Water",
+                        "home": "Shelter",
+                        "book": "Books",
+                        "shield": "Protection",
+                        "handshake": "Partnership",
+                        "target": "Goal",
+                        "globe": "Global",
+                        "check-circle": "Tick"
+                    },
+                    "return_format": "value"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/statistics"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/statistics"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "A band of impact counters. Figures animate on scroll; the real number is always in the page, so nothing depends on the animation.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

@@ -1,0 +1,336 @@
+{
+    "key": "group_bgcf_split_section",
+    "title": "Block — Split Section",
+    "fields": [
+        {
+            "key": "field_bgcf_split_section_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "A short label above the heading. Optional.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_split_section_heading",
+            "label": "Heading",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_split_section_text",
+            "label": "Text",
+            "name": "text",
+            "aria_label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+        },
+        {
+            "key": "field_bgcf_split_section_image",
+            "label": "Image",
+            "name": "image",
+            "aria_label": "",
+            "type": "image",
+            "instructions": "Portrait or landscape — the image keeps its own shape. At least 1200px on its longest side. Leave empty for a single centred column of text.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_bgcf_split_section_media_side",
+            "label": "Image side (desktop)",
+            "name": "media_side",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "start": "Left",
+                "end": "Right"
+            },
+            "return_format": "value",
+            "default_value": "start"
+        },
+        {
+            "key": "field_bgcf_split_section_ratio",
+            "label": "Column balance",
+            "name": "ratio",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "even": "Equal halves",
+                "text": "Wider text column",
+                "media": "Wider image column"
+            },
+            "return_format": "value",
+            "default_value": "even"
+        },
+        {
+            "key": "field_bgcf_split_section_background",
+            "label": "Band colour",
+            "name": "background",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "page": "White — the quiet band",
+                "soft": "Light grey — the default band",
+                "sand": "Warm yellow — the impact band",
+                "bloom": "Warm orange — the news band",
+                "leaf": "Pale emerald — the programmes band",
+                "ink": "Deep blue — a dark band",
+                "secondary": "Emerald — a dark band"
+            },
+            "return_format": "value",
+            "default_value": "soft"
+        },
+        {
+            "key": "field_bgcf_split_section_link",
+            "label": "Button",
+            "name": "link",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_split_section_link_style",
+            "label": "Button style",
+            "name": "link_style",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "primary": "Orange",
+                "secondary": "Deep blue"
+            },
+            "return_format": "value",
+            "default_value": "primary"
+        },
+        {
+            "key": "field_bgcf_split_section_cards_note",
+            "label": "Cards beside the text",
+            "name": "cards_note",
+            "aria_label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Optional. Adds a small grid of icon cards under the text — use it for the \"tall image beside four cards\" arrangement.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_bgcf_split_section_cards",
+            "label": "Cards",
+            "name": "cards",
+            "aria_label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add card",
+            "max": 6,
+            "sub_fields": [
+                {
+                    "key": "field_bgcf_split_section_cards_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria_label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "": "— none —",
+                        "heart": "Heart",
+                        "users": "People",
+                        "graduation": "Education",
+                        "health": "Health",
+                        "water": "Water",
+                        "home": "Shelter",
+                        "book": "Books",
+                        "shield": "Protection",
+                        "handshake": "Partnership",
+                        "target": "Goal",
+                        "globe": "Global",
+                        "check-circle": "Tick",
+                        "calendar": "Calendar",
+                        "map-pin": "Location",
+                        "file-text": "Document",
+                        "download": "Download",
+                        "mail": "Email",
+                        "phone": "Phone",
+                        "user": "Person",
+                        "clock": "Time",
+                        "info": "Information",
+                        "arrow-up-right": "Arrow"
+                    },
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_bgcf_split_section_cards_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_split_section_cards_text",
+                    "label": "One line about it",
+                    "name": "text",
+                    "aria_label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "new_lines": ""
+                }
+            ]
+        },
+        {
+            "key": "field_bgcf_split_section_card_cols",
+            "label": "Cards per row",
+            "name": "card_cols",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "One",
+                "2": "Two"
+            },
+            "return_format": "value",
+            "default_value": 2
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/split-section"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/split-section"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Image on one side, words on the other. Below tablet width the columns stack and the image always goes on top, whichever side it sits on at desktop width.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

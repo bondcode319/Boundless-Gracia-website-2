@@ -1,0 +1,95 @@
+// =============================================================================
+// COMPONENTS / STATISTICS
+// -----------------------------------------------------------------------------
+// The impact counter band. Markup: partials/blocks/block-statistics.php.
+//
+// The markup is a `<dl>` with the value as `<dd>` and the label as `<dt>`, in
+// that DOM order, so a screen reader hears the label before the number.
+// `column-reverse` puts the number on top visually without touching the reading
+// order — which is the whole reason the DOM is "backwards".
+//
+// `tabular-nums` on the figure: without it, a counter animating from 0 to 12,400
+// changes width on almost every frame and the whole row jitters.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-stats {
+	display: grid;
+	gap: var(--bgcf-space-6) var(--bgcf-space-8);
+	margin: 0;
+	grid-template-columns: repeat(auto-fit, minmax(#{t.rem(160)}, 1fr));
+
+	&__item {
+		display: flex;
+		flex-direction: column-reverse;
+		gap: var(--bgcf-space-1);
+		align-items: center;
+		text-align: center;
+
+		@include t.reveal-from('y');
+	}
+
+	&__icon {
+		order: -1;
+		margin-block-end: var(--bgcf-space-2);
+		color: var(--bgcf-color-accent);
+	}
+
+	&__value {
+		display: flex;
+		gap: var(--bgcf-space-1);
+		align-items: baseline;
+		justify-content: center;
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: #{t.fluid(32, 48)};
+		font-weight: var(--bgcf-font-weight-bold);
+		line-height: var(--bgcf-line-height-none);
+	}
+
+	&__number {
+		// Stops the row reflowing on every animation frame.
+		font-variant-numeric: tabular-nums;
+	}
+
+	&__affix {
+		font-size: 0.65em;
+		font-weight: var(--bgcf-font-weight-semibold);
+	}
+
+	&__label {
+		max-inline-size: #{t.rem(220)};
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-medium);
+		text-wrap: balance;
+	}
+}
+
+// On the brand-blue background the figures take the accent yellow; on light
+// backgrounds they take the brand blue. Scoped to the section modifier rather
+// than duplicated into two components.
+.bgcf-section--bg-primary .bgcf-stats {
+	&__value {
+		color: var(--bgcf-color-accent);
+	}
+
+	&__label {
+		color: rgb(var(--bgcf-rgb-base) / 85%);
+	}
+}
+
+.bgcf-section--bg-base .bgcf-stats,
+.bgcf-section--bg-surface .bgcf-stats {
+	&__value {
+		color: var(--bgcf-color-primary);
+	}
+
+	&__label {
+		color: var(--bgcf-color-text-muted);
+	}
+
+	.bgcf-stats__icon {
+		color: var(--bgcf-color-secondary);
+	}
+}

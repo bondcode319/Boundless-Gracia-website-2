@@ -1,0 +1,73 @@
+// =============================================================================
+// COMPONENTS / SECTION
+// -----------------------------------------------------------------------------
+// The landmark + background + vertical-rhythm wrapper every block and template
+// section opens with `bgcf_section_open()`. Two modifier axes:
+//
+//   --bg-{none|base|surface|primary|secondary}   background treatment
+//   --space-{none|sm|md|lg}                       vertical padding
+//
+// The `primary` and `secondary` backgrounds are dark surfaces, so they pull in
+// the `on-dark` token flip: headings, links, borders and the focus ring all
+// invert together. That is the ONLY sanctioned way to invert a region
+// (tools/elevation `on-dark`), which is why it lives here and not per-component.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-section {
+	position: relative;
+
+	// -------------------------------------------------------------------------
+	// Vertical rhythm.
+	// -------------------------------------------------------------------------
+	&--space-none {
+		padding-block: var(--bgcf-section-space-none);
+	}
+
+	&--space-sm {
+		padding-block: var(--bgcf-section-space-sm);
+	}
+
+	&--space-md {
+		padding-block: var(--bgcf-section-space-md);
+	}
+
+	&--space-lg {
+		padding-block: var(--bgcf-section-space-lg);
+	}
+
+	// -------------------------------------------------------------------------
+	// Backgrounds. `none` inherits whatever is behind it (used when two blocks
+	// need to share one continuous background).
+	// -------------------------------------------------------------------------
+	&--bg-base {
+		background-color: var(--bgcf-color-base);
+	}
+
+	&--bg-surface {
+		background-color: var(--bgcf-color-surface);
+	}
+
+	&--bg-primary {
+		@include t.on-dark(var(--bgcf-color-primary));
+	}
+
+	// Emerald band resolves to the 700 shade (in the token) so white text on it
+	// reaches 6.69:1 — the raw brand emerald would only make 4.34:1.
+	&--bg-secondary {
+		@include t.on-dark(var(--bgcf-color-secondary-700, #176944));
+
+		--bgcf-color-eyebrow: var(--bgcf-color-accent);
+		--bgcf-color-text-muted: var(--bgcf-color-secondary-100);
+	}
+}
+
+// Two adjacent sections sharing the same background should not double their
+// padding at the seam; the editor rarely stacks these, but blocks do.
+.bgcf-section + .bgcf-section {
+	&--bg-base.bgcf-section--bg-base,
+	&--bg-surface.bgcf-section--bg-surface {
+		padding-block-start: 0;
+	}
+}

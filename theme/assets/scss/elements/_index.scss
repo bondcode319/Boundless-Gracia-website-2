@@ -1,0 +1,20 @@
+// =============================================================================
+// ELEMENTS — index
+// -----------------------------------------------------------------------------
+// Bare HTML element styling: the typographic and control baseline the whole
+// site inherits. No classes here except the two the thumbnail helper emits
+// (`.bgcf-image`, `.bgcf-image-link`), which are conceptually element-level.
+//
+// Order matters: fonts declare the @font-face rules first, then the page sets
+// the document baseline, then individual element groups build on it.
+// =============================================================================
+
+@forward './fonts';
+@forward './page';
+@forward './headings';
+@forward './text';
+@forward './links';
+@forward './lists';
+@forward './tables';
+@forward './forms';
+@forward './media';

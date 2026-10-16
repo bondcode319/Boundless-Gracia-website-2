@@ -1,0 +1,251 @@
+{
+    "key": "group_bgcf_options_footer",
+    "title": "Options — Footer",
+    "fields": [
+        {
+            "key": "field_bgcf_options_footer_footer_intro",
+            "label": "About this organisation",
+            "name": "footer_intro",
+            "aria_label": "",
+            "type": "wysiwyg",
+            "instructions": "A short paragraph under the logo.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_quick_title",
+            "label": "Quick links heading",
+            "name": "footer_quick_title",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_programs_title",
+            "label": "Programs heading",
+            "name": "footer_programs_title",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_contact_title",
+            "label": "Contact heading",
+            "name": "footer_contact_title",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_show_newsletter",
+            "label": "Show the newsletter sign-up",
+            "name": "footer_show_newsletter",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 1
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_newsletter_title",
+            "label": "Newsletter heading",
+            "name": "footer_newsletter_title",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_newsletter_text",
+            "label": "Newsletter blurb",
+            "name": "footer_newsletter_text",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_copyright",
+            "label": "Copyright line",
+            "name": "copyright",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Leave empty for an automatic line with the current year.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_registration",
+            "label": "Registration line",
+            "name": "footer_registration",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Your NGO registration or charity number, shown beside the copyright. E.g. “Registered NGO No. …”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_badges_note",
+            "label": "Accreditation badges",
+            "name": "badges_note",
+            "aria_label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Logos of the bodies you are registered with or accredited by. They are shown at their own proportions on a white plate, never recoloured or cropped — most accrediting bodies’ brand rules require that.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_badges",
+            "label": "Badges",
+            "name": "footer_badges",
+            "aria_label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add badge",
+            "max": 8,
+            "sub_fields": [
+                {
+                    "key": "field_bgcf_options_footer_footer_badges_image",
+                    "label": "Logo",
+                    "name": "image",
+                    "aria_label": "",
+                    "type": "image",
+                    "instructions": "SVG preferred, or a PNG at least 720px wide with a transparent background.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all"
+                },
+                {
+                    "key": "field_bgcf_options_footer_footer_badges_name",
+                    "label": "Organisation name",
+                    "name": "name",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "Used as the image’s alt text, so write the name exactly — never the word “logo”.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_options_footer_footer_badges_url",
+                    "label": "Link",
+                    "name": "url",
+                    "aria_label": "",
+                    "type": "url",
+                    "instructions": "Optional. Opens in a new tab.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "bgcf-footer"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

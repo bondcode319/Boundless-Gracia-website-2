@@ -1,0 +1,160 @@
+// =============================================================================
+// COMPONENTS / ENTRY
+// -----------------------------------------------------------------------------
+// Single post/page/CPT entries and their meta. Covers the classes the content
+// partials emit: `.bgcf-entry`, `.bgcf-entry-meta`, `.bgcf-page`, and the shared
+// `.bgcf-term-list`. Long-form body copy is handled by `.bgcf-prose`
+// (components/_prose.scss).
+// =============================================================================
+
+@use '../tools' as t;
+
+// -----------------------------------------------------------------------------
+// Entry (single post / CPT default).
+// -----------------------------------------------------------------------------
+
+.bgcf-entry {
+	&__header {
+		max-inline-size: var(--bgcf-measure-wide);
+		margin-block-end: var(--bgcf-space-lg);
+	}
+
+	&__title {
+		@include t.heading('h1');
+
+		margin: 0;
+		color: var(--bgcf-color-heading);
+	}
+
+	&__meta {
+		margin-block-start: var(--bgcf-space-4);
+	}
+
+	&__media {
+		margin-block-end: var(--bgcf-space-xl);
+		overflow: hidden;
+		border-radius: var(--bgcf-radius-xl);
+
+		@include t.ratio(16, 9);
+	}
+
+	&__image {
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+	}
+
+	&__footer {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-4);
+		align-items: center;
+		justify-content: space-between;
+		margin-block-start: var(--bgcf-space-xl);
+		padding-block-start: var(--bgcf-space-6);
+		border-block-start: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Entry meta — the date / reading-time / type row.
+// -----------------------------------------------------------------------------
+
+.bgcf-entry-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--bgcf-space-2) var(--bgcf-space-5);
+	align-items: center;
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-text-muted);
+
+	&__item {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--bgcf-space-2);
+
+		// Dot separators between items, suppressed before the first.
+		& + &::before {
+			width: 3px;
+			height: 3px;
+			content: '';
+			background-color: currentcolor;
+			border-radius: var(--bgcf-radius-circle);
+			opacity: 0.5;
+		}
+
+		&--type {
+			font-weight: var(--bgcf-font-weight-semibold);
+			color: var(--bgcf-color-eyebrow);
+			text-transform: uppercase;
+			letter-spacing: var(--bgcf-tracking-wide);
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Page (static page article).
+// -----------------------------------------------------------------------------
+
+.bgcf-page {
+	&__header {
+		max-inline-size: var(--bgcf-measure-wide);
+		margin-block-end: var(--bgcf-space-xl);
+	}
+
+	&__title {
+		@include t.heading('h1');
+
+		margin: 0;
+		color: var(--bgcf-color-heading);
+	}
+
+	&__media {
+		margin-block-end: var(--bgcf-space-xl);
+		overflow: hidden;
+		border-radius: var(--bgcf-radius-xl);
+	}
+
+	&__image {
+		inline-size: 100%;
+		block-size: auto;
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Term list — the tag/category link chips shared by entries and cards.
+// -----------------------------------------------------------------------------
+
+.bgcf-term-list {
+	@include t.cluster(var(--bgcf-space-2));
+
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	&__item {
+		margin: 0;
+	}
+
+	&__link {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--bgcf-target-size-min);
+		padding: var(--bgcf-space-1) var(--bgcf-space-3);
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-medium);
+		color: var(--bgcf-color-primary-700);
+		text-decoration: none;
+		background-color: var(--bgcf-color-primary-50);
+		border-radius: var(--bgcf-radius-pill);
+
+		@include t.transition((background-color, color), 'fast');
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-base);
+				background-color: var(--bgcf-color-primary);
+			}
+		}
+	}
+}

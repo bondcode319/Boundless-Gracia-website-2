@@ -1,0 +1,77 @@
+// =============================================================================
+// ELEMENTS / LISTS
+// -----------------------------------------------------------------------------
+// Bare ul / ol / dl inside prose. Class-carrying lists were already stripped of
+// markers and padding in the reset; this file only dresses the *content* lists
+// an editor produces in the WYSIWYG. Component lists (nav, cards) style
+// themselves and never inherit from here.
+// =============================================================================
+
+// Prose lists — anything NOT carrying a class. Matches the reset's
+// `ul[class]` / `ol[class]` carve-out, so a `.bgcf-nav` is untouched.
+ul:not([class]),
+ol:not([class]) {
+	padding-inline-start: var(--bgcf-space-6);
+	margin-block: 0;
+
+	&:not(:first-child) {
+		margin-block-start: var(--bgcf-space-4);
+	}
+
+	li + li {
+		margin-block-start: var(--bgcf-space-2);
+	}
+
+	// One level of nesting is common in prose; keep it visually attached.
+	ul,
+	ol {
+		margin-block-start: var(--bgcf-space-2);
+	}
+}
+
+ul:not([class]) {
+	list-style: disc;
+
+	// Emerald markers tie bulleted lists back to the brand without shouting.
+	&::marker,
+	li::marker {
+		color: var(--bgcf-color-secondary);
+	}
+}
+
+ol:not([class]) {
+	list-style: decimal;
+
+	li::marker {
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-heading);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Description lists. Rare in editorial copy but used by definition-style
+// metadata, so they must not look raw.
+// -----------------------------------------------------------------------------
+
+dl:not([class]) {
+	margin-block: 0;
+
+	&:not(:first-child) {
+		margin-block-start: var(--bgcf-space-4);
+	}
+
+	dt {
+		font-family: var(--bgcf-font-heading);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-heading);
+	}
+
+	dd {
+		margin-inline-start: 0;
+		color: var(--bgcf-color-text-muted);
+
+		&:not(:last-child) {
+			margin-block-end: var(--bgcf-space-3);
+		}
+	}
+}

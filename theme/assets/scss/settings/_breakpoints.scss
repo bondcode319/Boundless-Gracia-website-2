@@ -1,0 +1,43 @@
+// =============================================================================
+// SETTINGS / BREAKPOINTS
+// -----------------------------------------------------------------------------
+// Mobile-first. Every value is a MIN-width; `tools/breakpoints` derives the
+// max-width variants by subtracting 0.02px so ranges never overlap.
+//
+// CLAUDE.md asks for: large screens, desktop, laptop, tablet, mobile, foldables.
+// Mapping:
+//
+//   xs   0      Mobile (320px and up — the narrowest we design for)
+//   sm   480    Large mobile / unfolded cover screens
+//   md   768    Tablet portrait
+//   lg   1024   Laptop
+//   xl   1280   Desktop
+//   xxl  1536   Large screens / 2K
+//   xxxl 1920   Extra-large screens (used sparingly, container caps out first)
+//
+// These values are ALSO fed into Bootstrap's `$grid-breakpoints` (see
+// vendor/_bootstrap.scss) so `col-md-*` and our `@include mq(md)` agree. They
+// are NOT Bootstrap's defaults — that is deliberate; see scss/README.md.
+// =============================================================================
+
+$breakpoints: (
+	'xs': 0,
+	'sm': 480px,
+	'md': 768px,
+	'lg': 1024px,
+	'xl': 1280px,
+	'xxl': 1536px,
+	'xxxl': 1920px,
+);
+
+/// Foldables. The Galaxy Fold cover screen reports 280px CSS pixels and the
+/// Surface Duo reports two 540px segments. `tools/breakpoints` exposes
+/// `@include foldable` and `@include dual-screen` for these.
+$foldable-max: 400px;
+
+/// Feature queries we branch on often enough to name.
+$hover-query: '(hover: hover) and (pointer: fine)';
+$touch-query: '(hover: none)';
+$reduced-motion-query: '(prefers-reduced-motion: reduce)';
+$motion-ok-query: '(prefers-reduced-motion: no-preference)';
+$forced-colors-query: '(forced-colors: active)';

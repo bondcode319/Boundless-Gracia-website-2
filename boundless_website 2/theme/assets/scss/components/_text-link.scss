@@ -1,0 +1,99 @@
+// =============================================================================
+// COMPONENTS / TEXT LINK
+// -----------------------------------------------------------------------------
+// The plain "Read more →" affordance that closes a card. Markup from
+// `bgcf_get_text_link()`.
+//
+// THE STRETCH, AND ITS THREE CONDITIONS
+// -------------------------------------
+// `--stretch` makes a pseudo-element cover the whole card so the entire card is
+// clickable, while the accessible name stays "Read more about <title>" rather
+// than becoming the card's full text content. It is the right trade — but it has
+// three consequences that have to be handled or it becomes a bug:
+//
+//   1. The card needs `position: relative`, or the overlay escapes to the
+//      nearest positioned ancestor and covers the whole section. `_card.scss`
+//      sets that, and the two files are coupled through it.
+//   2. The overlay sits above the card's text, so text selection stops working
+//      inside the card. `pointer-events` is therefore restricted to the overlay
+//      only, and the overlay is removed entirely while the user is selecting —
+//      see `user-select` below.
+//   3. Anything else interactive in the card would be covered. The overlay is
+//      `z-index: 1` and any sibling control must beat it, so the action card —
+//      which has a real button — does not use the stretch at all.
+//
+// The arrow moves on hover. That is the one piece of decorative motion in the
+// card family, it is 4px, and it is gated on `prefers-reduced-motion`.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-text-link {
+	@include t.focusable;
+	@include t.transition((color, gap), 'fast');
+
+	// `inline-flex` so the arrow sits on the text baseline and the whole thing
+	// still wraps as one unit at the end of a line.
+	display: inline-flex;
+	gap: var(--bgcf-space-2);
+	align-items: center;
+	margin-block-start: auto;
+	font-family: var(--bgcf-font-body);
+	font-size: var(--bgcf-font-size-base);
+	font-weight: var(--bgcf-font-weight-semibold);
+	line-height: var(--bgcf-line-height-normal);
+	color: var(--bgcf-color-link);
+	text-decoration: none;
+
+	// `text-decoration` is absent at rest and present on hover, which is the
+	// inverse of the usual advice — and correct here, because the arrow glyph
+	// and the semibold weight already distinguish this from body copy, and an
+	// underline on every card's closing line is visual noise at grid scale.
+	// WCAG 1.4.1 is satisfied by the weight and the icon, not by colour alone.
+	&:hover {
+		color: var(--bgcf-color-link-hover);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	&__icon {
+		@include t.transition(transform, 'fast');
+
+		flex: none;
+		inline-size: t.rem(18);
+		block-size: t.rem(18);
+	}
+
+	@include t.motion-ok {
+		&:hover .bgcf-text-link__icon {
+			transform: translateX(4px);
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// The stretched click target.
+	// -------------------------------------------------------------------------
+	&--stretch::after {
+		position: absolute;
+		z-index: 1;
+		inset: 0;
+		content: '';
+	}
+}
+
+// A card being text-selected drops its overlay, so copying a programme
+// description works. `:has()` is the mechanism and the fallback is simply that
+// selection stays awkward in older browsers — the link itself is unaffected.
+@supports selector(:has(*)) {
+	.bgcf-card:has(.bgcf-text-link--stretch):active .bgcf-text-link--stretch::after {
+		pointer-events: none;
+	}
+}
+
+// Inside a dark band the link inherits the inverted roles from `on-dark`, so no
+// modifier is needed. On a photographic band the underline is added at rest as
+// well: against a busy photograph, weight alone is not a reliable distinction.
+.bgcf-section--bg-photo .bgcf-text-link {
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}

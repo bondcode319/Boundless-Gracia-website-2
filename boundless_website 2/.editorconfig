@@ -1,0 +1,24 @@
+# WordPress Coding Standards house style: tabs everywhere, LF, UTF-8.
+# https://editorconfig.org
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = tab
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Markdown uses two trailing spaces as a hard line break.
+[*.md]
+trim_trailing_whitespace = false
+
+# YAML has no tab support in its spec.
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+[*.{txt,po,pot}]
+trim_trailing_whitespace = false

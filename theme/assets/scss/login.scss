@@ -1,0 +1,123 @@
+// =============================================================================
+// LOGIN — wp-login.php entry
+// -----------------------------------------------------------------------------
+// Compiles to assets/css/login.css. Enqueued by inc/admin.php on the login
+// screen only. It brand-styles the WordPress login form using the design tokens,
+// and swaps the WordPress mark for the site logo.
+//
+// The logo is `var(--bgcf-login-logo, <brandmark>)`: inc/admin.php sets
+// `--bgcf-login-logo` inline ONLY when a Customizer logo or the `login_logo` ACF
+// option is configured. Until then the metric, lettering-free brandmark from
+// settings/_brandmark.scss fills in, so the screen is never blank. See that file
+// for why the fallback is required.
+// =============================================================================
+
+@use 'settings' as s;
+@use 'settings/brandmark' as brand;
+@use 'tools' as t;
+
+// Tokens on :root so every rule below can read them.
+:root {
+	@include s.custom-properties;
+}
+
+body.login {
+	font-family: var(--bgcf-font-body);
+	color: var(--bgcf-color-text);
+	background-color: var(--bgcf-color-surface);
+
+	// A soft brand wash behind the form, built from token channels so it stays
+	// on-palette and needs no image asset.
+	background-image:
+		radial-gradient(circle at 20% 0%, rgb(var(--bgcf-rgb-primary) / 8%), transparent 45%),
+		radial-gradient(circle at 90% 100%, rgb(var(--bgcf-rgb-cta) / 8%), transparent 40%);
+}
+
+// -----------------------------------------------------------------------------
+// Logo.
+// -----------------------------------------------------------------------------
+
+.login h1 a {
+	inline-size: 200px;
+	block-size: 84px;
+	margin-block-end: var(--bgcf-space-6);
+	background-image: var(--bgcf-login-logo, #{brand.$brandmark});
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+// -----------------------------------------------------------------------------
+// Form card.
+// -----------------------------------------------------------------------------
+
+.login form {
+	padding: var(--bgcf-space-8) var(--bgcf-space-6);
+	background-color: var(--bgcf-color-base);
+	border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	border-radius: var(--bgcf-radius-lg);
+	box-shadow: var(--bgcf-shadow-lg);
+}
+
+.login form .input,
+.login input[type='text'],
+.login input[type='password'],
+.login input[type='email'] {
+	padding: var(--bgcf-space-3) var(--bgcf-space-4);
+	font-size: var(--bgcf-font-size-base);
+	color: var(--bgcf-color-text);
+	border: var(--bgcf-border-width) solid var(--bgcf-color-border-strong);
+	border-radius: var(--bgcf-radius-md);
+
+	&:focus {
+		border-color: var(--bgcf-color-primary);
+		outline: var(--bgcf-focus-ring-width) solid var(--bgcf-color-focus);
+		outline-offset: var(--bgcf-focus-ring-offset);
+		box-shadow: none;
+	}
+}
+
+.login label {
+	font-size: var(--bgcf-font-size-sm);
+	color: var(--bgcf-color-heading);
+}
+
+// -----------------------------------------------------------------------------
+// Primary button — brand orange with ink text (the accessible pairing).
+// -----------------------------------------------------------------------------
+
+.wp-core-ui .button-primary {
+	padding: var(--bgcf-space-2) var(--bgcf-space-6);
+	font-family: var(--bgcf-font-heading);
+	font-weight: var(--bgcf-font-weight-semibold);
+	color: var(--bgcf-color-ink);
+	background: var(--bgcf-color-cta);
+	border: 0;
+	border-radius: var(--bgcf-radius-md);
+	box-shadow: var(--bgcf-shadow-cta);
+	text-shadow: none;
+
+	&:hover,
+	&:focus {
+		color: var(--bgcf-color-ink);
+		background: var(--bgcf-color-cta-400);
+	}
+
+	&:focus {
+		outline: var(--bgcf-focus-ring-width) solid var(--bgcf-color-focus);
+		outline-offset: var(--bgcf-focus-ring-offset);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// Links below the form.
+// -----------------------------------------------------------------------------
+
+.login #nav a,
+.login #backtoblog a {
+	color: var(--bgcf-color-primary-700);
+
+	&:hover {
+		color: var(--bgcf-color-cta-700);
+	}
+}

@@ -1,0 +1,150 @@
+{
+    "key": "group_bgcf_options_footer",
+    "title": "Options — Footer",
+    "fields": [
+        {
+            "key": "field_bgcf_options_footer_footer_intro",
+            "label": "About this organisation",
+            "name": "footer_intro",
+            "aria_label": "",
+            "type": "wysiwyg",
+            "instructions": "A short paragraph under the logo.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_quick_title",
+            "label": "Quick links heading",
+            "name": "footer_quick_title",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_programs_title",
+            "label": "Programs heading",
+            "name": "footer_programs_title",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_contact_title",
+            "label": "Contact heading",
+            "name": "footer_contact_title",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_show_newsletter",
+            "label": "Show the newsletter sign-up",
+            "name": "footer_show_newsletter",
+            "aria_label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "ui": 1,
+            "default_value": 1
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_newsletter_title",
+            "label": "Newsletter heading",
+            "name": "footer_newsletter_title",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_footer_newsletter_text",
+            "label": "Newsletter blurb",
+            "name": "footer_newsletter_text",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_options_footer_copyright",
+            "label": "Copyright line",
+            "name": "copyright",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Leave empty for an automatic line with the current year.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "bgcf-footer"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

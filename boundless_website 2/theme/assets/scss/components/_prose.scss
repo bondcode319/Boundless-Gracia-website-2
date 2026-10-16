@@ -1,0 +1,56 @@
+// =============================================================================
+// COMPONENTS / PROSE
+// -----------------------------------------------------------------------------
+// `.bgcf-prose` is the long-form reading context: the wrapper around editor
+// (`the_content()`) output and any `wp_kses_post()` rich-text field. It caps the
+// measure, sets a comfortable vertical rhythm, and lets the element defaults do
+// the rest — so an editor's paragraphs, lists, quotes and images all inherit the
+// same typographic system without per-block overrides.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-prose {
+	max-inline-size: var(--bgcf-measure);
+	color: var(--bgcf-color-text);
+
+	// Vertical rhythm via the owl selector — no stray top margin on the first
+	// child, consistent gap between every block after it.
+	> * + * {
+		margin-block-start: var(--bgcf-flow-space);
+	}
+
+	// Headings inside prose get a little extra air above them, and none if they
+	// open the article.
+	> :is(h2, h3, h4):not(:first-child) {
+		margin-block-start: var(--bgcf-space-xl);
+	}
+
+	// Media spans the measure and rounds its corners.
+	> :is(figure, img, .wp-block-image) {
+		max-inline-size: 100%;
+		margin-block: var(--bgcf-space-xl);
+	}
+
+	img {
+		border-radius: var(--bgcf-radius-lg);
+	}
+
+	// A lead paragraph (first paragraph of an article) reads larger.
+	> p:first-of-type {
+		font-size: var(--bgcf-font-size-lg);
+		color: var(--bgcf-color-text);
+	}
+
+	// Alignment helpers the editor emits stay within the measure but can breathe.
+	.alignwide {
+		@include t.mq(lg) {
+			inline-size: min(var(--bgcf-container-default), 100vw);
+			max-inline-size: none;
+			margin-inline: calc((var(--bgcf-measure) - var(--bgcf-container-default)) / 2);
+		}
+	}
+
+	// Links inside prose keep their underline (WCAG 1.4.1) — inherited from the
+	// element layer; nothing to override here.
+}

@@ -1,0 +1,44 @@
+// =============================================================================
+// ELEMENTS / HEADINGS
+// -----------------------------------------------------------------------------
+// Bare h1-h6. Components that need heading *appearance* on a different heading
+// *level* use `t.heading('h2')` rather than picking the wrong tag — the document
+// outline is an accessibility feature, not a styling hook (ARCHITECTURE §7).
+// =============================================================================
+
+@use 'sass:map';
+@use '../settings' as s;
+@use '../tools' as t;
+
+@each $level, $config in s.$headings {
+	#{$level} {
+		@include t.heading($level);
+
+		margin-block: 0;
+		color: var(--bgcf-color-heading);
+	}
+}
+
+// Headings that follow content get breathing room; a heading that opens a
+// container does not. `:not(:first-child)` beats a blanket margin plus resets.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	&:not(:first-child) {
+		margin-block-start: var(--bgcf-space-lg);
+	}
+
+	// Anchored headings must clear the sticky header when linked to directly.
+	scroll-margin-block-start: calc(var(--bgcf-header-height) + var(--bgcf-space-6));
+}
+
+// A heading immediately followed by a paragraph should sit close to it.
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p {
+	margin-block-start: var(--bgcf-space-3);
+}

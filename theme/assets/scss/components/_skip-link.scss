@@ -1,0 +1,35 @@
+// =============================================================================
+// COMPONENTS / SKIP LINK
+// -----------------------------------------------------------------------------
+// The first focusable element on every page (header.php). Visually hidden until
+// focused, then it pins to the top-left and lands the user on `#bgcf-main`.
+//
+// It sits at the very top of the z-index ladder (`--bgcf-z-skip-link`, above the
+// modal layer) on purpose: a keyboard user must be able to reach it no matter
+// what overlay is open. See ARCHITECTURE §10.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-skip-link {
+	@include t.visually-hidden;
+
+	&:focus {
+		@include t.visually-shown;
+
+		position: fixed;
+		inset-block-start: var(--bgcf-space-3);
+		inset-inline-start: var(--bgcf-space-3);
+		z-index: var(--bgcf-z-skip-link);
+		padding: var(--bgcf-space-3) var(--bgcf-space-5);
+		font-family: var(--bgcf-font-heading);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-base);
+		text-decoration: none;
+		background-color: var(--bgcf-color-primary);
+		border-radius: var(--bgcf-radius-md);
+		box-shadow: var(--bgcf-shadow-lg);
+
+		@include t.focus-ring($color: var(--bgcf-color-accent));
+	}
+}

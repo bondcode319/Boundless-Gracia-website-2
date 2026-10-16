@@ -1,0 +1,37 @@
+/*
+Theme Name:        Boundless Gracia Children Foundation
+Theme URI:         https://boundlessgracia.org/
+Author:            Boundless Gracia Children Foundation
+Author URI:        https://boundlessgracia.org/
+Description:       Enterprise-grade, fully CMS-managed WordPress theme for the Boundless Gracia Children Foundation. Donation-optimized, WCAG 2.2 AA accessible, block-editor first, built on custom post types and ACF blocks. 100% original code and design.
+Version:           1.0.0
+Requires at least: 6.4
+Tested up to:      6.7
+Requires PHP:      8.0
+License:           GNU General Public License v2 or later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:       bgcf
+Domain Path:       /languages
+Tags:              charity, nonprofit, ngo, custom-logo, custom-menu, featured-images, block-styles, wide-blocks, editor-style, translation-ready, accessibility-ready, threaded-comments, rtl-language-support, block-patterns
+
+Boundless Gracia Children Foundation is distributed under the terms of the GNU GPL v2 or later.
+*/
+
+/*
+ * ---------------------------------------------------------------------------
+ * THIS FILE IS THE WORDPRESS THEME HEADER ONLY. DO NOT ADD STYLES HERE.
+ * ---------------------------------------------------------------------------
+ *
+ * All authored styles live in `assets/scss/` and compile to `assets/css/`:
+ *
+ *   assets/scss/main.scss   -> assets/css/main.css    (handle: bgcf-main)
+ *   assets/scss/editor.scss -> assets/css/editor.css  (handle: bgcf-editor)
+ *   assets/scss/login.scss  -> assets/css/login.css   (handle: bgcf-login)
+ *
+ * `inc/enqueue.php` is the single place assets are registered and enqueued.
+ * `style.css` is never enqueued by this theme.
+ *
+ * Design tokens (colors, type scale, spacing, radii, shadows) are declared once
+ * in `assets/scss/settings/` and exposed as CSS custom properties on `:root`.
+ * Never write a raw hex value in a component, a template, or a PHP file.
+ */

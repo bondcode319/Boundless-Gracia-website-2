@@ -1,0 +1,326 @@
+{
+    "key": "group_bgcf_hero",
+    "title": "Block — Hero",
+    "fields": [
+        {
+            "key": "field_bgcf_hero_background_image",
+            "label": "Background image",
+            "name": "background_image",
+            "aria_label": "",
+            "type": "image",
+            "instructions": "Landscape, at least 1920×1080. Faces should sit in the right half — the headline covers the left.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_bgcf_hero_overlay_opacity",
+            "label": "Overlay darkness",
+            "name": "overlay_opacity",
+            "aria_label": "",
+            "type": "range",
+            "instructions": "How much to darken the photo so the headline stays readable. Below 40% white text usually fails contrast.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 25,
+            "max": 85,
+            "step": 5,
+            "default_value": 55,
+            "append": "%"
+        },
+        {
+            "key": "field_bgcf_hero_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Short label above the headline, e.g. “Since 2014”.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_hero_heading",
+            "label": "Headline",
+            "name": "heading",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_hero_heading_emphasis",
+            "label": "Phrase to emphasise",
+            "name": "heading_emphasis",
+            "aria_label": "",
+            "type": "text",
+            "instructions": "Optional. Type one phrase from the headline above, exactly as it appears there, and it will be set apart in the brand yellow. Leave empty for a plain headline.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_bgcf_hero_heading_level",
+            "label": "Headline level",
+            "name": "heading_level",
+            "aria_label": "",
+            "type": "select",
+            "instructions": "Every page needs exactly one H1. If this hero sits on a page whose title is already the H1, choose H2.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "h1": "H1 — use on the homepage",
+                "h2": "H2 — use on inner pages"
+            },
+            "return_format": "value",
+            "default_value": "h1"
+        },
+        {
+            "key": "field_bgcf_hero_lead",
+            "label": "Supporting text",
+            "name": "lead",
+            "aria_label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_bgcf_hero_primary_cta",
+            "label": "Primary button",
+            "name": "primary_cta",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_hero_secondary_cta",
+            "label": "Secondary button",
+            "name": "secondary_cta",
+            "aria_label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_bgcf_hero_stats",
+            "label": "Headline figures",
+            "name": "stats",
+            "aria_label": "",
+            "type": "repeater",
+            "instructions": "Up to three short proof points shown under the buttons.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "max": 3,
+            "sub_fields": [
+                {
+                    "key": "field_bgcf_hero_stats_value",
+                    "label": "Figure",
+                    "name": "value",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_hero_stats_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ]
+        },
+        {
+            "key": "field_bgcf_hero_floating_cards",
+            "label": "Highlight cards",
+            "name": "floating_cards",
+            "aria_label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "max": 3,
+            "sub_fields": [
+                {
+                    "key": "field_bgcf_hero_floating_cards_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria_label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "": "— none —",
+                        "heart": "Heart",
+                        "users": "People",
+                        "graduation": "Education",
+                        "health": "Health",
+                        "water": "Water",
+                        "home": "Shelter",
+                        "book": "Books",
+                        "shield": "Protection",
+                        "handshake": "Partnership",
+                        "target": "Goal",
+                        "globe": "Global",
+                        "check-circle": "Tick",
+                        "calendar": "Calendar",
+                        "map-pin": "Location",
+                        "file-text": "Document",
+                        "download": "Download",
+                        "mail": "Email",
+                        "phone": "Phone",
+                        "user": "Person",
+                        "clock": "Time",
+                        "info": "Information",
+                        "arrow-up-right": "Arrow"
+                    },
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_bgcf_hero_floating_cards_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                },
+                {
+                    "key": "field_bgcf_hero_floating_cards_text",
+                    "label": "Text",
+                    "name": "text",
+                    "aria_label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    }
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "bgcf/hero"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/hero"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "The full-width opening section. The background image is the page’s largest element, so use a wide, well-lit photo at least 1920px across.",
+    "show_in_rest": 0,
+    "modified": 1767225600
+}

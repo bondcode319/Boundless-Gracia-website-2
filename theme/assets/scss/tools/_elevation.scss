@@ -1,0 +1,68 @@
+// =============================================================================
+// TOOLS / ELEVATION & SURFACES
+// -----------------------------------------------------------------------------
+// A "surface" is a rounded, shadowed, background-filled box. Cards, panels,
+// popovers and form groups all start here so their corner radius and shadow
+// ramp stay in step.
+// =============================================================================
+
+@use 'sass:map';
+@use '../settings/shadow' as shadow;
+@use './motion' as motion;
+
+/// Apply a named elevation from the shadow scale.
+@mixin elevation($level: 'md') {
+	$value: map.get(shadow.$shadows, $level);
+
+	@if not $value {
+		@error 'Unknown elevation `#{$level}`. Available: #{map.keys(shadow.$shadows)}.';
+	}
+
+	box-shadow: var(--bgcf-shadow-#{$level});
+}
+
+/// Base card/panel surface.
+///
+/// A 1px border is drawn as well as a shadow: shadows vanish in Windows High
+/// Contrast Mode and in print, and without the border the card boundary would
+/// disappear with them.
+@mixin surface($radius: var(--bgcf-radius-lg), $elevation: 'sm', $background: var(--bgcf-color-base)) {
+	background-color: $background;
+	border: var(--bgcf-border-width) solid var(--bgcf-color-border);
+	border-radius: $radius;
+
+	@include elevation($elevation);
+}
+
+/// Interactive surface: adds the hover lift and a focus-within ring.
+@mixin surface-interactive($rest: 'sm', $hover: 'lg') {
+	@include motion.lift(var(--bgcf-shadow-#{$rest}), var(--bgcf-shadow-#{$hover}));
+}
+
+/// Dark surface treatment. Re-declares the semantic colour roles so every
+/// descendant — headings, links, borders, focus rings, muted text — flips at
+/// once. This is the ONLY sanctioned way to invert a region.
+@mixin on-dark($background: var(--bgcf-color-primary)) {
+	--bgcf-color-text: var(--bgcf-color-base);
+	--bgcf-color-text-muted: var(--bgcf-color-primary-100);
+	--bgcf-color-text-subtle: var(--bgcf-color-primary-200);
+	--bgcf-color-text-inverse: var(--bgcf-color-ink);
+	--bgcf-color-heading: var(--bgcf-color-base);
+	--bgcf-color-eyebrow: var(--bgcf-color-accent);
+	--bgcf-color-link: var(--bgcf-color-base);
+	--bgcf-color-link-hover: var(--bgcf-color-accent);
+	--bgcf-color-link-visited: var(--bgcf-color-primary-100);
+	--bgcf-color-border: var(--bgcf-color-primary-400);
+	--bgcf-color-border-subtle: var(--bgcf-color-primary-600);
+	--bgcf-color-border-strong: var(--bgcf-color-primary-200);
+	--bgcf-color-bg: transparent;
+	--bgcf-color-bg-subtle: var(--bgcf-color-primary-700);
+	--bgcf-color-bg-muted: var(--bgcf-color-primary-600);
+	// Accent yellow clears 3:1 against every dark brand surface (7.03 on Deep
+	// Blue, 4.10 on Emerald 700, 9.62 on ink) where the default blue ring would
+	// disappear entirely.
+	--bgcf-color-focus: var(--bgcf-color-accent);
+
+	background-color: $background;
+	color: var(--bgcf-color-text);
+}

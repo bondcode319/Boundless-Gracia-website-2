@@ -1,0 +1,69 @@
+// =============================================================================
+// COMPONENTS / SUB-BANNER
+// -----------------------------------------------------------------------------
+// The masthead every inner page opens with: breadcrumb, eyebrow, `h1`, lead.
+// Markup from `partials/global/sub-banner.php`.
+//
+// TWO BACKGROUNDS, ONE COMPONENT. With a featured image it is a photographic
+// band; without one it is flat deep blue (`--flat`). Both carry white text, so
+// the only thing that changes between them is whether a scrim is painted — which
+// is why this is one component with a modifier rather than two.
+//
+// THE HEADER SITS ABOVE THIS BAND, NOT ON IT. Unlike the hero, the sub-banner
+// does not get an overlay header: the breadcrumb trail would collide with the
+// nav bar, and a breadcrumb under a transparent header is the first thing to
+// become unreadable when an editor uploads a pale photograph. So the band gets
+// ordinary top padding and the header stays solid — see `bgcf_header_is_overlay()`.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-sub-banner {
+	&__inner {
+		@include t.stack(var(--bgcf-space-4), flex-start);
+
+		max-inline-size: t.rem(820);
+	}
+
+	&--center &__inner {
+		align-items: center;
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	&__eyebrow {
+		@include t.eyebrow;
+
+		margin: 0;
+	}
+
+	&__title {
+		// One step up from the default `h1`: this is the page's masthead and it
+		// is the largest type on an inner page.
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-4xl);
+		font-weight: var(--bgcf-font-weight-bold);
+		line-height: var(--bgcf-line-height-tight);
+		color: var(--bgcf-color-base);
+		letter-spacing: var(--bgcf-tracking-tighter);
+	}
+
+	&__lead {
+		max-inline-size: var(--bgcf-measure);
+		font-size: var(--bgcf-font-size-lg);
+		line-height: var(--bgcf-line-height-relaxed);
+		color: var(--bgcf-color-primary-100);
+	}
+
+	&__actions {
+		margin-block-start: var(--bgcf-space-2);
+	}
+
+	// The breadcrumb inherits the band's inverted link roles from `on-dark`, so
+	// it needs no colour of its own — only a size and a little space.
+	.bgcf-breadcrumbs {
+		margin-block-end: var(--bgcf-space-2);
+		font-size: var(--bgcf-font-size-sm);
+	}
+}

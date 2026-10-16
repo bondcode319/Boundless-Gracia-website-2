@@ -1,0 +1,150 @@
+// =============================================================================
+// COMPONENTS / SPLIT SECTION
+// -----------------------------------------------------------------------------
+// Media on one side, words on the other. Horizon's most-used band. Markup from
+// `partials/global/split-section.php`.
+//
+// THE DOM ORDER IS ALWAYS IMAGE FIRST
+// -----------------------------------
+// Below `md` the columns stack and the image is on top, because on a phone the
+// photograph is the hook and a reader who has to scroll past ninety words to
+// reach it has already left. Above `md`, `--media-end` moves the image to the
+// right with `order`.
+//
+// Doing it that way round — image first in the source, moved at desktop — rather
+// than text first and moved on mobile, has one concrete benefit: the stacked
+// layout needs no `order` at all, so the tab order matches the visual order in
+// the arrangement where mismatches are hardest to notice and most disorienting.
+// `order` on a flex child reorders paint, not focus, so every use of it is a
+// potential WCAG 2.4.3 failure; using it exactly once, at one breakpoint, in a
+// two-item container, is the smallest exposure that still gets the design.
+//
+// THE THREE RATIOS are a closed set for the same reason the band colours are: an
+// editor choosing "about two thirds" produces a page where no two split sections
+// line up. `bgcf_split_ratio()` validates the name.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-split {
+	&__inner {
+		display: grid;
+		gap: var(--bgcf-space-8);
+		align-items: center;
+
+		@include t.mq(md) {
+			// `even` is the default and needs no modifier of its own.
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: var(--bgcf-space-12);
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Ratios. Only the desktop arrangement differs; all three stack identically.
+	// -------------------------------------------------------------------------
+	&--ratio-text &__inner {
+		@include t.mq(md) {
+			// Roughly 7:4 in favour of the words — for a band that is mostly
+			// prose with a supporting photograph.
+			grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+		}
+	}
+
+	&--ratio-media &__inner {
+		@include t.mq(md) {
+			// 1:2 in favour of the media — for a tall image beside a column of
+			// cards.
+			grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Media side. The ONLY use of `order` in this component; see the file header.
+	// -------------------------------------------------------------------------
+	&--media-end &__media {
+		@include t.mq(md) {
+			order: 2;
+		}
+	}
+
+	// A split section with no image is a single centred column, not a half-empty
+	// grid. Editors do this more often than the design anticipates, usually for
+	// an introduction, so it is a supported layout rather than a broken one.
+	&--no-media &__inner {
+		@include t.mq(md) {
+			grid-template-columns: minmax(0, 1fr);
+			max-inline-size: var(--bgcf-measure-wide);
+			margin-inline: auto;
+			text-align: center;
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Media.
+	// -------------------------------------------------------------------------
+	&__media {
+		position: relative;
+		overflow: hidden;
+		border-radius: var(--bgcf-radius-xl);
+
+		// No fixed aspect ratio: the image keeps its own, so a portrait and a
+		// landscape photograph both render honestly in the same slot. The
+		// `width`/`height` attributes that `bgcf_get_post_thumbnail()` always
+		// emits are what keep this CLS-free without one.
+	}
+
+	&__image {
+		display: block;
+		inline-size: 100%;
+		block-size: auto;
+	}
+
+	// The media column of a `--ratio-media` split is the tall one, so there the
+	// image DOES get a ratio — otherwise a landscape photograph in a one-third
+	// column leaves the cards beside it floating against white space.
+	&--ratio-media &__media {
+		@include t.mq(md) {
+			@include t.ratio(3, 4);
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Content.
+	// -------------------------------------------------------------------------
+	&__content {
+		@include t.stack(var(--bgcf-space-6), flex-start);
+
+		min-inline-size: 0;
+	}
+
+	&--no-media &__content {
+		@include t.mq(md) {
+			align-items: center;
+		}
+	}
+
+	&__heading {
+		margin: 0;
+	}
+
+	&__text {
+		// The reading measure matters more here than filling the column: a
+		// paragraph running the full width of a 7fr track is 95 characters per
+		// line, well past the readable band.
+		max-inline-size: var(--bgcf-measure);
+	}
+
+	&__cards {
+		// Cards nested in a split column are narrower than cards in a full-width
+		// grid, so the shell's 272px minimum track would force one column where
+		// two fit.
+		--bgcf-grid-min: #{t.rem(200)};
+
+		inline-size: 100%;
+		margin-block-start: var(--bgcf-space-2);
+	}
+
+	&__cta {
+		margin-block-start: var(--bgcf-space-2);
+	}
+}

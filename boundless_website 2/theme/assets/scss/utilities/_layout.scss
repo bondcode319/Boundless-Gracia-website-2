@@ -1,0 +1,60 @@
+// =============================================================================
+// UTILITIES / LAYOUT
+// -----------------------------------------------------------------------------
+// Composable layout primitives as classes, backed by the same tools mixins the
+// components use. These express intent (flow, stack, cluster) that Bootstrap's
+// grid does not, and keep templates from hand-rolling flex declarations.
+// =============================================================================
+
+@use '../tools' as t;
+
+// Vertical rhythm between direct children (the "prose flow").
+.bgcf-u-flow {
+	@include t.flow;
+
+	&--sm {
+		@include t.flow(var(--bgcf-space-sm));
+	}
+
+	&--lg {
+		@include t.flow(var(--bgcf-space-lg));
+	}
+}
+
+// Flex column with a gap.
+.bgcf-u-stack {
+	@include t.stack;
+}
+
+// Wrapping horizontal cluster.
+.bgcf-u-cluster {
+	@include t.cluster;
+}
+
+// Auto-fitting responsive card grid — no media queries needed.
+.bgcf-u-auto-grid {
+	@include t.auto-grid;
+}
+
+// Break out of the container to full viewport width.
+.bgcf-u-full-bleed {
+	@include t.full-bleed;
+}
+
+// A bare container, for the rare template that needs one outside a section.
+.bgcf-u-container {
+	@include t.container('default');
+}
+
+// Fixed aspect-ratio media frame.
+.bgcf-u-ratio-16x9 {
+	@include t.ratio(16, 9);
+}
+
+.bgcf-u-ratio-4x3 {
+	@include t.ratio(4, 3);
+}
+
+.bgcf-u-ratio-1x1 {
+	@include t.ratio(1, 1);
+}

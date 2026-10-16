@@ -1,0 +1,34 @@
+// =============================================================================
+// COMPONENTS / CONTAINER
+// -----------------------------------------------------------------------------
+// The centred, gutter-padded wrapper `bgcf_section_open()` emits. The four width
+// modifiers map 1:1 to the `$containers` map and to the `$widths` allow-list in
+// inc/template-tags.php — adding a width is a change in three places (settings,
+// this file, the PHP allow-list). See ARCHITECTURE §5.
+// =============================================================================
+
+@use 'sass:map';
+@use '../settings' as s;
+@use '../tools' as t;
+
+.bgcf-container {
+	@include t.container('default');
+
+	// Modifiers only override the max-width; the gutter and centring are shared.
+	&--narrow {
+		max-width: map.get(s.$containers, 'narrow');
+	}
+
+	&--default {
+		max-width: map.get(s.$containers, 'default');
+	}
+
+	&--wide {
+		max-width: map.get(s.$containers, 'wide');
+	}
+
+	// Full-width still keeps the gutter so content never kisses the screen edge.
+	&--full {
+		max-width: map.get(s.$containers, 'full');
+	}
+}

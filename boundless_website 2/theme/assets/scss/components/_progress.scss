@@ -1,0 +1,73 @@
+// =============================================================================
+// COMPONENTS / FUNDRAISING PROGRESS
+// -----------------------------------------------------------------------------
+// The campaign thermometer. Markup: partials/blocks/block-donation-banner.php.
+//
+// The bar is `aria-hidden` and carries no `progressbar` role, because every
+// number it encodes is printed in the text immediately below it. Adding the role
+// would make a screen reader announce "62 percent" and then read "UGX 31,000,000
+// raised of our UGX 50,000,000 goal (62%)" — the same fact three times.
+//
+// Width comes from `--bgcf-progress`, which PHP sets from a server-computed and
+// clamped percentage. Nothing here can be driven by the client.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-progress {
+	--bgcf-progress: 0%;
+
+	margin-block: var(--bgcf-space-6);
+
+	&__track {
+		block-size: #{t.rem(12)};
+		overflow: hidden;
+		background-color: rgb(var(--bgcf-rgb-base) / 25%);
+		border-radius: var(--bgcf-radius-pill);
+	}
+
+	&__bar {
+		inline-size: var(--bgcf-progress);
+		block-size: 100%;
+		background-color: var(--bgcf-color-accent);
+		border-radius: inherit;
+
+		// Grow on first paint so the figure registers as an achievement rather
+		// than a static bar. `transform` would be cheaper, but it would also
+		// scale the rounded cap into an ellipse.
+		@include t.motion-ok {
+			animation: bgcf-progress-grow var(--bgcf-duration-slowest) var(--bgcf-ease-emphasized) both;
+		}
+
+		@include t.forced-colors {
+			background-color: Highlight;
+		}
+	}
+
+	&__figures {
+		margin-block: var(--bgcf-space-3) 0;
+		font-size: var(--bgcf-font-size-lg);
+
+		strong {
+			font-family: var(--bgcf-font-heading);
+			font-size: var(--bgcf-font-size-xl);
+			color: var(--bgcf-color-accent);
+		}
+	}
+
+	&__meta {
+		margin-block: var(--bgcf-space-1) 0;
+		font-size: var(--bgcf-font-size-sm);
+		opacity: 0.85;
+	}
+}
+
+@keyframes bgcf-progress-grow {
+	from {
+		inline-size: 0;
+	}
+
+	to {
+		inline-size: var(--bgcf-progress);
+	}
+}

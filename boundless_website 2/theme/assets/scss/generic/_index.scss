@@ -1,0 +1,10 @@
+// =============================================================================
+// GENERIC — index
+// -----------------------------------------------------------------------------
+// Far-reaching, low-specificity rules: reset, box-sizing, motion guard.
+// Nothing here targets a class.
+// =============================================================================
+
+@forward './tokens';
+@forward './reset';
+@forward './motion';

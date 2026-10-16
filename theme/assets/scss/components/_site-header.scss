@@ -1,0 +1,236 @@
+// =============================================================================
+// COMPONENTS / SITE HEADER
+// -----------------------------------------------------------------------------
+// Branding, primary nav, the action group (language, search, CTAs) and the menu
+// button. Markup: header.php. Behaviour: assets/js/src/navigation.js.
+//
+// STICKY. `position: sticky` rather than `fixed`, so the header occupies layout
+// space and nothing has to compensate with a magic top padding. The compact
+// state is driven by `[data-bgcf-stuck]`, set from a rAF-throttled scroll
+// listener — a `scroll`-driven class is the only way to get this without
+// `position: fixed` and its layout tax.
+//
+// THE MENU BUTTON is visible below `lg` and hidden above it. The desktop nav is
+// the inverse. Both are in the DOM at all times (two renders of one menu, see
+// header.php) and exactly one is displayed, so assistive technology never meets
+// the same menu twice.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-site-header {
+	position: sticky;
+	z-index: var(--bgcf-z-header);
+	inset-block-start: 0;
+	background-color: var(--bgcf-color-base);
+	border-block-end: var(--bgcf-border-width) solid var(--bgcf-color-border);
+
+	@include t.transition((box-shadow, background-color), 'fast');
+
+	&[data-bgcf-stuck] {
+		box-shadow: var(--bgcf-shadow-md);
+
+		.bgcf-site-header__inner {
+			min-block-size: calc(var(--bgcf-header-height) - var(--bgcf-space-4));
+		}
+	}
+
+	&__inner {
+		display: flex;
+		flex-wrap: nowrap;
+		gap: var(--bgcf-space-4);
+		align-items: center;
+		justify-content: space-between;
+		min-block-size: var(--bgcf-header-height);
+		padding-block: var(--bgcf-space-3);
+
+		@include t.transition(min-block-size, 'fast');
+	}
+
+	&__branding {
+		flex: 0 1 auto;
+		display: flex;
+		min-inline-size: 0;
+		align-items: center;
+	}
+
+	// Custom logo constraint (WordPress wraps it in `.custom-logo-link`).
+	.custom-logo-link {
+		display: inline-flex;
+	}
+
+	.custom-logo {
+		block-size: auto;
+		max-block-size: calc(var(--bgcf-header-height) - var(--bgcf-space-6));
+		inline-size: auto;
+	}
+
+	&__title {
+		margin: 0;
+		overflow: hidden;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-lg);
+		font-weight: var(--bgcf-font-weight-bold);
+		line-height: var(--bgcf-line-height-none);
+		text-overflow: ellipsis;
+		white-space: nowrap;
+
+		@include t.mq(md) {
+			font-size: var(--bgcf-font-size-xl);
+		}
+	}
+
+	&__home {
+		color: var(--bgcf-color-primary);
+		text-decoration: none;
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-cta);
+			}
+		}
+	}
+
+	&__nav {
+		flex: 1 1 auto;
+
+		// Below the breakpoint the drawer is the navigation. `display: none`
+		// (not visibility) so none of these links is tabbable while the drawer
+		// copy is the live one.
+		@include t.mq-down(lg) {
+			display: none;
+		}
+	}
+
+	&__actions {
+		flex: 0 0 auto;
+		display: flex;
+		gap: var(--bgcf-space-2);
+		align-items: center;
+	}
+
+	// Icon-only controls: search, and anything a plugin adds to the hook.
+	&__icon-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		color: var(--bgcf-color-primary);
+		background: none;
+		border: 0;
+		border-radius: var(--bgcf-radius-md);
+		cursor: pointer;
+
+		@include t.target-size(true);
+		@include t.focusable;
+		@include t.transition((color, background-color), 'fast');
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-cta);
+				background-color: var(--bgcf-color-bg-subtle);
+			}
+		}
+	}
+
+	// ---------------------------------------------------------------------------
+	// The menu button.
+	// ---------------------------------------------------------------------------
+	&__menu-btn {
+		display: inline-flex;
+		gap: var(--bgcf-space-2);
+		align-items: center;
+		padding-inline: var(--bgcf-space-2);
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-sm);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-primary);
+		background: none;
+		border: 0;
+		border-radius: var(--bgcf-radius-md);
+		cursor: pointer;
+
+		@include t.target-size(true);
+		@include t.focusable;
+
+		@include t.mq(lg) {
+			display: none;
+		}
+
+		@include t.hover {
+			&:hover {
+				color: var(--bgcf-color-cta);
+			}
+		}
+	}
+
+	// Two icons, one slot: whichever matches the current state is shown. Keeping
+	// both in the DOM avoids a layout shift when the label swaps.
+	&__menu-icon {
+		display: inline-flex;
+	}
+
+	&__menu-close {
+		display: none;
+	}
+
+	&__menu-btn[aria-expanded='true'] {
+		.bgcf-site-header__menu-open {
+			display: none;
+		}
+
+		.bgcf-site-header__menu-close {
+			display: inline-flex;
+		}
+	}
+
+	&__menu-label {
+		@include t.mq-down(sm) {
+			@include t.visually-hidden;
+		}
+	}
+
+	// ---------------------------------------------------------------------------
+	// CTAs. The ghost button goes first on narrow screens; the donate button is
+	// the last thing to be dropped, and on a phone it is icon-tight rather than
+	// absent.
+	// ---------------------------------------------------------------------------
+	&__cta {
+		&.bgcf-btn--ghost {
+			@include t.mq-down(md) {
+				display: none;
+			}
+		}
+	}
+
+	@include t.mq-down(sm) {
+		&__cta.bgcf-btn--primary .bgcf-btn__label {
+			@include t.visually-hidden;
+		}
+	}
+
+	// Language switcher is header furniture; the drawer carries its own copy.
+	.bgcf-lang--header {
+		@include t.mq-down(lg) {
+			display: none;
+		}
+	}
+
+	// ---------------------------------------------------------------------------
+	// Search disclosure panel.
+	// ---------------------------------------------------------------------------
+	&__search {
+		padding-block: var(--bgcf-space-4);
+		background-color: var(--bgcf-color-bg-subtle);
+		border-block-end: var(--bgcf-border-width) solid var(--bgcf-color-border);
+
+		&[hidden] {
+			display: none;
+		}
+
+		.bgcf-search-form {
+			max-inline-size: var(--bgcf-measure);
+			margin-inline: auto;
+		}
+	}
+}

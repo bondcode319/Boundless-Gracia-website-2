@@ -1,0 +1,70 @@
+// =============================================================================
+// COMPONENTS / 404
+// -----------------------------------------------------------------------------
+// The not-found band. Markup from 404.php, which renders it as a photographic
+// (or flat deep-blue) section, so the colour roles here are already inverted by
+// `on-dark` and this file only sets layout and type.
+//
+// THE "404" IS DECORATIVE and carries `aria-hidden` in the markup. A screen
+// reader that announced "404" before the heading would be telling the visitor
+// the HTTP status code, which is not information they can use; the heading says
+// what happened in words.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-error-404 {
+	&__inner {
+		@include t.stack(var(--bgcf-space-5), flex-start);
+
+		max-inline-size: t.rem(620);
+	}
+
+	&__code {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: #{t.fluid(64, 128)};
+		font-weight: var(--bgcf-font-weight-bold);
+		line-height: var(--bgcf-line-height-none);
+
+		// Translucent rather than a tint, so it works over a photograph and over
+		// the flat band without needing to know which it landed on.
+		color: rgb(var(--bgcf-rgb-base) / 24%);
+		letter-spacing: var(--bgcf-tracking-tighter);
+	}
+
+	&__title {
+		margin: 0;
+		font-family: var(--bgcf-font-heading);
+		font-size: var(--bgcf-font-size-3xl);
+		font-weight: var(--bgcf-font-weight-bold);
+		line-height: var(--bgcf-line-height-tight);
+		color: var(--bgcf-color-base);
+		letter-spacing: var(--bgcf-tracking-tight);
+	}
+
+	&__text {
+		max-inline-size: var(--bgcf-measure);
+		margin: 0;
+		font-size: var(--bgcf-font-size-lg);
+		color: var(--bgcf-color-primary-100);
+	}
+
+	&__search {
+		inline-size: 100%;
+		max-inline-size: t.rem(460);
+
+		// The search form is a light-surface component, so it needs the roles
+		// restored or its input renders white-on-white against this band.
+		@include t.on-light(transparent);
+
+		.bgcf-field__input,
+		input[type='search'] {
+			background-color: var(--bgcf-color-base);
+		}
+	}
+
+	&__actions {
+		@include t.cluster(var(--bgcf-space-3), center, flex-start);
+	}
+}

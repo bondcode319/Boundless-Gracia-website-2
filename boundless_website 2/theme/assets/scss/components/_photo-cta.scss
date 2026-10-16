@@ -1,0 +1,63 @@
+// =============================================================================
+// COMPONENTS / PHOTO CALL-TO-ACTION BAND
+// -----------------------------------------------------------------------------
+// Full-bleed photograph, deep-blue scrim, centred white heading, one sentence,
+// one button. Markup from `partials/global/photo-cta.php`; the scrim and the
+// `on-dark` token flip come from `.bgcf-section--bg-photo`.
+//
+// The band is deliberately SHORT — around 280px of content — because its job is
+// to break the rhythm of coloured bands, not to compete with the hero. A photo
+// band as tall as the hero reads as a second hero and the page loses its one
+// obvious entry point.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-photo-cta {
+	// A minimum height rather than a fixed one: the band has to grow for a
+	// two-line heading at phone width, and a fixed height would clip it.
+	min-block-size: t.rem(280);
+
+	&__inner {
+		@include t.stack(var(--bgcf-space-6), center);
+
+		justify-content: center;
+		min-block-size: inherit;
+		text-align: center;
+	}
+
+	&__heading {
+		// The band is narrow by design: a centred heading running the full
+		// container width is unreadable, and a one-sentence lead at 90
+		// characters per line looks like body copy rather than a call to action.
+		max-inline-size: t.rem(760);
+		margin: 0;
+	}
+
+	&__actions {
+		@include t.cluster(var(--bgcf-space-4), center, center);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// The ghost button variant used as the band's SECOND action.
+//
+// The default ghost button is a deep-blue outline on a light surface. On a
+// photograph that outline is invisible, so this modifier swaps it for white and
+// adds a translucent fill on hover.
+//
+// A white 2px outline on the scrim measures above 4.5:1 against the darkest and
+// the lightest points the scrim permits, which is what makes it safe without
+// knowing the photograph.
+// -----------------------------------------------------------------------------
+.bgcf-btn--on-photo {
+	color: var(--bgcf-color-base);
+	background-color: transparent;
+	border-color: var(--bgcf-color-base);
+
+	&:hover {
+		color: var(--bgcf-color-base);
+		background-color: rgb(var(--bgcf-rgb-base) / 16%);
+		border-color: var(--bgcf-color-base);
+	}
+}

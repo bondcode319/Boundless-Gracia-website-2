@@ -1,0 +1,129 @@
+// =============================================================================
+// COMPONENTS / PARTNERS
+// -----------------------------------------------------------------------------
+// Logo wall or scrolling row. Markup: partials/blocks/block-partners.php.
+//
+// THE MARQUEE IS CSS-ONLY, and that is a deliberate accessibility decision
+// rather than a flex: the animation lives inside `motion-ok`, so a visitor who
+// has asked for reduced motion gets a static, scrollable row with no JavaScript
+// involved and therefore nothing that can fail to respect the preference.
+//
+// It also pauses on `:hover` AND `:focus-within`. Without the second, a
+// keyboard user tabbing the logos is chasing a moving target — the classic
+// marquee failure, and a WCAG 2.2.2 violation.
+// =============================================================================
+
+@use '../tools' as t;
+
+.bgcf-partners {
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--bgcf-space-6) var(--bgcf-space-10);
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__link {
+		display: inline-flex;
+		align-items: center;
+		border-radius: var(--bgcf-radius-sm);
+
+		@include t.focusable;
+	}
+
+	&__logo {
+		inline-size: auto;
+		max-inline-size: #{t.rem(160)};
+		block-size: auto;
+		max-block-size: #{t.rem(64)};
+		// `contain`, never `cover`: a cropped logo is a damaged trademark.
+		object-fit: contain;
+	}
+
+	&__name {
+		font-family: var(--bgcf-font-heading);
+		font-weight: var(--bgcf-font-weight-semibold);
+		color: var(--bgcf-color-text-muted);
+	}
+
+	// ---------------------------------------------------------------------------
+	// Marquee.
+	// ---------------------------------------------------------------------------
+	&__marquee {
+		// `mask` fades the row at both edges so logos enter and leave instead of
+		// being chopped by the container.
+		overflow: hidden;
+		mask-image: linear-gradient(
+			90deg,
+			transparent 0,
+			rgb(var(--bgcf-rgb-ink) / 100%) #{t.rem(64)},
+			rgb(var(--bgcf-rgb-ink) / 100%) calc(100% - #{t.rem(64)}),
+			transparent 100%
+		);
+	}
+
+	&__marquee-track {
+		display: flex;
+		inline-size: max-content;
+
+		.bgcf-partners__list {
+			flex-wrap: nowrap;
+			// `max-content` + nowrap: the duplicated list must not wrap, or the
+			// loop seam becomes visible.
+			inline-size: max-content;
+		}
+
+		@include t.motion-ok {
+			animation: bgcf-marquee 42s linear infinite;
+		}
+
+		&:hover,
+		&:focus-within {
+			animation-play-state: paused;
+		}
+	}
+}
+
+// Greyscale until hover. Hover only — on touch there is no hover, so the logos
+// simply stay in colour, which is the better of the two states anyway.
+.bgcf-block-partners--grayscale .bgcf-partners__logo {
+	filter: grayscale(100%);
+	opacity: 0.72;
+
+	@include t.transition((filter, opacity), 'base');
+
+	@include t.hover {
+		.bgcf-partners__item:hover & {
+			filter: grayscale(0%);
+			opacity: 1;
+		}
+	}
+
+	// Greyscaling a logo in forced-colours mode just makes it unreadable.
+	@include t.forced-colors {
+		filter: none;
+		opacity: 1;
+	}
+}
+
+@keyframes bgcf-marquee {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		// Exactly half: the track holds the list twice, so one list-width of
+		// travel returns to an identical frame and the loop is seamless.
+		transform: translateX(-50%);
+	}
+}
