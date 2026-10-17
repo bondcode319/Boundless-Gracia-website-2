@@ -37,7 +37,9 @@
 		"format:php": "phpcbf",
 		"images:webp": "node build/webp.mjs",
 		"clean": "node build/clean.mjs",
-		"prepare-release": "npm run clean && npm run build && npm run lint"
+		"prepare-release": "npm run clean && npm run build && npm run lint",
+		"build:static": "node build/static-site.mjs",
+		"dev:static": "node build/static-site.mjs && npx --yes serve public -l 3000"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.0.0",
